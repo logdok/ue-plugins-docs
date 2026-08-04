@@ -35,6 +35,14 @@ markdown_extensions:
   - pymdownx.highlight
   - toc:
       permalink: true
+      # Default python-markdown slugify strips non-ASCII characters entirely, so
+      # every Cyrillic heading collapses to an empty string and falls back to a
+      # meaningless sequential id (_1, _2, ...) - breaking every #anchor link in
+      # the Ukrainian chapters, including their own internal cross-references.
+      # pymdownx.slugs.slugify keeps Unicode text (lowercased, spaces -> hyphens).
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
 
 nav:
   - Home: index.md
