@@ -60,6 +60,7 @@ nav:
           - 08 Blueprint Library Reference: quest-system/Full/en/08-Blueprint-Library-Reference.md
           - 09 Validation & Cheats: quest-system/Full/en/09-Validation-And-Cheats.md
           - 10 C++ Integration: quest-system/Full/en/10-CPP-Integration.md
+          - 11 FAQ: quest-system/Full/en/11-FAQ.md
       - Full Edition (Українська):
           - Посібник: quest-system/Full/uk/README.md
           - 01 Основні поняття: quest-system/Full/uk/01-Core-Concepts.md
@@ -72,6 +73,7 @@ nav:
           - 08 Довідник Blueprint-бібліотеки: quest-system/Full/uk/08-Blueprint-Library-Reference.md
           - 09 Валідація та чити: quest-system/Full/uk/09-Validation-And-Cheats.md
           - 10 Інтеграція на C++: quest-system/Full/uk/10-CPP-Integration.md
+          - 11 Поширені запитання: quest-system/Full/uk/11-FAQ.md
       - Demo Edition (English):
           - Guide: quest-system/Demo/en/README.md
           - 00 Demo Limitations: quest-system/Demo/en/00-Demo-Limitations.md
@@ -85,6 +87,7 @@ nav:
           - 08 Blueprint Library Reference: quest-system/Demo/en/08-Blueprint-Library-Reference.md
           - 09 Validation & Cheats: quest-system/Demo/en/09-Validation-And-Cheats.md
           - 10 C++ Integration: quest-system/Demo/en/10-CPP-Integration.md
+          - 11 FAQ: quest-system/Demo/en/11-FAQ.md
       - Demo Edition (Українська):
           - Посібник: quest-system/Demo/uk/README.md
           - 00 Обмеження демоверсії: quest-system/Demo/uk/00-Demo-Limitations.md
@@ -98,3 +101,4 @@ nav:
           - 08 Довідник Blueprint-бібліотеки: quest-system/Demo/uk/08-Blueprint-Library-Reference.md
           - 09 Валідація та чити: quest-system/Demo/uk/09-Validation-And-Cheats.md
           - 10 Інтеграція на C++: quest-system/Demo/uk/10-CPP-Integration.md
+          - 11 Поширені запитання: quest-system/Demo/uk/11-FAQ.md
