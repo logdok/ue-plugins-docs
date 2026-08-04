@@ -5,5 +5,3 @@ Documentation for Unreal Engine plugins developed by [logdok](https://github.com
 ## Plugins
 
 - **[QuestSystem](quest-system/index.md)** — event-driven, data-driven quest system with first-class multiplayer support and zero-config integration. Available in a Full edition and an evaluation Demo edition, both documented in English and Ukrainian.
-
-More plugins will be added here as they're released.
