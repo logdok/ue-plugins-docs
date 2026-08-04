@@ -87,3 +87,8 @@ Useful for UI code that only has an `FQuestObjectiveProgress` or an enum value i
 
 - The lower-level `UQuestManagerComponent` API these functions wrap (delegates, party-quest internals): [01](01-Core-Concepts.md), [04](04-Event-Driven-Progress.md), [06](06-Multiplayer.md)
 - Console commands built on the same queries: [09 — Validation & Cheats](09-Validation-And-Cheats.md)
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->

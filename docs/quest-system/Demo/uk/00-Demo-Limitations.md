@@ -59,6 +59,7 @@ QUEST SYSTEM - DEMO EDITION - 2/3 quests used this session
 
 Повна версія знімає ліміт квестів і водяний знак, працює в `Shipping`-збірках і додає набір автоматичних тестів. Усе, що ви вивчили на демо, переноситься без змін — API ідентичний, окрім позначки в іменах. Її документація — той самий посібник, який ви зараз читаєте, без префікса `Demo`, — [Docs/Full/uk](../../Full/uk/README.md).
 
-
+<!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 15:08 UTC from `Docs/Full/` - do not edit this page directly.*
+<!-- doc-footer:end -->

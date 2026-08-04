@@ -87,3 +87,8 @@
 
 - Низькорівневий API `UQuestManagerComponent`, який огортають ці функції (делегати, нутрощі party-квестів): [01](01-Core-Concepts.md), [04](04-Event-Driven-Progress.md), [06](06-Multiplayer.md)
 - Консольні команди, побудовані на тих самих запитах: [09 — Валідація та чити](09-Validation-And-Cheats.md)
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->

@@ -145,3 +145,8 @@ QuestManager->OnQuestCompleted.AddDynamic(this, &AMyHUD::HandleQuestCompleted);
 
 - [02 — Zero-Config Integration](02-Zero-Config-Integration.md) for how your custom classes get plugged in without touching `PlayerState`/`GameState`.
 - [06 — Multiplayer](06-Multiplayer.md) for the party-quest API used when rewarding Shared/Individual quests.
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->

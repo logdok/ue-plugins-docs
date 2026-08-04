@@ -67,3 +67,8 @@ The overlay is a full inspector, not just a list: each card shows the quest's ob
 ## Where to go next
 
 - Extending the plugin in C++ (custom rewards, custom components): [10 — C++ Integration](10-CPP-Integration.md)
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->

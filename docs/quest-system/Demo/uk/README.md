@@ -55,6 +55,7 @@ UDemoQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 - Сніпети коду — на C++, якщо не вказано інше; кожна показана функція викликається і з Blueprint.
 - «Менеджер» означає `UDemoQuestManagerComponent` — де він живе і що робить, див. [01](01-Core-Concepts.md).
 
-
+<!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 15:08 UTC from `Docs/Full/` - do not edit this page directly.*
+<!-- doc-footer:end -->

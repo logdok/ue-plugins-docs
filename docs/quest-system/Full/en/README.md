@@ -53,3 +53,8 @@ The objective updates, the quest completes, and `GiveQuestRewards()` fires — o
 - `UQuestData` refers to a quest asset; `UQuestObjectiveData` refers to an objective asset. Both are `UPrimaryDataAsset`s you create in the Content Browser.
 - Code snippets are C++ unless stated otherwise; every function shown is also callable from Blueprint.
 - "The manager" means `UQuestManagerComponent` — see [01](01-Core-Concepts.md) for where it lives and what it does.
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->

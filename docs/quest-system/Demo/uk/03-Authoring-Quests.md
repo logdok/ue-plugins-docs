@@ -164,6 +164,7 @@ struct FDemoQuestReward
 - Підключення ігрових подій до цих цілей: [04 — Подієвий прогрес](04-Event-Driven-Progress.md)
 - Розміщення акторів, що видають квести, на рівні: [05 — Компоненти сцени](05-World-Components.md)
 
-
+<!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 15:08 UTC from `Docs/Full/` - do not edit this page directly.*
+<!-- doc-footer:end -->

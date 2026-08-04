@@ -113,3 +113,8 @@ AMyPlayerState::AMyPlayerState()
 ```
 
 Both approaches produce an identical, fully-functional component — zero-config is simply the recommended default.
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->

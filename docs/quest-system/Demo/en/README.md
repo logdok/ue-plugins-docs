@@ -55,6 +55,7 @@ The objective updates, the quest completes, and `GiveQuestRewards()` fires — o
 - Code snippets are C++ unless stated otherwise; every function shown is also callable from Blueprint.
 - "The manager" means `UDemoQuestManagerComponent` — see [01](01-Core-Concepts.md) for where it lives and what it does.
 
-
+<!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 15:08 UTC from `Docs/Full/` - do not edit this page directly.*
+<!-- doc-footer:end -->

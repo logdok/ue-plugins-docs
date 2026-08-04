@@ -146,6 +146,7 @@ Server-authoritative: кожен шлях обробляється лише та
 
 - Як giver/receiver маршрутизують Personal проти Shared/Individual квестів під капотом: [06 — Мультиплеєр](06-Multiplayer.md)
 
-
+<!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 15:08 UTC from `Docs/Full/` - do not edit this page directly.*
+<!-- doc-footer:end -->

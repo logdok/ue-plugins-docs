@@ -53,3 +53,8 @@ UQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 - `UQuestData` — це ассет квесту; `UQuestObjectiveData` — ассет цілі. Обидва — `UPrimaryDataAsset`, створюються в Content Browser.
 - Сніпети коду — на C++, якщо не вказано інше; кожна показана функція викликається і з Blueprint.
 - «Менеджер» означає `UQuestManagerComponent` — де він живе і що робить, див. [01](01-Core-Concepts.md).
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->

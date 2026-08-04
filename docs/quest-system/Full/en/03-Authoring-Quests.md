@@ -163,3 +163,8 @@ Prerequisites can freely cross sharing modes (e.g. a Personal quest requiring a 
 
 - Wiring gameplay events to these objectives: [04 — Event-Driven Progress](04-Event-Driven-Progress.md)
 - Placing quest-giving actors in your level: [05 — World Components](05-World-Components.md)
+
+<!-- doc-footer:start -->
+---
+*Last updated: 2026-08-04 15:08 UTC*
+<!-- doc-footer:end -->
