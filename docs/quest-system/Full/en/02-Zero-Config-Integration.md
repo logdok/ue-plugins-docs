@@ -116,5 +116,5 @@ Both approaches produce an identical, fully-functional component — zero-config
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-04 17:36 UTC*
+*Last updated: 2026-08-04 19:24 UTC*
 <!-- doc-footer:end -->

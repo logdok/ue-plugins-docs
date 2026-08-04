@@ -57,5 +57,5 @@ UDemoQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 17:36 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 19:24 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->

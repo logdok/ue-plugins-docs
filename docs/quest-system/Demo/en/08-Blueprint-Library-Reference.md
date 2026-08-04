@@ -12,7 +12,7 @@ All functions live in `Core/DemoQuestBlueprintLibrary.h`.
 |---|---|
 | `GetQuestManager(Player)` | The player's personal manager (Personal + Individual quests). |
 | `GetQuestManagerForController(PlayerController)` | Same, resolved from a controller. |
-| `GetPartyQuestManager(WorldContextObject)` | The `GameState` manager (Shared quests). |
+| `GetPartyQuestManager(WorldContextObject)` | The `GameState` manager — collective progress for Shared quests, *and* the participant roster / per-player completion tracking for Individual quests (an Individual quest's actual objective progress still lives on each player's own manager). |
 | `GetQuestManagerForQuest(Player, Quest)` | **The one to reach for when the sharing mode isn't already known.** Returns whichever manager actually owns that quest: the player's own for Personal/Individual, the party one for Shared. |
 
 ⚠️ Picking `GetQuestManager()` for a **Shared** quest is the single most common mistake with this plugin: it returns the player's manager, which never holds Shared progress, so the quest silently reads as "not available / not active / not completed" with no error anywhere. Use `GetQuestManagerForQuest()` whenever the quest could be Shared, or check both managers when aggregating a list.
@@ -24,10 +24,12 @@ All functions live in `Core/DemoQuestBlueprintLibrary.h`.
 | `StartQuest(Player, Quest)` | Start a Personal quest. Warns and fails if given a Shared quest. |
 | `StartPartyQuest(WorldContextObject, Quest, Participants)` | Start a Shared/Individual quest with an explicit roster. |
 | `StartPartyQuestForAllPlayers(WorldContextObject, Quest)` | Start a Shared/Individual quest with everyone currently connected — see [06](06-Multiplayer.md). |
-| `AddPartyQuestParticipant` / `RemovePartyQuestParticipant` | Manage a party quest's roster. |
+| `AddPartyQuestParticipant` / `RemovePartyQuestParticipant` | Manage a party quest's roster. Server-authoritative, safe to call from any client. Removing the last participant fails a Shared quest automatically. |
 | `CompleteQuest(Player, Quest)` | Manually complete a quest that's ready to turn in. Routes by sharing mode automatically. |
 | `FailQuest(Player, Quest)` | Fail a quest. |
 | `AbandonQuest(Player, Quest)` | Player-initiated cancel (requires `bCanAbandon`). |
+
+All of the above (plus `StartPartyQuest`/`StartPartyQuestForAllPlayers`/`AddPartyQuestParticipant`/`RemovePartyQuestParticipant`) are server-authoritative and safe to call from any client, including for a Shared quest — see [06 — Multiplayer](06-Multiplayer.md) (Server authority section) for how that's wired up and, more importantly, for a return-value caveat worth knowing before you branch UI logic on it.
 
 ## Event notifications
 
@@ -48,18 +50,18 @@ See [04 — Event-Driven Progress](04-Event-Driven-Progress.md) for the full mat
 |---|---|
 | `GetAvailableQuests(Player, AllQuests)` | Quests from `AllQuests` the player can currently start. |
 | `IsQuestActive(Player, Quest)` / `IsQuestCompleted(Player, Quest)` | Status checks, routed by sharing mode. |
-| `CanStartQuest(Player, Quest)` | Prerequisites met + not already active/completed. |
+| `CanStartQuest(Player, Quest)` | Prerequisites met + not already active/completed/failed (a failed quest needs `DemoQuestReset` first). |
 | `IsTargetRelevant(Player, EventID, TargetID)` | `true` if the player has an active objective that a `NotifyQuestEvent(EventID, TargetID)` would advance (checks own + party managers). Drives world-target markers. |
 | `GetActiveQuests(Player)` | The player's active Personal + Individual quests. |
 | `GetActiveSharedQuests(WorldContextObject)` | Active Shared quests from the `GameState`. |
-| `GetCompletedQuests(Player)` | The player's completed quests. |
-| `GetFailedQuests(Player)` | The player's failed quests (time expired, manually failed, etc.). |
+| `GetCompletedQuests(Player)` | The player's completed Personal + Individual quests only — a completed Shared quest lives on `GameState` instead, not here. |
+| `GetFailedQuests(Player)` | The player's failed Personal + Individual quests only (time expired, manually failed, etc.) — same `GameState` caveat as `GetCompletedQuests`. |
 | `GetQuestProgress(Player, Quest, OutObjectives, OutProgress)` | Parallel arrays of every objective and its current progress. |
-| `GetQuestCompletionPercentage(Player, Quest)` | `0.0`–`1.0`, based on required objectives only. |
-| `AreAllRequiredObjectivesComplete(Player, Quest)` | Same check `IsQuestReadyToTurnIn` uses internally. |
+| `GetQuestCompletionPercentage(Player, Quest)` | `0.0`–`1.0`, based on required objectives only. Works for an active quest and for one that has since completed or failed (reads the retained snapshot) — `0.0` only means "not started or unknown to this manager". |
+| `AreAllRequiredObjectivesComplete(Player, Quest)` | `true` once every required objective is Completed — like the percentage above, this also works after the quest has finished. **Not** the same thing as `IsQuestReadyToTurnIn` (used internally for manual turn-in): that one is deliberately Active-only, since a quest that already turned in is no longer "ready to turn in". |
 | `GetQuestTimeRemaining(Player, Quest)` | Seconds left on a timed quest (`0` if not timed/active). |
 | `GetQuestTimeRemainingText(Player, Quest)` | The above, formatted `MM:SS`. |
-| `GetObjectiveTimeRemaining(Player, Quest, Objective)` | Seconds left on a timed *objective* — independent of the quest's own timer (see [03](03-Authoring-Quests.md#timed-objectives)). |
+| `GetObjectiveTimeRemaining(Player, Quest, Objective)` | Seconds left on a timed *objective* (`0` if not timed/active) — independent of the quest's own timer (see [03](03-Authoring-Quests.md#timed-objectives)). |
 | `GetObjectiveTimeRemainingText(Player, Quest, Objective)` | The above, formatted `MM:SS`. |
 
 ## Progress utilities (stateless)
@@ -90,5 +92,5 @@ Useful for UI code that only has an `FDemoQuestObjectiveProgress` or an enum val
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 17:36 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 19:24 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->

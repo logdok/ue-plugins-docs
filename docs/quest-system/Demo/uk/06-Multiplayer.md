@@ -6,7 +6,9 @@
 
 ## Авторитет сервера
 
-Кожен метод `UDemoQuestManagerComponent`, що змінює стан (`StartQuest`, `CompleteQuest`, `FailQuest`, `AbandonQuest`, `UpdateObjectiveProgress`, `SetObjectiveProgress`, `NotifyQuestEvent`, …), усередині себе перевіряє авторитет і при виклику з клієнта перекидається на сервер через reliable RPC. Думати про це не потрібно ніколи — викликайте публічний метод звідки завгодно, з клієнта чи сервера, і все спрацює правильно.
+Кожен метод `UDemoQuestManagerComponent`, що змінює стан (`StartQuest`, `CompleteQuest`, `FailQuest`, `AbandonQuest`, `UpdateObjectiveProgress`, `SetObjectiveProgress`, `NotifyQuestEvent`, `AddParticipant`, `RemoveParticipant`, …), усередині себе перевіряє авторитет і при виклику з клієнта перекидається на сервер. Думати про це не потрібно ніколи — викликайте публічний метод звідки завгодно, з клієнта чи сервера, і все спрацює правильно, **зокрема й при виклику на party-менеджері для Shared/Individual квесту**: у `GameState` немає єдиного власного клієнтського з'єднання, тож reliable RPC не можна оголосити прямо на компоненті, розміщеному на `GameState` (рушій мовчки відмовляється виконувати його для будь-якого клієнта) — такі виклики натомість перенаправляються через власний менеджер локального гравця. Це суто деталь реалізації, налаштовувати нічого не потрібно.
+
+Варто знати одне застереження: на клієнті ці методи повертають `true` оптимістично, щойно запит надіслано, а не тоді, коли сервер справді його прийняв. Якщо виклик потенційно може бути відхилений на сервері, орієнтуйтеся на делегати (`OnQuestStateChanged`, `OnQuestCompleted`, …) чи подальшу перевірку стану як на справжнє джерело істини — не будуйте UI виключно на значенні, що повертається.
 
 `ActiveQuests` реплікується автоматично (`OnRep_ActiveQuests`); `CompletedQuests`/`FailedQuests`/`PartyQuestStates` — теж. Усі вони реплікуються кожному спостерігачеві актора-хоста — тобто на менеджері `PlayerState` дані квестів гравця доходять до всіх клієнтів, а не лише до власника. Це тому, що той самий клас компонента зберігає колективний Shared-прогрес на `GameState`, у якого немає власника, — а отже, суцільний `COND_OwnerOnly` неможливий. Вважайте записи інших гравців побічними/read-only; якщо потрібна сувора прив'язка до власника, розділіть компонент на два підкласи.
 
@@ -71,5 +73,5 @@ bool bDone = UDemoQuestBlueprintLibrary::HasPlayerCompletedIndividualQuest(MyPla
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 17:36 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 19:24 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->

@@ -6,7 +6,9 @@ Multiplayer support is not bolted on — it is the reason the plugin is shaped t
 
 ## Server authority
 
-Every mutating method on `UQuestManagerComponent` (`StartQuest`, `CompleteQuest`, `FailQuest`, `AbandonQuest`, `UpdateObjectiveProgress`, `SetObjectiveProgress`, `NotifyQuestEvent`, …) checks authority internally and forwards to the server via a reliable RPC when called from a client. You never need to think about this — call the public method from anywhere, client or server, and it does the right thing.
+Every mutating method on `UQuestManagerComponent` (`StartQuest`, `CompleteQuest`, `FailQuest`, `AbandonQuest`, `UpdateObjectiveProgress`, `SetObjectiveProgress`, `NotifyQuestEvent`, `AddParticipant`, `RemoveParticipant`, …) checks authority internally and forwards to the server when called from a client. You never need to think about this — call the public method from anywhere, client or server, and it does the right thing, **including when called on the party manager for a Shared/Individual quest**: `GameState` has no single owning client connection, so a reliable RPC can't be declared directly on a `GameState`-hosted component (the engine silently refuses to execute it for any client) — these calls are relayed through the local player's own manager under the hood instead. Purely an implementation detail; nothing you need to set up.
+
+One caveat worth knowing: on a client, these methods return `true` optimistically once the request has been sent, not once the server has actually accepted it. Treat the delegates (`OnQuestStateChanged`, `OnQuestCompleted`, …) or a later state check as the real source of truth if a call could plausibly be rejected server-side — don't drive UI purely off the return value.
 
 `ActiveQuests` replicates automatically (`OnRep_ActiveQuests`); `CompletedQuests`/`FailedQuests`/`PartyQuestStates` replicate too. All of these replicate to every observer of the host actor — so on a `PlayerState` manager a player's own quest data reaches all clients, not just the owner. That's because the single component class also hosts collective Shared progress on the owner-less `GameState`, which rules out a blanket `COND_OwnerOnly`. Treat other players' entries as incidental/read-only; if you need strict owner-only scoping, split into two component subclasses.
 
@@ -71,5 +73,5 @@ Internally, when a player finishes their own copy, `MarkParticipantCompleted()` 
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-04 17:36 UTC*
+*Last updated: 2026-08-04 19:24 UTC*
 <!-- doc-footer:end -->
