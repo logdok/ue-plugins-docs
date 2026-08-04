@@ -70,5 +70,5 @@ The overlay is a full inspector, not just a list: each card shows the quest's ob
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-04 15:08 UTC*
+*Last updated: 2026-08-04 17:36 UTC*
 <!-- doc-footer:end -->

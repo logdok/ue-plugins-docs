@@ -57,5 +57,5 @@ The objective updates, the quest completes, and `GiveQuestRewards()` fires — o
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 15:08 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 17:36 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->
