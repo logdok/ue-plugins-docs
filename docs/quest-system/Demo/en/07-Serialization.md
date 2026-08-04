@@ -65,3 +65,7 @@ if (UMySaveGame* Loaded = Cast<UMySaveGame>(UGameplayStatics::LoadGameFromSlot(T
 ## Where to go next
 
 - The full function reference for everything used above: [08 — Blueprint Library Reference](08-Blueprint-Library-Reference.md)
+
+
+---
+*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*

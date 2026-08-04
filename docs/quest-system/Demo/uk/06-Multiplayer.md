@@ -68,3 +68,7 @@ bool bDone = UDemoQuestBlueprintLibrary::HasPlayerCompletedIndividualQuest(MyPla
 ## Куди далі
 
 - Збереження прогресу квестів між сесіями (зокрема те, що *не* зберігається — ростер групи): [07 — Серіалізація](07-Serialization.md)
+
+
+---
+*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*

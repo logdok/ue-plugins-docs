@@ -54,3 +54,7 @@ The objective updates, the quest completes, and `GiveQuestRewards()` fires — o
 - `UDemoQuestData` refers to a quest asset; `UDemoQuestObjectiveData` refers to an objective asset. Both are `UPrimaryDataAsset`s you create in the Content Browser.
 - Code snippets are C++ unless stated otherwise; every function shown is also callable from Blueprint.
 - "The manager" means `UDemoQuestManagerComponent` — see [01](01-Core-Concepts.md) for where it lives and what it does.
+
+
+---
+*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*

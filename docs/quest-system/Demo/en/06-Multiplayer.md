@@ -68,3 +68,7 @@ Internally, when a player finishes their own copy, `MarkParticipantCompleted()` 
 ## Where to go next
 
 - Persisting quest progress across sessions (including what does *not* survive — party rosters): [07 — Serialization](07-Serialization.md)
+
+
+---
+*Generated 2026-08-04 14:54 UTC from `Docs/Full/` - do not edit this page directly.*
