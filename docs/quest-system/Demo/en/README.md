@@ -33,6 +33,8 @@ The objective updates, the quest completes, and `GiveQuestRewards()` fires — o
 - **UI programmers**: read [08](08-Blueprint-Library-Reference.md).
 - **Tooling / QA**: read [09](09-Validation-And-Cheats.md).
 
+In a hurry, or something's behaving oddly? Start at [11 — FAQ](11-FAQ.md).
+
 ## Chapters
 
 | # | Chapter | What's in it |
@@ -48,6 +50,7 @@ The objective updates, the quest completes, and `GiveQuestRewards()` fires — o
 | 08 | [Blueprint Library Reference](08-Blueprint-Library-Reference.md) | Full `UDemoQuestBlueprintLibrary` function reference |
 | 09 | [Validation & Cheats](09-Validation-And-Cheats.md) | Circular-dependency detection, console commands |
 | 10 | [C++ Integration](10-CPP-Integration.md) | Custom rewards, extending components, sending events from gameplay code |
+| 11 | [FAQ](11-FAQ.md) | Short answers to the common questions, and the "why isn't this working?" checklist |
 
 ## Conventions used in this guide
 
@@ -57,5 +60,5 @@ The objective updates, the quest completes, and `GiveQuestRewards()` fires — o
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 19:24 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 19:47 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->

@@ -33,6 +33,8 @@ UDemoQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 - **UI-програмістам**: [08](08-Blueprint-Library-Reference.md).
 - **Тулінгу / QA**: [09](09-Validation-And-Cheats.md).
 
+Поспішаєте або щось поводиться дивно? Починайте з [11 — Поширені запитання](11-FAQ.md).
+
 ## Розділи
 
 | # | Розділ | Що всередині |
@@ -48,6 +50,7 @@ UDemoQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 | 08 | [Довідник Blueprint-бібліотеки](08-Blueprint-Library-Reference.md) | Повний довідник функцій `UDemoQuestBlueprintLibrary` |
 | 09 | [Валідація та чити](09-Validation-And-Cheats.md) | Виявлення циклічних залежностей, консольні команди |
 | 10 | [Інтеграція на C++](10-CPP-Integration.md) | Кастомні нагороди, розширення компонентів, надсилання подій із геймплей-коду |
+| 11 | [Поширені запитання](11-FAQ.md) | Короткі відповіді на часті запитання та чеклист «чому не працює?» |
 
 ## Домовленості цього посібника
 
@@ -57,5 +60,5 @@ UDemoQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 19:24 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-04 19:47 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->

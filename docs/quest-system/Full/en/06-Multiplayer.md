@@ -73,5 +73,5 @@ Internally, when a player finishes their own copy, `MarkParticipantCompleted()` 
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-04 19:24 UTC*
+*Last updated: 2026-08-04 19:47 UTC*
 <!-- doc-footer:end -->
