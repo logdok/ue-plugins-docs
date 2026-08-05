@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/README.md)*
 
-This is the full reference guide for the QuestSystemDemo plugin — an event-driven, data-driven quest system for **Unreal Engine 5.7** with first-class multiplayer support and zero-config integration. Designers author quests as Data Assets; gameplay code reports a handful of events; the plugin does the rest, including the network replication.
+This is the full reference guide for the QuestSystemDemo plugin — an event-driven, data-driven quest system for **Unreal Engine 5.8** with first-class multiplayer support and zero-config integration. Designers author quests as Data Assets; gameplay code reports a handful of events; the plugin does the rest, including the network replication.
 
 ## Quick Start
 
@@ -60,5 +60,5 @@ In a hurry, or something's behaving oddly? Start at [11 — FAQ](11-FAQ.md).
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-05 14:53 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->
