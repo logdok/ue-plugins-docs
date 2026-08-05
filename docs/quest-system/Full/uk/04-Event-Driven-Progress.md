@@ -118,5 +118,5 @@ Widget Blueprint із живим трекером квестів, або Charact
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-04 19:47 UTC*
+*Last updated: 2026-08-05 11:23 UTC*
 <!-- doc-footer:end -->

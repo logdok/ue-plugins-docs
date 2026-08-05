@@ -61,5 +61,5 @@ The full edition removes the quest budget and the watermark, ships in `Shipping`
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-04 19:47 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-05 11:23 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->
