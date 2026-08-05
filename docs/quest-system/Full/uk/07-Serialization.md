@@ -68,5 +68,5 @@ if (UMySaveGame* Loaded = Cast<UMySaveGame>(UGameplayStatics::LoadGameFromSlot(T
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-05 11:44 UTC*
+*Last updated: 2026-08-05 12:24 UTC*
 <!-- doc-footer:end -->

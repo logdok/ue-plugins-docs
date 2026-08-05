@@ -61,5 +61,5 @@ So the real decision isn't "which mode lets this run in both modes" (all of them
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-05 11:44 UTC*
+*Last updated: 2026-08-05 12:24 UTC*
 <!-- doc-footer:end -->

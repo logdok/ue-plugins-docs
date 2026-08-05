@@ -59,5 +59,5 @@ In a hurry, or something's behaving oddly? Start at [11 — FAQ](11-FAQ.md).
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-05 11:44 UTC*
+*Last updated: 2026-08-05 12:24 UTC*
 <!-- doc-footer:end -->

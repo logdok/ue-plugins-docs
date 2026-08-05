@@ -118,5 +118,5 @@ A widget Blueprint showing a live quest tracker, or a Character/PlayerController
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-05 11:44 UTC*
+*Last updated: 2026-08-05 12:24 UTC*
 <!-- doc-footer:end -->
