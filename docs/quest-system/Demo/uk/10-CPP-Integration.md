@@ -148,5 +148,5 @@ QuestManager->OnQuestCompleted.AddDynamic(this, &AMyHUD::HandleQuestCompleted);
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-05 14:13 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-05 14:53 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->
