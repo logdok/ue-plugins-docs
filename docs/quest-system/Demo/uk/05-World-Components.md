@@ -148,5 +148,5 @@ Server-authoritative: кожен шлях обробляється лише та
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-05 12:24 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-05 14:13 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->

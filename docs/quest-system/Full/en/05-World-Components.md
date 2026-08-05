@@ -148,5 +148,5 @@ Look at `DemoMap` in the editor to see `AQuestBoard`/`AQuestChest` and a demo NP
 
 <!-- doc-footer:start -->
 ---
-*Last updated: 2026-08-05 12:24 UTC*
+*Last updated: 2026-08-05 14:13 UTC*
 <!-- doc-footer:end -->

@@ -60,5 +60,5 @@ In a hurry, or something's behaving oddly? Start at [11 — FAQ](11-FAQ.md).
 
 <!-- doc-footer:start -->
 ---
-*Generated 2026-08-05 12:24 UTC from `Docs/Full/` - do not edit this page directly.*
+*Generated 2026-08-05 14:13 UTC from `Docs/Full/` - do not edit this page directly.*
 <!-- doc-footer:end -->
