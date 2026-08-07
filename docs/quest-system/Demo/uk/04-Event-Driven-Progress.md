@@ -115,8 +115,3 @@ Widget Blueprint із живим трекером квестів, або Charact
 
 - Розміщення NPC, дощок оголошень і скринь, які викликають ці функції за вас: [05 — Компоненти сцени](05-World-Components.md)
 - Правила маршрутизації в мультиплеєрі — «який менеджер обробляє цю подію»: [06 — Мультиплеєр](06-Multiplayer.md)
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->

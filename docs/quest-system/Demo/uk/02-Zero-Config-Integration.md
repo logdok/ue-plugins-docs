@@ -113,8 +113,3 @@ AMyPlayerState::AMyPlayerState()
 ```
 
 Обидва підходи дають ідентичний, повністю робочий компонент — інтеграція без налаштування просто рекомендується за замовчуванням.
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->

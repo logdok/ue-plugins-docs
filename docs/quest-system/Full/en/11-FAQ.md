@@ -200,8 +200,3 @@ Wherever your game already knows the thing happened — the damage handler that 
 
 - Still stuck on content behaving oddly? [09 — Validation & Cheats](09-Validation-And-Cheats.md) covers the debug overlay and console commands in full.
 - Extending in C++: [10 — C++ Integration](10-CPP-Integration.md).
-
-<!-- doc-footer:start -->
----
-*Last updated: 2026-08-05 18:13 UTC*
-<!-- doc-footer:end -->

@@ -67,8 +67,3 @@ UQuestData* Quest = UQuestValidationLibrary::FindQuestByID(TEXT("Quest_LostSword
 ## Куди далі
 
 - Розширення плагіна на C++ (кастомні нагороди, кастомні компоненти): [10 — Інтеграція на C++](10-CPP-Integration.md)
-
-<!-- doc-footer:start -->
----
-*Last updated: 2026-08-05 18:13 UTC*
-<!-- doc-footer:end -->

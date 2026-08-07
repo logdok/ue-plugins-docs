@@ -145,8 +145,3 @@ QuestManager->OnQuestCompleted.AddDynamic(this, &AMyHUD::HandleQuestCompleted);
 
 - [02 — Інтеграція без налаштування](02-Zero-Config-Integration.md) про те, як ваші кастомні класи підключаються без зміни `PlayerState`/`GameState`.
 - [06 — Мультиплеєр](06-Multiplayer.md) про API party-квестів, який використовується під час нагородження Shared/Individual квестів.
-
-<!-- doc-footer:start -->
----
-*Last updated: 2026-08-05 18:13 UTC*
-<!-- doc-footer:end -->

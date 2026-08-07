@@ -145,8 +145,3 @@ Look at `DemoMap` in the editor to see `AQuestBoard`/`AQuestChest` and a demo NP
 ## Where to go next
 
 - How giver/receiver route Personal vs. Shared/Individual quests under the hood: [06 — Multiplayer](06-Multiplayer.md)
-
-<!-- doc-footer:start -->
----
-*Last updated: 2026-08-05 18:13 UTC*
-<!-- doc-footer:end -->

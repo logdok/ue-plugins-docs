@@ -57,8 +57,3 @@ In a hurry, or something's behaving oddly? Start at [11 — FAQ](11-FAQ.md).
 - `UDemoQuestData` refers to a quest asset; `UDemoQuestObjectiveData` refers to an objective asset. Both are `UPrimaryDataAsset`s you create in the Content Browser.
 - Code snippets are C++ unless stated otherwise; every function shown is also callable from Blueprint.
 - "The manager" means `UDemoQuestManagerComponent` — see [01](01-Core-Concepts.md) for where it lives and what it does.
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->

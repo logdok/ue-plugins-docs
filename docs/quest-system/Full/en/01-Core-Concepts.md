@@ -58,8 +58,3 @@ So the real decision isn't "which mode lets this run in both modes" (all of them
 
 - Setting up the plugin with zero code: [02 — Zero-Config Integration](02-Zero-Config-Integration.md)
 - Building your first quest asset: [03 — Authoring Quests](03-Authoring-Quests.md)
-
-<!-- doc-footer:start -->
----
-*Last updated: 2026-08-05 18:13 UTC*
-<!-- doc-footer:end -->

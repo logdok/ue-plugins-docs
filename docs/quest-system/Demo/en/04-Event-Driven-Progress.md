@@ -115,8 +115,3 @@ A widget Blueprint showing a live quest tracker, or a Character/PlayerController
 
 - Placing NPCs, boards, and chests that call these functions for you: [05 — World Components](05-World-Components.md)
 - The multiplayer routing rules behind "which manager handles this event": [06 — Multiplayer](06-Multiplayer.md)
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->

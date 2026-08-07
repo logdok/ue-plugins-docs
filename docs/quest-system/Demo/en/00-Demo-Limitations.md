@@ -58,8 +58,3 @@ Everything else, specifically:
 ## Getting the full plugin
 
 The full edition removes the quest budget and the watermark, ships in `Shipping` builds, and adds the automation test suite. Everything you learned evaluating the demo carries over unchanged — the API is identical apart from the naming marker. Its documentation — the same guide you're reading now, without the `Demo` prefixes — is [Docs/Full/en](../../Full/en/README.md).
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->

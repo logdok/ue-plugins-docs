@@ -58,8 +58,3 @@
 
 - Налаштування плагіна без жодного рядка коду: [02 — Інтеграція без налаштування](02-Zero-Config-Integration.md)
 - Створення свого першого ассету квесту: [03 — Авторинг квестів](03-Authoring-Quests.md)
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->

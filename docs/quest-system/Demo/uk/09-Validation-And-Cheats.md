@@ -67,8 +67,3 @@ UDemoQuestData* Quest = UDemoQuestValidationLibrary::FindQuestByID(TEXT("Quest_L
 ## Куди далі
 
 - Розширення плагіна на C++ (кастомні нагороди, кастомні компоненти): [10 — Інтеграція на C++](10-CPP-Integration.md)
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->

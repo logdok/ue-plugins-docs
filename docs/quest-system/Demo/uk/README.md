@@ -57,8 +57,3 @@ UDemoQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 - `UDemoQuestData` — це ассет квесту; `UDemoQuestObjectiveData` — ассет цілі. Обидва — `UPrimaryDataAsset`, створюються в Content Browser.
 - Сніпети коду — на C++, якщо не вказано інше; кожна показана функція викликається і з Blueprint.
 - «Менеджер» означає `UDemoQuestManagerComponent` — де він живе і що робить, див. [01](01-Core-Concepts.md).
-
-<!-- doc-footer:start -->
----
-*Generated 2026-08-05 18:13 UTC from `Docs/Full/` - do not edit this page directly.*
-<!-- doc-footer:end -->
