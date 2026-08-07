@@ -27,6 +27,15 @@ theme:
     - content.code.copy
     - toc.follow
 
+# Specifying this list replaces MkDocs' implicit default outright, so "search"
+# has to be listed here explicitly or the site loses search entirely.
+plugins:
+  - search
+  - git-revision-date-localized:
+      type: date
+      timezone: UTC
+      fallback_to_build_date: true
+
 markdown_extensions:
   - admonition
   - tables

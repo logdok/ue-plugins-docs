@@ -20,6 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # git-revision-date-localized needs full history to date each page
+          # by its own last-changed commit - the default shallow clone only
+          # has the tip commit, which would date every page identically.
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
