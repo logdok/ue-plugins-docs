@@ -115,6 +115,7 @@ nav:
       - Overview: s3-compatible-storage/index.md
       - Full Edition (Українська):
           - Посібник: s3-compatible-storage/Full/uk/README.md
+          - Журнал змін: s3-compatible-storage/Full/uk/Changelog.md
           - 01 Швидкий старт: s3-compatible-storage/Full/uk/01-Quick-Start.md
           - 02 Налаштування: s3-compatible-storage/Full/uk/02-Configuration.md
           - 03 Облікові дані: s3-compatible-storage/Full/uk/03-Credentials.md
@@ -124,4 +125,3 @@ nav:
           - 07 Помилки та діагностика: s3-compatible-storage/Full/uk/07-Errors-And-Diagnostics.md
           - 08 Провайдери: s3-compatible-storage/Full/uk/08-Providers.md
           - 09 Тестування: s3-compatible-storage/Full/uk/09-Testing.md
-          - 10 Журнал змін: s3-compatible-storage/Full/uk/10-Changelog.md
