@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/README.md)*
 
-This is the full reference guide for the QuestSystem plugin — an event-driven, data-driven quest system for **Unreal Engine 5.8** with first-class multiplayer support and zero-config integration. Designers author quests as Data Assets; gameplay code reports a handful of events; the plugin does the rest, including the network replication.
+This is the full reference guide for the QuestSystem plugin — an event-driven, data-driven quest system for **Unreal Engine 5.7–5.8** with first-class multiplayer support and zero-config integration. Designers author quests as Data Assets; gameplay code reports a handful of events; the plugin does the rest, including the network replication.
 
 ## Quick Start
 
