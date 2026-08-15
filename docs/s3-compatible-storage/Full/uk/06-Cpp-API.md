@@ -92,6 +92,16 @@ FS3TransferHandleRef Transfer = Client->UploadFile(
 
 Із пам'яті — `UploadBytes` з тими самими параметрами, але масивом замість шляху.
 
+**Про `LocalPath`.** Приймається і абсолютний шлях (`"C:/Users/You/save.png"`,
+`"/Users/You/save.png"`), і відносний кореня проєкту (`"Saved/SaveGames/player.sav"`) —
+другий розгортається через
+`FPaths::ConvertRelativePathToFull(FPaths::ProjectDir(), LocalPath)`, тож той самий рядок
+веде в те саме місце і в редакторі, і в зібраній грі, на будь-якій платформі. `DownloadFile`
+і `DownloadFileChunked` приймають шлях призначення так само. Це саме той механізм, що стоїть
+за нодою `Local File Path` у Blueprint — див.
+[«Шлях до файлу»](04-Blueprint-Operations.md#шлях-до-файлу-абсолютний-чи-відносний) для
+розгорнутих прикладів під кожну платформу.
+
 ---
 
 ## Зчитування

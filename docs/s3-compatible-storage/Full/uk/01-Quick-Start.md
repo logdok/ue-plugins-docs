@@ -88,7 +88,7 @@ Event BeginPlay
    └─────────────────────────────────────┴─► S3 Upload File
                                                   Bucket Name : my-bucket
                                                   Object Key  : saves/player.sav
-                                                  Local File Path : (шлях до файлу)
+                                                  Local File Path : Saved/SaveGames/player.sav
                                                   │
                                                   ├─ On Started  → зберегти Transfer у змінну
                                                   ├─ On Progress → оновити ProgressBar
@@ -99,6 +99,14 @@ Event BeginPlay
 **Get S3 Subsystem** — це стандартна нода Unreal: `Get Game Instance Subsystem` із класом
 `S3 Subsystem`. Підсистема створює клієнта з ваших налаштувань, тримає його живим і віддає
 той самий екземпляр за кожним викликом.
+
+**Про `Local File Path`.** Значення вище — відносний шлях: плагін сам розгортає його
+відносно кореня проєкту (`Saved/SaveGames/player.sav` стає, наприклад,
+`C:/MyProject/Saved/SaveGames/player.sav`), однаково і в редакторі, і в зібраній грі.
+Так само підійде повний абсолютний шлях на кшталт `C:/Users/You/Desktop/player.sav`.
+Не підійде шлях ассета на кшталт `/Game/...` — це посилання на об'єкт у Content Browser, а
+не на файл на диску. Повний розбір усіх варіантів, з прикладами під кожну платформу — у
+розділі [«Шлях до файлу: абсолютний чи відносний»](04-Blueprint-Operations.md#шлях-до-файлу-абсолютний-чи-відносний).
 
 ### Що робити з пінами
 
@@ -120,7 +128,7 @@ Event BeginPlay
 S3 Download File
    Bucket Name     : my-bucket
    Object Key      : saves/player.sav
-   Local File Path : (куди зберегти)
+   Local File Path : Saved/SaveGames/player-downloaded.sav
    │
    ├─ On Success → файл уже на диску
    └─ On Failure → показати Get S3 Diagnostic Hint
@@ -142,6 +150,7 @@ S3 Download File
 | `NoSuchBucket` на MinIO | MinIO не створює бакети автоматично. Скористайтеся нодою **S3 Create Bucket** або консоллю MinIO |
 | Нода нічого не робить, у пінах тиша | У піні Client порожньо. Візьміть клієнта з підсистеми |
 | 403 на всьому підряд у зібраній грі | У збірці немає ключів — вони лишилися в редакторських налаштуваннях. Див. [Облікові дані](03-Credentials.md) |
+| `Cannot read <шлях>` на `S3 Upload File` | Файла немає саме там, куди веде шлях. Для відносного шляху це `Saved/...` у корені **проєкту**, а не там, де відкрито провідник ОС — див. [«Шлях до файлу»](04-Blueprint-Operations.md#шлях-до-файлу-абсолютний-чи-відносний) |
 
 ---
 
