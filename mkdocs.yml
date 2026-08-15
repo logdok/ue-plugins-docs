@@ -59,6 +59,7 @@ nav:
       - Overview: quest-system/index.md
       - Full Edition (English):
           - Guide: quest-system/Full/en/README.md
+          - Release Notes: quest-system/Full/en/Release-Notes.md
           - 01 Core Concepts: quest-system/Full/en/01-Core-Concepts.md
           - 02 Zero-Config Integration: quest-system/Full/en/02-Zero-Config-Integration.md
           - 03 Authoring Quests: quest-system/Full/en/03-Authoring-Quests.md
@@ -72,6 +73,7 @@ nav:
           - 11 FAQ: quest-system/Full/en/11-FAQ.md
       - Full Edition (Українська):
           - Посібник: quest-system/Full/uk/README.md
+          - Примітки до випуску: quest-system/Full/uk/Release-Notes.md
           - 01 Основні поняття: quest-system/Full/uk/01-Core-Concepts.md
           - 02 Інтеграція без налаштування: quest-system/Full/uk/02-Zero-Config-Integration.md
           - 03 Авторинг квестів: quest-system/Full/uk/03-Authoring-Quests.md
@@ -85,6 +87,7 @@ nav:
           - 11 Поширені запитання: quest-system/Full/uk/11-FAQ.md
       - Demo Edition (English):
           - Guide: quest-system/Demo/en/README.md
+          - Release Notes: quest-system/Demo/en/Release-Notes.md
           - 00 Demo Limitations: quest-system/Demo/en/00-Demo-Limitations.md
           - 01 Core Concepts: quest-system/Demo/en/01-Core-Concepts.md
           - 02 Zero-Config Integration: quest-system/Demo/en/02-Zero-Config-Integration.md
@@ -99,6 +102,7 @@ nav:
           - 11 FAQ: quest-system/Demo/en/11-FAQ.md
       - Demo Edition (Українська):
           - Посібник: quest-system/Demo/uk/README.md
+          - Примітки до випуску: quest-system/Demo/uk/Release-Notes.md
           - 00 Обмеження демоверсії: quest-system/Demo/uk/00-Demo-Limitations.md
           - 01 Основні поняття: quest-system/Demo/uk/01-Core-Concepts.md
           - 02 Інтеграція без налаштування: quest-system/Demo/uk/02-Zero-Config-Integration.md
