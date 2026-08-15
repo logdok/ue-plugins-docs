@@ -40,6 +40,7 @@ UDemoQuestBlueprintLibrary::NotifyKillEvent(PlayerState, "Bandit");
 | # | Розділ | Що всередині |
 |---|---------|---------------|
 | 00 | [Обмеження демоверсії](00-Demo-Limitations.md) | Що демо обмежує, чого не обмежує і що змінюється при переході на повну версію |
+|  – | [Примітки до випуску](Release-Notes.md) | Що кожен випуск додає, виправляє і чого в ньому ще немає |
 | 01 | [Основні поняття](01-Core-Concepts.md) | Квести, цілі, стани, режими розподілу прогресу, модель «один компонент — два місця» |
 | 02 | [Інтеграція без налаштування](02-Zero-Config-Integration.md) | `UDemoQuestWorldSubsystem`, `UDemoQuestSystemSettings`, отримання менеджера квестів |
 | 03 | [Авторинг квестів](03-Authoring-Quests.md) | Повний довідник полів `UDemoQuestData` / `UDemoQuestObjectiveData` |

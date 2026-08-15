@@ -39,6 +39,7 @@ In a hurry, or something's behaving oddly? Start at [11 — FAQ](11-FAQ.md).
 
 | # | Chapter | What's in it |
 |---|---------|---------------|
+|  – | [Release Notes](Release-Notes.md) | What each release adds, fixes and still lacks |
 | 01 | [Core Concepts](01-Core-Concepts.md) | Quests, objectives, states, sharing modes, the one-component-two-locations model |
 | 02 | [Zero-Config Integration](02-Zero-Config-Integration.md) | `UQuestWorldSubsystem`, `UQuestSystemSettings`, getting a quest manager |
 | 03 | [Authoring Quests](03-Authoring-Quests.md) | Full `UQuestData` / `UQuestObjectiveData` property reference |

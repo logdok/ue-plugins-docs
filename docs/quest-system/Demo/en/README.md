@@ -40,6 +40,7 @@ In a hurry, or something's behaving oddly? Start at [11 — FAQ](11-FAQ.md).
 | # | Chapter | What's in it |
 |---|---------|---------------|
 | 00 | [Demo Limitations](00-Demo-Limitations.md) | What the demo limits, what it does not, and what to expect when you switch |
+|  – | [Release Notes](Release-Notes.md) | What each release adds, fixes and still lacks |
 | 01 | [Core Concepts](01-Core-Concepts.md) | Quests, objectives, states, sharing modes, the one-component-two-locations model |
 | 02 | [Zero-Config Integration](02-Zero-Config-Integration.md) | `UDemoQuestWorldSubsystem`, `UDemoQuestSystemSettings`, getting a quest manager |
 | 03 | [Authoring Quests](03-Authoring-Quests.md) | Full `UDemoQuestData` / `UDemoQuestObjectiveData` property reference |
