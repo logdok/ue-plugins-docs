@@ -1,5 +1,9 @@
 # QuestSystem
 
+<!-- last-synced:start -->
+<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-08-15 01:10 UTC</em></p>
+<!-- last-synced:end -->
+
 An event-driven, data-driven quest system for **Unreal Engine 5.7–5.8** with first-class multiplayer support and zero-config integration. Designers author quests as Data Assets; gameplay code reports a handful of events; the plugin does the rest — including the network replication.
 
 Two documentation trees are available, one per plugin edition, each in English and Ukrainian:
