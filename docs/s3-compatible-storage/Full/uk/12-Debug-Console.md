@@ -92,3 +92,5 @@ LogS3: Display:   my-game-saves/big/level_pack.pak (upload 2~AbCdEf..., part siz
 ---
 
 [← До змісту](README.md)
+
+**Далі:** [13. Профілі на практиці](13-Profile-Scenarios.md)
