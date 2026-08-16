@@ -134,6 +134,13 @@ Client->DownloadRange(TEXT("my-bucket"), TEXT("video.mp4"), 0, 1023,
         {
             // Result.TotalObjectSize — повний розмір, навіть якщо взяли кілограм байтів.
         }));
+
+// Серією діапазонних запитів, а не одним стрімом. Потрібно лише тоді, коли важливі саме
+// діапазони: 0 бере розмір частини з налаштувань транспорту.
+Client->DownloadFileChunked(TEXT("my-bucket"), TEXT("patches/1.2.pak"), LocalPath,
+    /*ChunkSizeBytes=*/0,
+    FS3OnDownloadResult::CreateLambda(
+        [](const FS3OperationResult& Result, const TArray<uint8>& Data) {}));
 ```
 
 ---
@@ -162,6 +169,15 @@ void ListPage(US3Client* Client, const FString& Token)
                 }
             }));
 }
+
+// Перелік бакетів облікового запису. Лише для Amazon у глобальній формі: R2 відповідає
+// на цей виклик кодом 403.
+Client->ListBuckets(
+    FS3OnListBucketsResult::CreateLambda(
+        [](const FS3ListBucketsResult& Result)
+        {
+            for (const FS3Bucket& Bucket : Result.Buckets) { /* Bucket.Name, Bucket.CreationDate */ }
+        }));
 ```
 
 ---
@@ -199,6 +215,101 @@ Client->DeleteObjects(TEXT("my-bucket"), MoveTemp(Keys),
             }
         }));
 ```
+
+---
+
+## Копіювання об'єкта
+
+Копіює об'єкт цілком на боці провайдера — байти не проходять через клієнта. Джерело й
+призначення можуть бути в різних бакетах.
+
+```cpp
+Client->CopyObject(
+    TEXT("my-bucket"), TEXT("uploads/screenshot.png"),        // джерело
+    TEXT("my-bucket"), TEXT("archive/2026/screenshot.png"),   // призначення
+    FS3OnResult::CreateLambda([](const FS3OperationResult& Result) {}));
+```
+
+`SetMetadata` вище користується тим самим механізмом провайдера — копією об'єкта самого в
+себе — щоб замінити метадані без повторного надсилання вмісту.
+
+---
+
+## Теги об'єктів
+
+Пари «ключ-значення» біля об'єкта, які, на відміну від метаданих, можна змінювати будь-коли
+без переписування самого об'єкта і без зміни часу останньої зміни. Правила життєвого циклу й
+політики доступу можуть відбирати об'єкти саме за тегами — метаданих вони не бачать. Різницю
+між тегами й метаданими докладно розібрано в
+[«Теги чи метадані: що з них брати»](04-Blueprint-Operations.md#теги-чи-метадані-що-з-них-брати).
+
+```cpp
+Client->GetObjectTags(TEXT("my-bucket"), TEXT("uploads/screenshot.png"),
+    FS3OnTagsResult::CreateLambda(
+        [](const FS3TagsResult& Result)
+        {
+            // Result.Tags — порожня мапа на успіху означає «тегів просто немає».
+        }));
+
+// Це заміна, а не злиття: усе, чого немає в переданій мапі, зникає.
+TMap<FString, FString> Tags;
+Tags.Add(TEXT("moderation"), TEXT("pending"));
+
+Client->SetObjectTags(TEXT("my-bucket"), TEXT("uploads/screenshot.png"), Tags,
+    FS3OnResult::CreateLambda([](const FS3OperationResult& Result) {}));
+
+Client->DeleteObjectTags(TEXT("my-bucket"), TEXT("uploads/screenshot.png"),
+    FS3OnResult::CreateLambda([](const FS3OperationResult& Result) {}));
+```
+
+Значення можуть містити амперсанди, лапки чи кирилицю без додаткового екранування з вашого
+боку — плагін сам дбає про XML-документ запиту й відповіді.
+
+---
+
+## Бакети та правила життєвого циклу
+
+```cpp
+// Потрібно лише на провайдерах, які не створюють бакет на першому записі в нього.
+Client->CreateBucket(TEXT("my-game-saves"),
+    FS3OnResult::CreateLambda([](const FS3OperationResult& Result) {}));
+```
+
+Правило життєвого циклу — інструкція, яку бакет виконує сам, за розкладом провайдера
+(зазвичай раз на добу), без жодного виклику з гри чи сервера. Найважливіше практичне
+застосування — прибирання частин перерваних багаточастинних завантажень, які плагін
+навмисно лишає в бакеті, щоб їх можна було відновити (див.
+[5. Передавання файлів](05-Transfers.md#великі-файли) і
+[FAQ про відновлення завантажень](11-FAQ.md#чи-можна-відновити-перерване-завантаження)):
+
+```cpp
+FS3LifecycleRule SweepIncompleteUploads;
+SweepIncompleteUploads.Id                              = TEXT("sweep-uploads");
+SweepIncompleteUploads.AbortIncompleteUploadsAfterDays = 7;
+
+Client->SetBucketLifecycle(TEXT("my-game-saves"), { SweepIncompleteUploads },
+    FS3OnResult::CreateLambda([](const FS3OperationResult& Result) {}));
+```
+
+`SetBucketLifecycle` замінює **весь** набір правил бакета — щоб додати одне до наявних,
+спершу прочитайте їх через `GetBucketLifecycle`. Порожній масив за задумом не має сенсу як
+«нічого не міняти»: щоб прибрати всі правила свідомо, викличте `DeleteBucketLifecycle`
+окремо.
+
+```cpp
+Client->GetBucketLifecycle(TEXT("my-game-saves"),
+    FS3OnLifecycleResult::CreateLambda(
+        [](const FS3LifecycleResult& Result)
+        {
+            // Result.Rules — порожній масив на успіху означає «правил немає», не помилку.
+        }));
+
+Client->DeleteBucketLifecycle(TEXT("my-game-saves"),
+    FS3OnResult::CreateLambda([](const FS3OperationResult& Result) {}));
+```
+
+Повний опис полів `FS3LifecycleRule` (`Prefix`, `TagFilters`, `ExpireAfterDays`) — у
+[«Правила життєвого циклу»](04-Blueprint-Operations.md#правила-життєвого-циклу).
 
 ---
 
