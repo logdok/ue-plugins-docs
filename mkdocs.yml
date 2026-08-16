@@ -36,6 +36,19 @@ plugins:
       timezone: UTC
       fallback_to_build_date: true
 
+# A page that exists under docs/ but is missing from nav below doesn't fail the build on
+# its own - it just silently never appears in the menu, which is exactly how chapters
+# 12-13 of S3 Compatible Storage went missing from the site after syncing fine. Turning
+# this into a warning (which --strict then promotes to a build failure, see deploy.yml)
+# makes that mistake break CI immediately instead of waiting for someone to notice an
+# empty-looking menu.
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+  links:
+    not_found: warn
+
 markdown_extensions:
   - admonition
   - tables
@@ -131,3 +144,5 @@ nav:
           - 09 Тестування: s3-compatible-storage/Full/uk/09-Testing.md
           - 10 Сценарії розгортання: s3-compatible-storage/Full/uk/10-Deployment.md
           - 11 Поширені запитання: s3-compatible-storage/Full/uk/11-FAQ.md
+          - 12 Консоль розробника: s3-compatible-storage/Full/uk/12-Debug-Console.md
+          - 13 Профілі на практиці: s3-compatible-storage/Full/uk/13-Profile-Scenarios.md
