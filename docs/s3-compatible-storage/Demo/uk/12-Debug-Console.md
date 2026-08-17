@@ -43,7 +43,7 @@ Settings або в поточному профілі), тож вказувати
 | `DemoS3Delete` | `ObjectKey` | Видаляє один об'єкт |
 | `DemoS3TailRequests` | `[Count=20]` | Останні завершені операції — див. нижче |
 | `DemoS3ClearRequestLog` | — | Очищає журнал, який читає `DemoS3TailRequests` |
-| `DemoS3ResumeRecords` | — | Локальні записи про перервані багаточастинні завантаження |
+| `DemoS3ResumeRecords` | — | Локальні записи про перервані передавання — в обидва боки |
 | `DemoS3ClearResumeRecords` | — | Забуває всі записи вище (лише локально — див. попередження нижче) |
 
 Кожна команда асинхронна так само, як операція, яку вона викликає: результат приходить у
@@ -72,22 +72,29 @@ LogDemoS3: Display:   [14:30:18] MultipartUpload - OK (200, 2 retries, 8.77s)
 
 ## DemoS3ResumeRecords: що чекає на відновлення
 
-Показує, що зараз лежить під `Saved/S3/Uploads/` на цій машині — саме те, що підхопить
-наступна спроба того самого файлу, якщо ввімкнено `Resume Interrupted Uploads` (див.
-[5. Передавання файлів](05-Transfers.md#відновлення-перерваного-завантаження)):
+Показує, що зараз лежить під `Saved/S3/Uploads/` і `Saved/S3/Downloads/` на цій машині — саме
+те, що підхопить наступна спроба того самого передавання, якщо ввімкнено
+`Resume Interrupted Uploads` / `Resume Interrupted Downloads`:
 
 ```
 > DemoS3ResumeRecords
-LogDemoS3: Display: DemoS3ResumeRecords: 1 record(s) under Saved/S3/Uploads/.
-LogDemoS3: Display:   my-game-saves/big/level_pack.pak (upload 2~AbCdEf..., part size 5242880, source 41943040 bytes)
+LogDemoS3: Display: DemoS3ResumeRecords: 1 upload(s) under Saved/S3/Uploads/, 1 download(s) under Saved/S3/Downloads/.
+LogDemoS3: Display:   up   my-game-saves/big/level_pack.pak (upload 2~AbCdEf..., part size 5242880, source 41943040 bytes)
+LogDemoS3: Display:   down my-game-saves/big/intro.mp4 -> /Users/you/Movies/intro.mp4 (12582912 of 41943040 bytes, etag 9b2cf1...)
 ```
+
+Рядок `up` описує [завантаження в сховище](05-Transfers.md#відновлення-перерваного-завантаження),
+рядок `down` — [зчитування](05-Transfers.md#відновлення-перерваного-зчитування). Скільки саме
+зчитано, береться з розміру файлу `.s3part`, а не з запису: сам запис такого лічильника не
+містить, щоб йому не було з чим розійтися.
 
 > **`DemoS3ClearResumeRecords` чистить лише локальний запис.** Частини, які вже долетіли до
 > провайдера, це не чіпає — вони й далі оплачуються, доки не завершаться, не будуть
 > скасовані чи не потраплять під правило життєвого циклу. Для цього є
 > **S3 Set Incomplete Upload Cleanup** (розділ
 > [4. Операції у Blueprint](04-Blueprint-Operations.md#правила-життєвого-циклу)), а не ця
-> команда.
+> команда. Файли `.s3part` теж лишаються на диску — без своїх записів вони просто перестають
+> бути придатними для продовження.
 
 ---
 

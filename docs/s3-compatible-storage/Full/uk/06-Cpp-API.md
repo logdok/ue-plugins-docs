@@ -135,12 +135,17 @@ Client->DownloadRange(TEXT("my-bucket"), TEXT("video.mp4"), 0, 1023,
             // Result.TotalObjectSize — повний розмір, навіть якщо взяли кілограм байтів.
         }));
 
-// Серією діапазонних запитів, а не одним стрімом. Потрібно лише тоді, коли важливі саме
-// діапазони: 0 бере розмір частини з налаштувань транспорту.
+// Серією діапазонних запитів, а не одним стрімом - і тому єдине зчитування, яке можна
+// продовжити з місця обриву: те, що встигло прийти, лишається у <файл>.s3part.
+// 0 бере розмір шматка з налаштувань транспорту; між спробами він може бути іншим.
 Client->DownloadFileChunked(TEXT("my-bucket"), TEXT("patches/1.2.pak"), LocalPath,
     /*ChunkSizeBytes=*/0,
     FS3OnDownloadResult::CreateLambda(
-        [](const FS3OperationResult& Result, const TArray<uint8>& Data) {}));
+        [](const FS3OperationResult& Result, const TArray<uint8>& Data)
+        {
+            // ES3Result::PreconditionFailed - об'єкт переписали під час зчитування, тож
+            // склеїти дві версії плагін відмовився. Зчитайте його наново.
+        }));
 ```
 
 ---
