@@ -18,9 +18,12 @@
 для кількох сховищ і зрозумілі помилки замість сирих кодів провайдера — усе доступне і з
 Blueprint, і з C++.
 
-Перевірено наскрізними тестами на **шести справжніх сервісах** — Amazon S3, Cloudflare R2,
-Backblaze B2, Google Cloud Storage, MinIO і Wasabi — включно з ключами об'єктів, що містять
-пробіли, амперсанди й нелатинські символи.
+Перевірено наскрізними тестами на **шести справжніх сервісах** — [Amazon S3](https://aws.amazon.com/s3/),
+[Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/),
+[Backblaze B2](https://www.backblaze.com/cloud-storage),
+[Google Cloud Storage](https://cloud.google.com/storage), [MinIO](https://min.io/) і
+[Wasabi](https://wasabi.com/) — включно з ключами об'єктів, що містять пробіли, амперсанди
+й нелатинські символи.
 
 ### Відомі обмеження
 
