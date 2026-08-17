@@ -146,3 +146,20 @@ nav:
           - 11 Поширені запитання: s3-compatible-storage/Full/uk/11-FAQ.md
           - 12 Консоль розробника: s3-compatible-storage/Full/uk/12-Debug-Console.md
           - 13 Профілі на практиці: s3-compatible-storage/Full/uk/13-Profile-Scenarios.md
+      - Demo Edition (Українська):
+          - Посібник: s3-compatible-storage/Demo/uk/README.md
+          - Примітки до випуску: s3-compatible-storage/Demo/uk/Release-Notes.md
+          - 00 Обмеження демо-версії: s3-compatible-storage/Demo/uk/00-Demo-Limitations.md
+          - 01 Швидкий старт: s3-compatible-storage/Demo/uk/01-Quick-Start.md
+          - 02 Налаштування: s3-compatible-storage/Demo/uk/02-Configuration.md
+          - 03 Облікові дані: s3-compatible-storage/Demo/uk/03-Credentials.md
+          - 04 Операції у Blueprint: s3-compatible-storage/Demo/uk/04-Blueprint-Operations.md
+          - 05 Передавання файлів: s3-compatible-storage/Demo/uk/05-Transfers.md
+          - 06 C++ API: s3-compatible-storage/Demo/uk/06-Cpp-API.md
+          - 07 Помилки та діагностика: s3-compatible-storage/Demo/uk/07-Errors-And-Diagnostics.md
+          - 08 Провайдери: s3-compatible-storage/Demo/uk/08-Providers.md
+          - 09 Тестування: s3-compatible-storage/Demo/uk/09-Testing.md
+          - 10 Сценарії розгортання: s3-compatible-storage/Demo/uk/10-Deployment.md
+          - 11 Поширені запитання: s3-compatible-storage/Demo/uk/11-FAQ.md
+          - 12 Консоль розробника: s3-compatible-storage/Demo/uk/12-Debug-Console.md
+          - 13 Профілі на практиці: s3-compatible-storage/Demo/uk/13-Profile-Scenarios.md

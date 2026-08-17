@@ -11,9 +11,14 @@ Every operation is verified end to end against **five real providers**, includin
 | | Українська | Covers |
 |---|---|---|
 | **Full** — the complete plugin | [Посібник](Full/uk/README.md) | Everything: setup, credentials for each deployment shape, the Blueprint node reference, transfers, the C++ API, diagnostics, per-provider notes, testing |
+| **Demo** — evaluation build | [Посібник](Demo/uk/README.md) | The same guide with demo-edition naming (`UDemoS3Client`, …), plus what the demo specifically limits |
 
 !!! note "English documentation is not published yet"
     The Ukrainian guide is complete; the English translation is still being prepared. The plugin itself, its Blueprint node names, its settings and its tooltips are all in English.
+
+## Which edition is this for?
+
+Both editions expose an identical feature set — every chapter in the Full guide has a matching chapter in the Demo guide, just with `Demo`-prefixed type names. The only *behavioral* differences — a 50-request-per-session budget, an on-screen watermark, no talking to a provider in Shipping builds — are covered in the Demo guide's **[Обмеження демо-версії](Demo/uk/00-Demo-Limitations.md)** chapter. If you're not sure which one you're using, check your project's `Plugins/` folder: `S3CompatibleStorage` is the full edition, `S3CompatibleStorageDemo` is the demo. Both editions can be installed in the same project at once, side by side — the demo detects the full plugin automatically and stands down rather than double up.
 
 ## Where to start
 
