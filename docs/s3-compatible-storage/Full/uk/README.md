@@ -7,7 +7,7 @@
 > Без сторонніх бібліотек: лише модуль HTTP і власна реалізація SHA-256
 
 Перевірено наскрізними тестами на **Amazon S3, Cloudflare R2, Backblaze B2,
-Google Cloud Storage і MinIO**.
+Google Cloud Storage, MinIO і Wasabi**.
 
 ---
 

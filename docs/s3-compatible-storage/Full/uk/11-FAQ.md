@@ -53,9 +53,9 @@ UTF-8 Bytes**: вона перетворює `FString` на потрібний `
 
 ### Плагін працює лише з Amazon?
 
-Ні. Перевірено на Amazon S3, Cloudflare R2, Backblaze B2, Google Cloud Storage і MinIO;
-у списку провайдерів є ще Wasabi та DigitalOcean Spaces, а `Custom` дозволяє вказати
-будь-який сумісний сервіс вручну. Див. [8. Провайдери](08-Providers.md).
+Ні. Перевірено на Amazon S3, Cloudflare R2, Backblaze B2, Google Cloud Storage, MinIO і
+Wasabi; у списку провайдерів є ще DigitalOcean Spaces (поки не перевірений так само), а
+`Custom` дозволяє вказати будь-який сумісний сервіс вручну. Див. [8. Провайдери](08-Providers.md).
 
 Змінні оточення називаються `AWS_ACCESS_KEY_ID` і подібно за домовленістю, яку читають усі
 інструменти, а не тому, що потрібен Amazon.
