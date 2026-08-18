@@ -146,6 +146,7 @@ nav:
           - 11 Поширені запитання: s3-compatible-storage/Full/uk/11-FAQ.md
           - 12 Консоль розробника: s3-compatible-storage/Full/uk/12-Debug-Console.md
           - 13 Профілі на практиці: s3-compatible-storage/Full/uk/13-Profile-Scenarios.md
+          - 14 Рецепти облікових даних: s3-compatible-storage/Full/uk/14-Credentials-Cookbook.md
       - Demo Edition (Українська):
           - Посібник: s3-compatible-storage/Demo/uk/README.md
           - Примітки до випуску: s3-compatible-storage/Demo/uk/Release-Notes.md
@@ -163,3 +164,4 @@ nav:
           - 11 Поширені запитання: s3-compatible-storage/Demo/uk/11-FAQ.md
           - 12 Консоль розробника: s3-compatible-storage/Demo/uk/12-Debug-Console.md
           - 13 Профілі на практиці: s3-compatible-storage/Demo/uk/13-Profile-Scenarios.md
+          - 14 Рецепти облікових даних: s3-compatible-storage/Demo/uk/14-Credentials-Cookbook.md
