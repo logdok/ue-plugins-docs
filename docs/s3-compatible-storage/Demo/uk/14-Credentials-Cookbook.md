@@ -167,30 +167,10 @@ On Backend Auth Response
 Гра — класичні п'ятнашки. Фонове зображення, яке розрізається на 15 плиток, не лежить у
 збірці: воно береться зі сховища, тож набір картинок можна поповнювати без патча.
 
-### Крок 0. Чому не .uasset
-
-Спокуса покласти в бакет `T_Background.uasset` і зчитати його `LoadObject`. **Так не працює**,
-і не через плагін:
-
-| Перешкода | Чому не обійти |
-|---|---|
-| `LoadObject` приймає **шлях пакета** (`/Game/...`), а не шлях файлу на диску | Щоб файл на диску став пакетом, його вміст має побачити завантажувач пакетів — а це означає точку монтування й контейнер, який він уміє читати |
-| Некукнутий `.uasset` із `Content/` зібрана гра не прочитає взагалі | Кукання перетворює ассет на платформозалежний формат (`.uasset` + `.uexp`, текстури — у стиснені піксельні формати цільової платформи). Коду, який робить це перетворення, у зібраній грі немає: він редакторський |
-| Навіть кукнутий `.uasset` вимагає збігу платформи й версії рушія | Формат серіалізації не є стабільним між збірками рушія |
-
-Тож реальних варіантів два, і обирати треба свідомо.
-
-**Варіант A — звичайне зображення (PNG/JPEG) і текстура, зібрана в рантаймі.** Простіший,
-працює всюди, нічого не треба кукати. Це головний шлях, і саме його ми й пройдемо.
-
-**Варіант B — кукнутий `.pak` і монтування.** Потрібен лише тоді, коли вам справді потрібні
-ассети рушія: матеріали, Blueprint-класи, рівні. Ескіз —
-[нижче](#коли-справді-потрібні-ассети-рушія-pak-і-монтування).
-
 ### Кроки
 
 1. Покладіть у бакет **звичайний файл зображення** — `puzzle/backgrounds/city.jpg`, з
-   `Content-Type: image/jpeg`. Не ассет, не архів, не `.uasset`.
+   `Content-Type: image/jpeg`.
 2. Зчитайте його **в пам'ять**, а не у файл: `S3 Download Bytes` / `UDemoS3Client::DownloadBytes`.
    Проміжний файл тут ні до чого — байти одразу підуть у декодер.
 3. Зберіть із байтів `UTexture2D` через `FImageUtils::ImportBufferAsTexture2D`
@@ -312,56 +292,97 @@ Event BeginPlay
 Якщо покласти `Import Buffer as Texture 2D` одразу в `Set Texture Parameter Value` і нікуди
 не зберігати, картинка зникне на найближчому проході збирача сміття.
 
-### Коли справді потрібні ассети рушія: .pak і монтування
+### Те саме для звуку: клацання плитки зі сховища
 
-Коротко, бо це вже не про плагін: плагін тут робить рівно один крок із чотирьох.
+Разом із фоном природно тягнути й звукову тему набору — клацання плитки, звук перемоги.
+Схема та сама: байти в пам'ять, збірка об'єкта в рантаймі, посилання в `UPROPERTY`. Різниця
+лише в тому, чим саме збирати.
 
-1. **Скукайте вміст окремим контейнером.** Через чанки (Primary Asset Label) або окремий
-   content-only плагін, спакований як DLC. Це робиться в проєкті й у налаштуваннях пакування,
-   а не в рантаймі.
-2. **Зчитайте контейнер у файл** — `S3 Download File` / `UDemoS3Client::DownloadFile`, кудись під
-   `FPaths::ProjectPersistentDownloadDir()`. Це єдиний крок, за який відповідає плагін.
-3. **Змонтуйте.**
-4. **Зареєструйте точку монтування** й лише після цього вантажте об'єкт за шляхом пакета.
+Покладіть у бакет **16-бітний PCM `.wav`** — `puzzle/sfx/tile-move.wav`, `Content-Type:
+audio/wav`. Формат тут не примха: шлях нижче читає заголовок WAV і віддає рушієві готовий
+PCM. MP3 і OGG так не заходять — їхні декодери в рушії прив'язані до кукнутих ассетів, тож
+для стиснених форматів вам знадобиться власний кодек.
 
 ```cpp
-#include "Misc/CoreDelegates.h"
-#include "Misc/PackageName.h"
+#include "Audio.h"                       // FWaveModInfo
+#include "Sound/SoundWaveProcedural.h"
+#include "Kismet/GameplayStatics.h"
 
-// The pak file system binds this delegate at startup; without it there is nothing to mount with.
-if (!FCoreDelegates::MountPak.IsBound())
+// Same UPROPERTY rule as the texture: a runtime-built sound has no package, so without a
+// hard reference the collector takes it and the tile clicks in silence.
+UPROPERTY(Transient)
+TObjectPtr<USoundWaveProcedural> TileClickSound;
+
+void APuzzleBoard::FetchTileClickSound(UDemoS3Client* Client)
 {
-    return;
-}
+    TWeakObjectPtr<APuzzleBoard> WeakThis(this);
 
-// Null means the container was refused: wrong platform, wrong engine build, or an
-// encryption key this build does not have.
-if (FCoreDelegates::MountPak.Execute(DownloadedPakPath, /*PakOrder=*/4) == nullptr)
-{
-    return;
-}
+    Client->DownloadBytes(
+        TEXT("puzzle-assets"), TEXT("puzzle/sfx/tile-move.wav"),
+        FDemoS3OnDownloadResult::CreateLambda(
+            [WeakThis](const FDemoS3OperationResult& Result, const TArray<uint8>& Bytes)
+            {
+                if (!WeakThis.IsValid() || !Result.IsSuccess())
+                {
+                    return;
+                }
 
-// Cooked assets carry package paths, not file paths. Point the loader at the root they
-// were cooked under.
-if (!FPackageName::MountPointExists(TEXT("/PuzzleContent/")))
-{
-    FPackageName::RegisterMountPoint(TEXT("/PuzzleContent/"), MountedContentDir);
-}
+                // Parses the RIFF header in place: WaveInfo points into Bytes rather than
+                // copying, so it stays valid only for as long as Bytes does - which is this
+                // callback. QueueAudio below takes its own copy, so that is where it ends.
+                FWaveModInfo WaveInfo;
+                if (!WaveInfo.ReadWaveInfo(Bytes.GetData(), Bytes.Num()))
+                {
+                    return;   // not a WAV this path can read
+                }
 
-UTexture2D* Background = LoadObject<UTexture2D>(
-    nullptr, TEXT("/PuzzleContent/Backgrounds/T_City.T_City"));
+                USoundWaveProcedural* Sound = NewObject<USoundWaveProcedural>();
+                Sound->SetSampleRate(*WaveInfo.pSamplesPerSec);
+                Sound->NumChannels = *WaveInfo.pChannels;
+                Sound->SoundGroup  = SOUNDGROUP_Effects;
+                Sound->bLooping    = false;
+
+                const int32 BytesPerFrame = *WaveInfo.pChannels * (*WaveInfo.pBitsPerSample / 8);
+                Sound->Duration = BytesPerFrame > 0
+                    ? (float)WaveInfo.SampleDataSize / (BytesPerFrame * *WaveInfo.pSamplesPerSec)
+                    : 0.f;
+
+                // Copies the samples into the queue the audio thread drains.
+                Sound->QueueAudio(WaveInfo.SampleDataStart, WaveInfo.SampleDataSize);
+
+                WeakThis->TileClickSound = Sound;
+            }));
+}
 ```
 
-> **Одна засідка, яка з'їдає найбільше часу.** У `Project Settings → Packaging` параметр
-> **Use Io Store** увімкнений за замовчуванням (`bUseIoStore=True` у `BaseGame.ini`), а з ним
-> кукнутий вміст їде не звичайним `.pak`, а парою `.utoc` / `.ucas`. `FCoreDelegates::MountPak`
-> сам по собі їх не змонтує. Або вимикайте Io Store для цього контейнера, або монтуйте його
-> засобами, які розуміють Io Store, — але вирішувати це треба **до** того, як ви покладете
-> файл у бакет.
+Далі — звичайний `UGameplayStatics::PlaySound2D(this, TileClickSound)`.
 
-Плагінові все одно, що саме передавати: `.pak`, `.utoc`, `.ucas` — це просто об'єкти. Уся
-складність тут на боці кукання й завантаження пакетів, і саме тому варіант A залишається
-правильною відповіддю в дев'яти випадках із десяти.
+> **Одна відмінність від текстури, про яку варто знати заздалегідь.**
+> `USoundWaveProcedural` — це **черга**, а не буфер: програвання її вичерпує. Для звуку, який
+> лунає раз за гру, цього досить; для клацання плитки, яке звучить сотні разів, тримайте
+> завантажені байти в `TArray<uint8>` і викликайте `QueueAudio` перед кожним відтворенням
+> (або зберіть свій `USoundWave` із `RawPCMData`, якщо потрібне повноцінне повторне
+> використання).
+
+У Blueprint готової ноди для збирання звуку з байтів немає — на відміну від
+`Import Buffer as Texture 2D`. Тобто цей крок доведеться загорнути у власну
+`UFUNCTION(BlueprintCallable)`, а вже її кликати з графа рівно там, де у прикладі з фоном
+стоїть `Import Buffer as Texture 2D`:
+
+```
+S3 Download Bytes
+   Bucket Name : puzzle-assets
+   Object Key  : puzzle/sfx/tile-move.wav
+   │
+   ├─ On Success → Data ──► Make Sound From Wav Bytes   ← ваша UFUNCTION з коду вище
+   │                            │
+   │                            └─► Return Value → Set (змінна Tile Click Sound)
+   │
+   └─ On Failure → Result → Get S3 Diagnostic Hint → лишити вбудований звук
+```
+
+Для облікових даних тут не змінюється **нічого**: це той самий бакет, той самий клієнт і те
+саме питання «що буде, якщо ключ витече» — просто інший об'єкт у ньому.
 
 ### І тепер найголовніше: звідки в цій грі беруться ключі
 
@@ -800,8 +821,8 @@ AES-256, ключ виведено з ідентифікатора машини 
 | Порожній рядок замість підписаного посилання | Callback-провайдер ще нічого не закешував, а підпис синхронний | Один раз `RefreshCredentials` перед першим посиланням |
 | Тимчасові ключі відхиляються, хоча ключ і секрет правильні | Не передали `Session Token` | Передавайте всі три значення |
 | Бекенд отримує сплеск запитів за ключами | Ключі ставлять вручну на кожну операцію | Поставте `FDemoS3CredentialsProvider_Callback` — він склеює одночасні запити в один |
-| Завантажений `.uasset` не вантажиться `LoadObject` | Так і задумано: це не пакет і його ніхто не монтував | [Варіант A або B](#крок-0-чому-не-uasset) |
-| Текстура з'явилася й через кілька секунд зникла | На неї ніхто не посилається, її забрав GC | `UPROPERTY` у C++ або змінна в Blueprint |
+| Текстура або звук з'явилися й через кілька секунд зникли | На них ніхто не посилається, їх забрав GC | `UPROPERTY` у C++ або змінна в Blueprint |
+| `Read Wave Info` повертає `false` на цілком робочому файлі | Це не 16-бітний PCM `.wav` — MP3 чи OGG цей шлях не декодує | Кладіть у бакет `.wav`, або декодуйте своїм кодеком |
 
 Перший рядок звіту Test Connection завжди називає джерело, з якого прийшли ключі, —
 `Environment`, `LocalUserStore(<ім'я>)`, `Static(editor keys for <профіль>)`,
