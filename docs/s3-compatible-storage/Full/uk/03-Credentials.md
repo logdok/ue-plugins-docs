@@ -164,11 +164,15 @@ auto Provider = MakeShared<FS3CredentialsProvider_Callback, ESPMode::ThreadSafe>
     FS3CredentialsProvider_Callback::FS3CredentialsFetch::CreateLambda(
         [](FS3CredentialsResolved OnFetched)
         {
-            // Запит до вашого бекенда; коли відповідь прийде — викличте OnFetched.
+            // Запит до вашого бекенда; коли відповідь прийде - викличте OnFetched.
+            // Рівно один раз і в будь-якому разі, зокрема на невдачі: перший параметр
+            // саме про це. Викликати лише на успіху - означає лишити всі передавання,
+            // що чекають на ключі, висіти назавжди.
             MyBackend::RequestS3Credentials(
-                [OnFetched](const FString& Key, const FString& Secret, const FString& Token, int32 TtlSeconds)
+                [OnFetched](bool bOk, const FString& Key, const FString& Secret,
+                            const FString& Token, int32 TtlSeconds)
                 {
-                    OnFetched.ExecuteIfBound(true, FS3Credentials(
+                    OnFetched.ExecuteIfBound(bOk, FS3Credentials(
                         Key, Secret, Token,
                         FDateTime::UtcNow() + FTimespan::FromSeconds(TtlSeconds)));
                 });
@@ -362,7 +366,7 @@ AES-256. Ключ шифрування виводиться з ідентифі�
 ротація ключів на сервері діє без перезапуску.
 
 Якщо у зібраній грі змінних немає, операція не «зависає мовчки»: джерело облікових даних
-повертає невдачу, і операція завершується з `Auth Error`, а в повідомленні названо, яке саме
+повертає невдачу, і операція завершується з `Authentication Error`, а в повідомленні названо, яке саме
 джерело опитували.
 
 > **Поля редакторських ключів діють лише за `Credential Source = Environment variables`.**
