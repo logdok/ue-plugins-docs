@@ -4,9 +4,9 @@
 <p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-08-18 08:19 UTC</em></p>
 <!-- last-synced:end -->
 
-Object storage for **Unreal Engine 5.7** on any S3-compatible provider — Amazon S3, Cloudflare R2, Backblaze B2, Google Cloud Storage, MinIO, Wasabi, DigitalOcean Spaces. Upload, download, list, delete and presign from Blueprint or C++, with streaming transfers, parallel multipart uploads, cancellation and automatic retries. No third-party dependencies.
+Object storage for **Unreal Engine 5.7** on any S3-compatible provider — [Amazon S3](https://aws.amazon.com/s3/), [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/), [Backblaze B2](https://www.backblaze.com/cloud-storage), [Google Cloud Storage](https://cloud.google.com/storage), [MinIO](https://min.io/), [Wasabi](https://wasabi.com/), [DigitalOcean Spaces](https://www.digitalocean.com/products/spaces). Upload, download, list, delete and presign from Blueprint or C++, with streaming transfers, parallel multipart uploads, cancellation and automatic retries. No third-party dependencies.
 
-Every operation is verified end to end against **five real providers**, including object keys containing spaces, ampersands and non-Latin characters.
+Every operation is verified end to end against **six real providers**, including object keys containing spaces, ampersands and non-Latin characters.
 
 | | Українська | Covers |
 |---|---|---|
