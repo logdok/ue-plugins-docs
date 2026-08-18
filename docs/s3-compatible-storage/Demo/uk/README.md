@@ -6,8 +6,8 @@
 > Win64 · Mac · Linux · iOS · Android
 > Без сторонніх бібліотек: лише модуль HTTP і власна реалізація SHA-256
 
-Перевірено наскрізними тестами на **Amazon S3, Cloudflare R2, Backblaze B2,
-Google Cloud Storage, MinIO і Wasabi**.
+Перевірено наскрізними тестами на **[Amazon S3](https://aws.amazon.com/s3/), [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/), [Backblaze B2](https://www.backblaze.com/cloud-storage),
+[Google Cloud Storage](https://cloud.google.com/storage), [MinIO](https://min.io/) і [Wasabi](https://wasabi.com/)**.
 
 ---
 
@@ -22,8 +22,8 @@ Google Cloud Storage, MinIO і Wasabi**.
 | Поле | Що вписати |
 |---|---|
 | **Provider** | Ваш провайдер зі списку. Це головне поле — воно саме проставить решту |
-| **Endpoint URL** | Лишіть порожнім для Amazon S3 і Google Cloud Storage. Для решти — адреса вашого сервісу |
-| **Region** | Регіон вашого бакета. Для Cloudflare R2 — літерал `auto` |
+| **Endpoint URL** | Лишіть порожнім для [Amazon S3](https://aws.amazon.com/s3/) і [Google Cloud Storage](https://cloud.google.com/storage). Для решти — адреса вашого сервісу |
+| **Region** | Регіон вашого бакета. Для [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/) — літерал `auto` |
 | **Default Bucket** | Бакет, з яким працюватимете за замовчуванням |
 
 Нижче, у секції **S3 Credentials (Editor Only)**, впишіть ключі. Вони зберігаються
@@ -97,7 +97,7 @@ Get S3 Subsystem  →  Get Default S3 Client  →  S3 Upload File
 
 - Переходи між класами зберігання у правилах життєвого циклу — задаються в консолі
   провайдера.
-- Помічники для ACL. Amazon вимикає ACL у нових бакетах за замовчуванням, а Cloudflare R2 їх
+- Помічники для ACL. Amazon вимикає ACL у нових бакетах за замовчуванням, а [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/) їх
   не підтримує взагалі — доступ роздають політикою бакета або підписаними посиланнями.
 
 ---

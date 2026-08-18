@@ -27,16 +27,16 @@
 
 | Провайдер | Endpoint URL | Region |
 |---|---|---|
-| Amazon S3 | лишіть порожнім | регіон вашого бакета |
-| Cloudflare R2 | `https://<account-id>.r2.cloudflarestorage.com` | `auto` |
-| Backblaze B2 | `https://s3.<region>.backblazeb2.com` | з консолі B2 |
-| Google Cloud Storage | лишіть порожнім | `auto` |
-| MinIO | `http://host:9000` | будь-який, але він бере участь у підписі |
-| Wasabi, DigitalOcean Spaces | залежить від регіону | залежить від регіону |
+| [Amazon S3](https://aws.amazon.com/s3/) | лишіть порожнім | регіон вашого бакета |
+| [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/) | `https://<account-id>.r2.cloudflarestorage.com` | `auto` |
+| [Backblaze B2](https://www.backblaze.com/cloud-storage) | `https://s3.<region>.backblazeb2.com` | з консолі B2 |
+| [Google Cloud Storage](https://cloud.google.com/storage) | лишіть порожнім | `auto` |
+| [MinIO](https://min.io/) | `http://host:9000` | будь-який, але він бере участь у підписі |
+| [Wasabi](https://wasabi.com/), [DigitalOcean Spaces](https://www.digitalocean.com/products/spaces) | залежить від регіону | залежить від регіону |
 
 Заповніть **Default Bucket** — з ним працюватимуть кнопки перевірки й підсистема.
 
-> **Amazon S3: не вписуйте регіональну адресу вручну.** Лишіть Endpoint URL порожнім і
+> **[Amazon S3](https://aws.amazon.com/s3/): не вписуйте регіональну адресу вручну.** Лишіть Endpoint URL порожнім і
 > просто вкажіть регіон. Плагін сам звернеться до `s3.<region>.amazonaws.com`, бо
 > `s3.amazonaws.com` обслуговує лише `us-east-1`.
 
@@ -147,7 +147,7 @@ S3 Download File
 | Симптом | Причина |
 |---|---|
 | `SignatureDoesNotMatch` на не-Amazon сервісі | Вимкнено Path Style Addressing. Оберіть провайдера зі списку — і воно ввімкнеться саме |
-| `NoSuchBucket` на MinIO | MinIO не створює бакети автоматично. Скористайтеся нодою **S3 Create Bucket** або консоллю MinIO |
+| `NoSuchBucket` на [MinIO](https://min.io/) | [MinIO](https://min.io/) не створює бакети автоматично. Скористайтеся нодою **S3 Create Bucket** або консоллю [MinIO](https://min.io/) |
 | Нода нічого не робить, у пінах тиша | У піні Client порожньо. Візьміть клієнта з підсистеми |
 | 403 на всьому підряд у зібраній грі | У збірці немає ключів — вони лишилися в редакторських налаштуваннях. Див. [Облікові дані](03-Credentials.md) |
 | `Cannot read <шлях>` на `S3 Upload File` | Файла немає саме там, куди веде шлях. Для відносного шляху це `Saved/...` у корені **проєкту**, а не там, де відкрито провідник ОС — див. [«Шлях до файлу»](04-Blueprint-Operations.md#шлях-до-файлу-абсолютний-чи-відносний) |
