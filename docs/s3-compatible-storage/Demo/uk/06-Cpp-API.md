@@ -278,6 +278,11 @@ Client->DeleteObjectTags(TEXT("my-bucket"), TEXT("uploads/screenshot.png"),
 // Потрібно лише на провайдерах, які не створюють бакет на першому записі в нього.
 Client->CreateBucket(TEXT("my-game-saves"),
     FDemoS3OnResult::CreateLambda([](const FDemoS3OperationResult& Result) {}));
+
+// Провайдер відмовить, поки бакет не порожній (ErrorCode == "BucketNotEmpty") - плагін
+// навмисно не спорожняє бакет сам, це окрема, незворотна дія.
+Client->DeleteBucket(TEXT("my-game-saves"),
+    FDemoS3OnResult::CreateLambda([](const FDemoS3OperationResult& Result) {}));
 ```
 
 Правило життєвого циклу — інструкція, яку бакет виконує сам, за розкладом провайдера
