@@ -130,6 +130,23 @@ nav:
           - 11 Поширені запитання: quest-system/Demo/uk/11-FAQ.md
   - S3 Compatible Storage:
       - Overview: s3-compatible-storage/index.md
+      - Full Edition (English):
+          - Guide: s3-compatible-storage/Full/en/README.md
+          - Release Notes: s3-compatible-storage/Full/en/Release-Notes.md
+          - 01 Quick Start: s3-compatible-storage/Full/en/01-Quick-Start.md
+          - 02 Configuration: s3-compatible-storage/Full/en/02-Configuration.md
+          - 03 Credentials: s3-compatible-storage/Full/en/03-Credentials.md
+          - 04 Blueprint Operations: s3-compatible-storage/Full/en/04-Blueprint-Operations.md
+          - 05 Transfers: s3-compatible-storage/Full/en/05-Transfers.md
+          - 06 C++ API: s3-compatible-storage/Full/en/06-Cpp-API.md
+          - 07 Errors & Diagnostics: s3-compatible-storage/Full/en/07-Errors-And-Diagnostics.md
+          - 08 Providers: s3-compatible-storage/Full/en/08-Providers.md
+          - 09 Testing: s3-compatible-storage/Full/en/09-Testing.md
+          - 10 Deployment: s3-compatible-storage/Full/en/10-Deployment.md
+          - 11 FAQ: s3-compatible-storage/Full/en/11-FAQ.md
+          - 12 Debug Console: s3-compatible-storage/Full/en/12-Debug-Console.md
+          - 13 Profile Scenarios: s3-compatible-storage/Full/en/13-Profile-Scenarios.md
+          - 14 Credentials Cookbook: s3-compatible-storage/Full/en/14-Credentials-Cookbook.md
       - Full Edition (Українська):
           - Посібник: s3-compatible-storage/Full/uk/README.md
           - Примітки до випуску: s3-compatible-storage/Full/uk/Release-Notes.md
@@ -147,6 +164,24 @@ nav:
           - 12 Консоль розробника: s3-compatible-storage/Full/uk/12-Debug-Console.md
           - 13 Профілі на практиці: s3-compatible-storage/Full/uk/13-Profile-Scenarios.md
           - 14 Рецепти облікових даних: s3-compatible-storage/Full/uk/14-Credentials-Cookbook.md
+      - Demo Edition (English):
+          - Guide: s3-compatible-storage/Demo/en/README.md
+          - Release Notes: s3-compatible-storage/Demo/en/Release-Notes.md
+          - 00 Demo Limitations: s3-compatible-storage/Demo/en/00-Demo-Limitations.md
+          - 01 Quick Start: s3-compatible-storage/Demo/en/01-Quick-Start.md
+          - 02 Configuration: s3-compatible-storage/Demo/en/02-Configuration.md
+          - 03 Credentials: s3-compatible-storage/Demo/en/03-Credentials.md
+          - 04 Blueprint Operations: s3-compatible-storage/Demo/en/04-Blueprint-Operations.md
+          - 05 Transfers: s3-compatible-storage/Demo/en/05-Transfers.md
+          - 06 C++ API: s3-compatible-storage/Demo/en/06-Cpp-API.md
+          - 07 Errors & Diagnostics: s3-compatible-storage/Demo/en/07-Errors-And-Diagnostics.md
+          - 08 Providers: s3-compatible-storage/Demo/en/08-Providers.md
+          - 09 Testing: s3-compatible-storage/Demo/en/09-Testing.md
+          - 10 Deployment: s3-compatible-storage/Demo/en/10-Deployment.md
+          - 11 FAQ: s3-compatible-storage/Demo/en/11-FAQ.md
+          - 12 Debug Console: s3-compatible-storage/Demo/en/12-Debug-Console.md
+          - 13 Profile Scenarios: s3-compatible-storage/Demo/en/13-Profile-Scenarios.md
+          - 14 Credentials Cookbook: s3-compatible-storage/Demo/en/14-Credentials-Cookbook.md
       - Demo Edition (Українська):
           - Посібник: s3-compatible-storage/Demo/uk/README.md
           - Примітки до випуску: s3-compatible-storage/Demo/uk/Release-Notes.md
