@@ -1,4 +1,4 @@
-*🇺🇦 Українська*
+*[🇬🇧 English](../en/04-Blueprint-Operations.md) | 🇺🇦 Українська*
 
 [← До змісту](README.md)
 

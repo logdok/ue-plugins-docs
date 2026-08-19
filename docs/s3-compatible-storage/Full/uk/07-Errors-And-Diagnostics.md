@@ -1,4 +1,4 @@
-*🇺🇦 Українська*
+*[🇬🇧 English](../en/07-Errors-And-Diagnostics.md) | 🇺🇦 Українська*
 
 [← До змісту](README.md)
 

@@ -1,4 +1,4 @@
-*🇺🇦 Українська*
+*[🇬🇧 English](../en/13-Profile-Scenarios.md) | 🇺🇦 Українська*
 
 [← До змісту](README.md)
 

@@ -1,5 +1,7 @@
 # S3 Compatible Storage
 
+*[🇬🇧 English](../en/README.md) | 🇺🇦 Українська*
+
 Об'єктне сховище для Unreal Engine — на будь-якому S3-сумісному провайдері.
 
 > **Версія 1.0** · Runtime · UE 5.7 · [Примітки до випуску](Release-Notes.md)

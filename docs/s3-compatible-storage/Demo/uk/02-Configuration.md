@@ -1,4 +1,4 @@
-*🇺🇦 Українська*
+*[🇬🇧 English](../en/02-Configuration.md) | 🇺🇦 Українська*
 
 [← До змісту](README.md)
 

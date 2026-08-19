@@ -1,4 +1,4 @@
-*🇺🇦 Українська*
+*[🇬🇧 English](../en/Release-Notes.md) | 🇺🇦 Українська*
 
 [← До змісту](README.md)
 

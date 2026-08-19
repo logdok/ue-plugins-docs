@@ -1,4 +1,4 @@
-*🇺🇦 Українська*
+*[🇬🇧 English](../en/14-Credentials-Cookbook.md) | 🇺🇦 Українська*
 
 [← До змісту](README.md)
 
