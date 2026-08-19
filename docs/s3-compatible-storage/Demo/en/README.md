@@ -101,8 +101,3 @@ setting to change.
 - ACL helpers. Amazon disables ACLs on new buckets by default, and [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/) doesn't
   support them at all — access is granted through bucket policy or presigned URLs instead.
 
----
-
-## License
-
-MIT.

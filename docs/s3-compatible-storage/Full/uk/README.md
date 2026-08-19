@@ -102,8 +102,3 @@ Get S3 Subsystem  →  Get Default S3 Client  →  S3 Upload File
 - Помічники для ACL. Amazon вимикає ACL у нових бакетах за замовчуванням, а [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/) їх
   не підтримує взагалі — доступ роздають політикою бакета або підписаними посиланнями.
 
----
-
-## Ліцензія
-
-MIT.
