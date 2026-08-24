@@ -68,6 +68,44 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Inventory System:
+      - Overview: inventory-system/index.md
+      - Full Edition (English):
+          - Guide: inventory-system/Full/en/README.md
+          - Release Notes: inventory-system/Full/en/Release-Notes.md
+          - 01 Core Concepts: inventory-system/Full/en/01-Core-Concepts.md
+          - 02 Setup: inventory-system/Full/en/02-Setup.md
+          - 03 Authoring Items: inventory-system/Full/en/03-Authoring-Items.md
+          - 04 Fragments: inventory-system/Full/en/04-Fragments.md
+          - 05 Inventory Operations: inventory-system/Full/en/05-Inventory-Operations.md
+          - 06 Equipment: inventory-system/Full/en/06-Equipment.md
+          - 07 Loot and Pickups: inventory-system/Full/en/07-Loot-And-Pickups.md
+          - 08 Building the UI: inventory-system/Full/en/08-Building-UI.md
+          - 09 Multiplayer: inventory-system/Full/en/09-Multiplayer.md
+          - 10 Serialization: inventory-system/Full/en/10-Serialization.md
+          - 11 Recipes: inventory-system/Full/en/11-Recipes.md
+          - 12 API Reference: inventory-system/Full/en/12-API-Reference.md
+          - 13 Debugging: inventory-system/Full/en/13-Debugging.md
+          - 14 FAQ: inventory-system/Full/en/14-FAQ.md
+          - Architecture: inventory-system/Full/en/Architecture.md
+      - Full Edition (Українська):
+          - Посібник: inventory-system/Full/uk/README.md
+          - Примітки до випуску: inventory-system/Full/uk/Release-Notes.md
+          - 01 Основні поняття: inventory-system/Full/uk/01-Core-Concepts.md
+          - 02 Підключення: inventory-system/Full/uk/02-Setup.md
+          - 03 Створення предметів: inventory-system/Full/uk/03-Authoring-Items.md
+          - 04 Фрагменти: inventory-system/Full/uk/04-Fragments.md
+          - 05 Операції з інвентарем: inventory-system/Full/uk/05-Inventory-Operations.md
+          - 06 Спорядження: inventory-system/Full/uk/06-Equipment.md
+          - 07 Лут і предмети у світі: inventory-system/Full/uk/07-Loot-And-Pickups.md
+          - 08 Побудова інтерфейсу: inventory-system/Full/uk/08-Building-UI.md
+          - 09 Мультиплеєр: inventory-system/Full/uk/09-Multiplayer.md
+          - 10 Збереження: inventory-system/Full/uk/10-Serialization.md
+          - 11 Рецепти: inventory-system/Full/uk/11-Recipes.md
+          - 12 Довідник API: inventory-system/Full/uk/12-API-Reference.md
+          - 13 Відлагодження: inventory-system/Full/uk/13-Debugging.md
+          - 14 Поширені запитання: inventory-system/Full/uk/14-FAQ.md
+          - Архітектура: inventory-system/Full/uk/Architecture.md
   - QuestSystem:
       - Overview: quest-system/index.md
       - Full Edition (English):
