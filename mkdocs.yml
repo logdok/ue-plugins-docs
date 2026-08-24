@@ -106,7 +106,7 @@ nav:
           - 13 Відлагодження: inventory-system/Full/uk/13-Debugging.md
           - 14 Поширені запитання: inventory-system/Full/uk/14-FAQ.md
           - Архітектура: inventory-system/Full/uk/Architecture.md
-  - QuestSystem:
+  - Quest System:
       - Overview: quest-system/index.md
       - Full Edition (English):
           - Guide: quest-system/Full/en/README.md

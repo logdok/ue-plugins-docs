@@ -1,4 +1,4 @@
-# QuestSystem
+# Quest System
 
 <!-- last-synced:start -->
 <p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-08-17 15:03 UTC</em></p>
