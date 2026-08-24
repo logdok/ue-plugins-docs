@@ -1,7 +1,7 @@
 # Inventory System
 
 <!-- last-synced:start -->
-<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-08-24 06:14 UTC</em></p>
+<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-08-24 06:23 UTC</em></p>
 <!-- last-synced:end -->
 
 A data-driven, fragment-based inventory and equipment system for **Unreal Engine 5.7** with first-class multiplayer support. Items are authored as Data Assets; gameplay code calls a single method and the plugin does the rest — including network replication.
