@@ -28,6 +28,25 @@ PublicDependencyModuleNames.AddRange(new string[]
 `Character`; налаштовувати систему вводу; додавати щось у `DefaultEngine.ini`.
 Плагін не додає жодного геймплею, доки ви не створите перший предмет.
 
+### Приклади предметів у комплекті
+
+Плагін привозить сім готових `ISItemDefinition` — щоб було на що подивитися,
+перш ніж створювати своє:
+
+| Ассет | Що показує |
+|---|---|
+| `DA_IronSword` | `Equippable` + `Durability` — зброя, що зношується |
+| `DA_WoodenShield` | те саме для лівої руки |
+| `DA_KnightHelmet` | `Equippable` + `Durability` із `DurabilityPerUse = 0`: броня, яку псує не власне використання, а влучання — ваш код віднімає міцність через `ModifyStatValue` |
+| `DA_Torch` | `Equippable` + `Durability` + `Consumable` — три фрагменти разом |
+| `DA_HealthPotion` | `Stackable` + `Consumable` — класичне зілля |
+| `DA_CopperOre` | `Stackable` + `Weight` — крафтова сировина з масою |
+| `DA_AncientRelic` | предмет без жодного фрагмента: просто річ у слоті |
+
+Вони лежать у `InventorySystem Content → Demo → Items`. Щоб побачити їх у Content
+Browser, увімкніть **Settings → Show Plugin Content**. Розберіть їх, скопіюйте як
+заготовки або просто видаліть — плагін на них не посилається.
+
 ---
 
 ## Де живе інвентар

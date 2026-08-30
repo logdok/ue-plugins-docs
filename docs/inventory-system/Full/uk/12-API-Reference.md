@@ -5,8 +5,11 @@
 Повний перелік публічного API. Розгорнуті пояснення з прикладами — у підказках
 (tooltips) прямо в редакторі: наведіть курсор на будь-яке поле чи вузол.
 
-**Усе перелічене тут викликається і з Blueprint, і з C++.** Плагін не має API,
-доступного лише з коду.
+**Майже все перелічене тут викликається і з Blueprint, і з C++.** Винятки позначені
+*(лише C++)* і їх лише два: `GetEntriesView` на обох контейнерах, який віддає масив
+без копії, та інтерфейс `IISInventoryInterface`. Жодної **можливості** плагіна вони
+не додають — обидва мають блюпринтові відповідники (`GetAllEntries` і пошук
+компонента через `UISInventoryBlueprintLibrary`).
 
 ---
 
@@ -55,6 +58,7 @@
 | `TryRemoveItem(Def, Count, OutRemainder)` | вилучити за типом, охоплюючи кілька стеків |
 | `TryTransferTo(Target, FromSlot, ToSlot, Count)` | віддати в інший інвентар |
 | `TryTransferFrom(Source, FromSlot, ToSlot, Count)` | забрати з іншого інвентаря |
+| `TryCollect(Collectible)` | **підібрати предмет зі світу** — викликати на інвентарі гравця, не на пікапі |
 | `TryQuickMoveTo(Target, FromSlot)` | «shift-click»: ціль сама обирає місце |
 | `TrySplitStack(Slot, SplitCount)` | поділити стек |
 | `TrySwapSlots(A, B)` | поміняти місцями або об'єднати |
@@ -137,13 +141,23 @@
 | `CanEquipToSlot(Item, Slot)` | чи можна вдягнути сюди |
 | `GetDesiredSlotForItem(Item)` | куди предмет проситься |
 | `GetTotalStatValue(StatTag)` | **сумарна статистика по всьому вдягненому** |
-| `GetLinkedInventory()` | зв'язаний рюкзак (розв'язує зв'язок лінивo) |
+| `GetLinkedInventory()` | зв'язаний рюкзак; якщо кеш порожній — шукає на акторі |
 | `HasContainerAuthority()` | чи має ця сторона владу (спільний для інвентаря й спорядження) |
 
 ### Збереження та події
 
-`ExportState()` / `ImportState(State)` · `OnItemEquipped`, `OnItemUnequipped`,
-`OnEquipmentActorSpawned`
+`ExportState()` / `ImportState(State)`
+
+| Подія | Коли |
+|---|---|
+| `OnItemEquipped` | слот **став** зайнятим — саме вдягання, а не будь-яка зміна |
+| `OnItemUnequipped` | слот звільнився |
+| `OnEquippedItemChanged` | предмет той самий, його дані змінилися (міцність, заряди) |
+| `OnEquipmentActorSpawned` | візуальний актор слота створено й прикріплено |
+
+> Три перші події — рівно та сама трійка, що й в інвентаря
+> (`OnItemAdded` / `OnItemRemoved` / `OnItemChanged`). Звук вдягання прив'язуйте до
+> `OnItemEquipped`: він не спрацює вдруге від того, що меч втратив одиницю міцності.
 
 ---
 
@@ -180,6 +194,63 @@
 
 ---
 
+## Фрагменти — власні помічники
+
+Поля кожного фрагмента описані в [04 — Фрагменти](04-Fragments.md). Крім полів,
+деякі фрагменти дають функції, які можна викликати напряму:
+
+| Фрагмент | Функція | Опис |
+|---|---|---|
+| `UISFragment_Durability` | `GetCurrentDurability(Instance)` | поточна міцність копії |
+| | `GetDurabilityPercent(Instance)` | 0–1, готове для прогрес-бара |
+| | `IsBroken(Instance)` | чи впала міцність до нуля |
+| | `Repair(Instance, Amount)` | полагодити; від'ємне значення — повністю *(сервер)* |
+| `UISFragment_Consumable` | `GetRemainingCharges(Instance)` | скільки зарядів лишилося |
+| `UISFragment_Equippable` | `AcceptsSlot(Slot)` | чи згоден предмет жити в цьому слоті |
+
+Усі дванадцять хуків, які перевизначає власний фрагмент, — теж публічний API:
+`OnInstanceCreated`, `OnAddedToInventory`, `OnRemovedFromInventory`, `CanBeAddedTo`,
+`CanStackWith`, `CanBeUsed`, `IsUsable`, `OnUsed`, `OnEquipped`, `OnUnequipped`,
+`ModifyMaxStackSize`, `ModifyUnitWeight`.
+
+---
+
+## `UISInventoryQueryLibrary` — пошук за описом
+
+Коли питання складніше за «скільки в мене цього»: «уся зброя, що зношена», «усе, що
+можна продати», «перший стек стріл, де більше десяти».
+
+| Функція | Опис |
+|---|---|
+| `QueryInventory(Inv, Query)` | усі предмети, що підходять |
+| `QueryInventoryFirst(Inv, Query)` | перший збіг або `null` |
+| `QueryInventoryCount(Inv, Query)` | сумарна кількість копій у всіх збігах |
+| `QueryInventorySlots(Inv, Query)` | індекси слотів усіх збігів, за зростанням |
+| `MakeTagQuery(Tag)` | скорочення: усе з одним тегом |
+| `MakeDefinitionQuery(Def)` | скорочення: рівно один тип предмета |
+
+Поля `FISInventoryQuery` (порожній запит підходить усьому, поля комбінуються через І):
+
+| Поле | Опис |
+|---|---|
+| `RequiredTags` | предмет має нести **всі** ці теги |
+| `AnyOfTags` | предмет має нести **хоч один** із цих тегів |
+| `ExcludedTags` | предмет із будь-яким із цих тегів виключається |
+| `RequiredFragment` | предмет має мати фрагмент цього класу (підкласи теж) |
+| `MinStackCount` / `MaxStackCount` | межі розміру стеку |
+| `SpecificDefinition` | рівно цей тип предмета |
+
+---
+
+## Інтерфейси — точки інтеграції
+
+| Інтерфейс | Навіщо |
+|---|---|
+| `IISCollectibleInterface` | зробити своїм актором те, що вміє підбирати `UISInventoryComponent::TryCollect`. `AISItemPickup` уже його реалізує; свій — лише якщо ваш «підбирний» об'єкт не є його нащадком. Метод один: `TryGiveContents(Collector)`, викликається вже на сервері |
+| `IISInventoryInterface` | сказати, який із кількох інвентарів на акторі головний — `GetInventoryComponent`, `GetEquipmentComponent`, `GetAllInventoryComponents`. Потрібен рідко: `GetInventoryFor` і сам знаходить єдиний. *(лише C++)* |
+
+---
+
 ## Об'єкти світу (`InventorySystemWorld`)
 
 ### `AISLootContainer`
@@ -190,7 +261,7 @@
 | `LootTable`, `bGenerateLootOnSpawn` | наповнення |
 | `bUseWeightedLoot`, `WeightedDropCount` | режим «рівно N предметів» |
 | `bSingleUse` | одноразова скриня |
-| `Open(Opener)` / `Close(Closer)` | взаємодія |
+| `Open(Opener)` / `Close(Closer)` | взаємодія — **лише на сервері**, самі себе не пересилають |
 | `CanOpen()` / `IsEmpty()` | стан |
 | `ResetContainer(bClear)` | дозволити наповнитися знову |
 | `BP_OnOpened` / `BP_OnClosed` / `BP_OnLooted` / `BP_OnLootGenerated` | хуки візуалу |
@@ -202,9 +273,14 @@
 | `ItemDefinition`, `ItemCount` | вміст для розміщених у рівні |
 | `HeldItem` | справжній об'єкт зі станом |
 | `bDestroyOnCollected`, `LifeSpanSeconds` | поведінка |
-| `TryCollect(Collector)` | підібрати |
+| `TryCollect(Collector)` | підібрати — **лише на сервері**; з клієнта викликайте `UISInventoryComponent::TryCollect` |
 | `HasContents()` / `GetPickupText()` | стан і підпис |
-| `SpawnForItem(World, Item, Location, Class)` | викинути наявний предмет у світ |
+| `SpawnForItem(World, Item, Location, Class)` | викинути наявний предмет у світ *(сервер)* |
+
+> **Який `TryCollect` викликати.** Той, що на інвентарі гравця. Пікап не має
+> мережевого з'єднання, тож сам переслати запит на сервер не може — а інвентар
+> гравця може. Це та сама причина, з якої з контейнера беруть через
+> `TryTransferFrom`, а не через методи самого контейнера.
 
 ### `UISLootTable`
 
@@ -230,8 +306,9 @@
 | `StartFragmentCooldown(Fragment, Seconds)` | запустити його |
 
 > Чому не статик на класі фрагмента: фрагмент спільний для всієї гри, а статик на
-> ньому — ще й для всіх світів у процесі. У PIE серверний і клієнтський світи чули б
-> використання один одного, а підписки з попередньої сесії лишалися б живими.
+> ньому був би спільним ще й для всіх світів у процесі. У PIE серверний і клієнтський
+> світи чули б використання один одного, а підписки з попередньої сесії лишалися б
+> живими в наступній.
 
 Кулдаун ключується **фрагментом**, тож він один на всіх гравців світу. Це свідомо
 простий інструмент — кулдауни на гравця будуйте поверх `OnConsumableUsed`.
@@ -267,5 +344,25 @@
 | `FISSlotRestriction` | правило для діапазону слотів |
 | `FISInventoryEntry` | зайнятий слот: індекс + предмет |
 | `FISEquipmentEntry` | зайнятий слот спорядження: тег + предмет + актор |
+| `FISLootTableEntry` | запис таблиці луту: предмет, діапазон кількості, шанс і вага |
 | `FISLootDrop` | результат кидка: предмет + точна кількість |
+| `FISInventoryQuery` | опис того, що шукаємо в інвентарі |
 | `FISItemSaveData` / `FISInventorySaveData` / `FISEquipmentSaveData` | збереження |
+
+## Налаштування проєкту
+
+`UISInventorySettings` — **Project Settings → Game → Inventory System**. Усе
+вимкнено або нейтральне за замовчуванням; докладно в
+[02 — Підключення](02-Setup.md).
+
+| Поле | Опис |
+|---|---|
+| `bAutoCreatePlayerInventory` | видавати інвентар кожному гравцеві автоматично |
+| `bAutoCreatePlayerEquipment` | і спорядження разом із ним |
+| `AutoInventoryHost` | де він живе: `PlayerState` (переживає смерть) чи `Pawn` |
+| `DefaultInventorySlots` | скільки слотів отримує автоматичний інвентар |
+| `DefaultEquipmentSlots` | схема тіла для автоматичного спорядження |
+| `InventoryComponentClass` / `EquipmentComponentClass` | ваші підкласи замість стандартних |
+| `MaxInteractionDistance` | серверна межа дальності запитів; 0 — не перевіряти |
+| `bValidateItemsOnStartup` | перевіряти ассети предметів при старті редактора |
+| `bVerboseLogging` | докладний лог кожної зміни інвентаря |
