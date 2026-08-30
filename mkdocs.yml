@@ -72,6 +72,7 @@ nav:
       - Overview: inventory-system/index.md
       - Full Edition (English):
           - Guide: inventory-system/Full/en/README.md
+          - Story Walkthrough: inventory-system/Full/en/Story-Walkthrough.md
           - Release Notes: inventory-system/Full/en/Release-Notes.md
           - 01 Core Concepts: inventory-system/Full/en/01-Core-Concepts.md
           - 02 Setup: inventory-system/Full/en/02-Setup.md
@@ -90,6 +91,7 @@ nav:
           - Architecture: inventory-system/Full/en/Architecture.md
       - Full Edition (Українська):
           - Посібник: inventory-system/Full/uk/README.md
+          - Від ассета до руки гравця: inventory-system/Full/uk/Story-Walkthrough.md
           - Примітки до випуску: inventory-system/Full/uk/Release-Notes.md
           - 01 Основні поняття: inventory-system/Full/uk/01-Core-Concepts.md
           - 02 Підключення: inventory-system/Full/uk/02-Setup.md
