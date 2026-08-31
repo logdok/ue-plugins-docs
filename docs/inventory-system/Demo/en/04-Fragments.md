@@ -13,7 +13,7 @@ The fragment object lives **inside the asset** `ISItemDefinition`. There is
 **one for the whole game**, shared by every instance of that item.
 
 If a hundred players are holding torches, all hundred torches point at the
-**same** `UISFragment_Durability` object.
+**same** `UISDemoFragment_Durability` object.
 
 That's why every hook is declared `const`, and writing into a fragment field at
 runtime is always a bug:
@@ -23,11 +23,11 @@ runtime is always a bug:
 CurrentDurability -= 1.0f;
 
 // RIGHT - changes only the torch that was used
-Instance->ModifyStatValue(ISTags::Stat_Durability, -1.0f);
+Instance->ModifyStatValue(ISDemoTags::Stat_Durability, -1.0f);
 ```
 
 The mutable state of a particular copy is stored in
-`UISItemInstance::StatValues` — a list of numeric values keyed by tags.
+`UISDemoItemInstance::StatValues` — a list of numeric values keyed by tags.
 
 > **A side effect worth remembering.** An item that has even one value in
 > `StatValues` never merges into a stack — see
@@ -120,14 +120,14 @@ void AMyGameMode::BeginPlay()
     // fragment is shared by the whole game, and a static on it would be shared
     // by every world in the process too. In PIE the server and client would
     // hear each other's uses.
-    if (UISInventoryWorldSubsystem* Subsystem = UISInventoryWorldSubsystem::Get(this))
+    if (UISDemoInventoryWorldSubsystem* Subsystem = UISDemoInventoryWorldSubsystem::Get(this))
     {
         Subsystem->OnConsumableUsed.AddDynamic(this, &AMyGameMode::HandleConsumableUsed);
     }
 }
 
 void AMyGameMode::HandleConsumableUsed(
-    UISItemInstance* Item, AActor* Instigator, const FGameplayTagContainer& EffectTags)
+    UISDemoItemInstance* Item, AActor* Instigator, const FGameplayTagContainer& EffectTags)
 {
     if (EffectTags.HasTag(MyTags::Effect_Heal))
     {
@@ -150,7 +150,7 @@ If you use the Gameplay Ability System, this is the natural place to apply a
 > your systems: leave `UseCooldown` at zero and count them yourself by
 > subscribing to `OnConsumableUsed`.
 >
-> The cooldown itself is stored by `UISInventoryWorldSubsystem` — it disappears
+> The cooldown itself is stored by `UISDemoInventoryWorldSubsystem` — it disappears
 > with the world. That's exactly why it isn't a static field on the fragment: a
 > static would survive a PIE session and mix the time of the server and client
 > worlds, which in the editor live in one process.
@@ -207,13 +207,13 @@ No C++ required.
 
 ```cpp
 UCLASS(DisplayName = "Soulbound")
-class UISFragment_Soulbound : public UISItemFragment
+class UISFragment_Soulbound : public UISDemoItemFragment
 {
     GENERATED_BODY()
 
 public:
     // Remember the owner when a copy is created.
-    virtual void OnInstanceCreated_Implementation(UISItemInstance* Instance) const override
+    virtual void OnInstanceCreated_Implementation(UISDemoItemInstance* Instance) const override
     {
         // Write state to the instance, not to the fragment's fields.
         Instance->SetStatValue(MyTags::Stat_BoundTo, 0.0f);
@@ -221,8 +221,8 @@ public:
 
     // Forbid the item from entering someone else's inventory.
     virtual bool CanBeAddedTo_Implementation(
-        UISItemInstance* Instance,
-        UISInventoryComponent* Inventory,
+        UISDemoItemInstance* Instance,
+        UISDemoInventoryComponent* Inventory,
         FText& OutReason) const override
     {
         if (!BelongsTo(Instance, Inventory))
@@ -249,7 +249,7 @@ inventory or an equipment slot. Don't look up the slot index yourself:
 
 ```cpp
 // NO - a worn item has no slot index, and this call silently does nothing
-UISInventoryComponent* Inv = Instance->GetOwningInventory();
+UISDemoInventoryComponent* Inv = Instance->GetOwningInventory();
 Inv->TryRemoveItemFromSlot(Inv->FindSlotOfInstance(Instance), 1);
 ```
 

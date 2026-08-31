@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/07-Loot-And-Pickups.md)*
 
-Everything in this chapter is the `InventorySystemWorld` module. It's what
+Everything in this chapter is the `InventorySystemDemoWorld` module. It's what
 physically exists in a level: chests, items on the ground, loot tables.
 
 A project that only needs inventories on characters can leave this module
@@ -58,7 +58,7 @@ warning — so a too-small chest is easy to spot during development.
 
 ## A chest, a crate, a corpse
 
-`AISLootContainer` — an actor with an inventory and optional filling from a
+`AISDemoLootContainer` — an actor with an inventory and optional filling from a
 table.
 
 ### It deliberately has no mesh or collision
@@ -138,7 +138,7 @@ off `bSingleUse` so the chest isn't marked as spent.
 
 ## An item on the ground
 
-`AISItemPickup` closes the "drop → pick up" loop.
+`AISDemoItemPickup` closes the "drop → pick up" loop.
 
 ### It preserves the item's state
 
@@ -155,10 +155,10 @@ with every enchantment and rolled value.
 
 ```cpp
 // First take it out of the inventory, then hand it to the pickup.
-UISItemInstance* Item = Inventory->GetItemAtSlot(SlotIndex);
+UISDemoItemInstance* Item = Inventory->GetItemAtSlot(SlotIndex);
 Inventory->TryRemoveItemFromSlot(SlotIndex, Item->StackCount);
 
-AISItemPickup::SpawnForItem(this, Item, DropLocation);
+AISDemoItemPickup::SpawnForItem(this, Item, DropLocation);
 ```
 
 Both lines are **server-side**: the pickup is a replicated actor, so one created
@@ -188,11 +188,11 @@ CollectorInventory->TryCollect(Pickup);
 This is the same `Try*` as every other mutating method — call it from anywhere,
 client or server, and it figures itself out. The reason: the pickup has no
 network connection of its own (nobody "owns" it), so it can't forward a
-client's request to the server itself. `UISInventoryComponent` belongs to the
+client's request to the server itself. `UISDemoInventoryComponent` belongs to the
 player and has a connection, so the request goes through it — the same
 principle as `TryTransferFrom` for chests.
 
-`AISItemPickup::TryCollect(Collector)` (without the inventory) also exists, but
+`AISDemoItemPickup::TryCollect(Collector)` (without the inventory) also exists, but
 it's a low-level, **server-only** call — use it only from code that is
 definitely already running on the server (GameMode, another Server RPC). From
 client-side interaction code — Blueprint or C++ — always
@@ -211,7 +211,7 @@ Visual hook: `BP_OnCollected`.
 
 ## Your own container without a ready class
 
-If `AISLootContainer` doesn't fit (your own base class, your own interaction
+If `AISDemoLootContainer` doesn't fit (your own base class, your own interaction
 system), a container is simple to make: **it's an ordinary actor with an
 inventory component**.
 
@@ -226,12 +226,12 @@ public:
     {
         bReplicates = true;
 
-        Stock = CreateDefaultSubobject<UISInventoryComponent>(TEXT("Stock"));
+        Stock = CreateDefaultSubobject<UISDemoInventoryComponent>(TEXT("Stock"));
         Stock->MaxSlots = 12;
     }
 
     UPROPERTY(VisibleAnywhere)
-    TObjectPtr<UISInventoryComponent> Stock;
+    TObjectPtr<UISDemoInventoryComponent> Stock;
 };
 ```
 

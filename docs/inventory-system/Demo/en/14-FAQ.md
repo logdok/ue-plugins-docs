@@ -70,7 +70,7 @@ The most common reason: **one of them has its own values** (durability,
 charges). Any per-instance value makes a copy individual — otherwise a chipped
 sword, merged with a new one, would destroy the difference.
 
-Open the inspector (`InvOverlay`): an item with its own values gets a purple
+Open the inspector (`DemoInvOverlay`): an item with its own values gets a purple
 **UNIQUE** badge.
 
 The second reason — there's no `Stackable` fragment, so the stack max is 1.
@@ -136,7 +136,7 @@ taking into account filters, stacks, slots and weight.
 
 Yes — just add several components. But `GetInventoryFor` returns the **first one
 found**; if you need a specific one, keep the reference explicitly or implement
-`IISInventoryInterface`.
+`IISDemoInventoryInterface`.
 [11 — Recipes](11-Recipes.md#several-inventories-on-one-actor).
 
 ### How do I turn on weight?
@@ -167,7 +167,7 @@ Three reasons by frequency:
 3. The slot in the fragment and the slot in the component are different tags (a
    typo).
 
-`EquipList` shows which slots the character has; the inspector — which fragments
+`DemoEquipList` shows which slots the character has; the inspector — which fragments
 the item has.
 
 ### How do I make two ring slots?
@@ -207,11 +207,11 @@ which event you subscribed to. [06 — Equipment](06-Equipment.md#events).
 
 ### Can I manipulate the inventory from the inspector without writing code, for a quick check?
 
-Yes. `InvOverlay` isn't just a view: the `Give`/`Fill`/`Use`/`Equip`/`Unequip`
+Yes. `DemoInvOverlay` isn't just a view: the `Give`/`Fill`/`Use`/`Equip`/`Unequip`
 buttons right in the panel call the same `Try*` methods your gameplay code does,
 so it's an honest test of behaviour, not a separate toy copy.
 
-### The console commands (`InvGive`, `InvList`…) don't work.
+### The console commands (`DemoInvGive`, `DemoInvList`…) don't work.
 
 Type `EnableCheats` first — the engine creates a `CheatManager` only in
 standalone or on the server, and without this every command answers "Command not
@@ -253,7 +253,7 @@ heavy"). Without it the refusal looks like a silent bug.
 Ask the item for the fragment and take the percentage:
 
 ```cpp
-if (const UISFragment_Durability* Dur = Def->FindFragment<UISFragment_Durability>())
+if (const UISDemoFragment_Durability* Dur = Def->FindFragment<UISDemoFragment_Durability>())
 {
     Bar->SetPercent(Dur->GetDurabilityPercent(Instance));
 }
@@ -297,7 +297,7 @@ The same principle as for chests —
 
 ### `Container->Open()` from a client does nothing.
 
-Unlike the rest of the API, `Open`/`Close` on `AISLootContainer` **don't
+Unlike the rest of the API, `Open`/`Close` on `AISDemoLootContainer` **don't
 forward themselves** — the chest has no connection through which to reach the
 server. Call them from the server side of your interaction (a Server RPC on the
 player's interaction component; taking items **after** opening no longer needs
@@ -347,7 +347,7 @@ It's a server method. On a client it's ignored with a warning in the log.
 
 ### Is equipment saved separately from the inventory?
 
-Yes — `UISEquipmentComponent` has its own `ExportState()`/`ImportState()`,
+Yes — `UISDemoEquipmentComponent` has its own `ExportState()`/`ImportState()`,
 independent of the inventory's. Put both structs into your `USaveGame`.
 
 ---
@@ -356,7 +356,7 @@ independent of the inventory's. Put both structs into your `USaveGame`.
 
 ### How do I change inventory behaviour globally?
 
-Subclass `UISInventoryComponent` and name your class in
+Subclass `UISDemoInventoryComponent` and name your class in
 **Project Settings → Game → Inventory System → Inventory Component Class**.
 
 ### Why doesn't my fragment keep values between uses?
@@ -372,16 +372,16 @@ MyField = Value;                        // no - changes the asset for everyone
 This is the main fragment rule —
 [04 — Fragments](04-Fragments.md#the-main-rule-fragments-are-shared).
 
-### How do I make my own container without subclassing `AISLootContainer`?
+### How do I make my own container without subclassing `AISDemoLootContainer`?
 
-Add a `UISInventoryComponent` to your actor — that's the container. The ready
+Add a `UISDemoInventoryComponent` to your actor — that's the container. The ready
 class only adds a loot table and an "open/emptied" state.
 [07 — Loot and world items](07-Loot-And-Pickups.md#your-own-container-without-a-ready-class).
 
 ### How do I grant a player something from an arbitrary place in the code?
 
 ```cpp
-UISInventoryBlueprintLibrary::GiveItemTo(Player, ItemDef, Count);
+UISDemoInventoryBlueprintLibrary::GiveItemTo(Player, ItemDef, Count);
 ```
 
 It finds the inventory itself and returns how many actually fit.
@@ -389,7 +389,7 @@ It finds the inventory itself and returns how many actually fit.
 ### I set tags in my class's constructor, and a slot or filter turns out empty.
 
 The classic initialisation-time trap: a native class's CDO constructor can run
-**before** `FInventorySystemModule::StartupModule` registers the plugin's tag
+**before** `FDemoInventorySystemModule::StartupModule` registers the plugin's tag
 directory, so `RequestGameplayTag` silently returns an empty tag that time.
 Move the tag request into `BeginPlay` — by then the engine is fully started. The
 same story with soft references to the item assets themselves
@@ -406,8 +406,8 @@ way is to edit tags through Project Settings → GameplayTags in the editor: it
 writes the correct format itself.
 [02 — Setup](02-Setup.md#tags-shipped-with-the-plugin).
 
-### I want to make a collectible object that isn't an `AISItemPickup`.
+### I want to make a collectible object that isn't an `AISDemoItemPickup`.
 
-Implement `IISCollectibleInterface` (one method — `TryGiveContents`) on your
-actor. `UISInventoryComponent::TryCollect` will see it just like an ordinary
+Implement `IISDemoCollectibleInterface` (one method — `TryGiveContents`) on your
+actor. `UISDemoInventoryComponent::TryCollect` will see it just like an ordinary
 pickup. [12 — API Reference](12-API-Reference.md#interfaces--integration-points).

@@ -112,7 +112,7 @@ Move Item Between Actors (From Actor, To Actor, From Slot)
 
 ### Pick an item up off the floor
 
-The same principle, one more example: `AISItemPickup` (an item lying in the
+The same principle, one more example: `AISDemoItemPickup` (an item lying in the
 world — [07 — Loot and world items](07-Loot-And-Pickups.md)) also has no
 connection of its own, so pickup is called the same way — on the player's
 inventory:
@@ -158,7 +158,7 @@ chipped.
 ## Use an item
 
 ```cpp
-const EISItemUseResult Result = Inventory->TryUseItem(SlotIndex, GetPawn());
+const EISDemoItemUseResult Result = Inventory->TryUseItem(SlotIndex, GetPawn());
 ```
 
 What happens is decided by the fragments: a potion is spent, a torch loses
@@ -183,7 +183,7 @@ apply effects to.
 
 ```cpp
 Inventory->CompactStacks();                        // merge partial stacks
-Inventory->SortInventory(EISSortMode::ByName);     // sort and compact
+Inventory->SortInventory(EISDemoSortMode::ByName);     // sort and compact
 ```
 
 `CompactStacks` is **gentler**: it merges scattered stacks of the same item
@@ -323,7 +323,7 @@ understand why a pickup did nothing.
 ### Drawing the grid
 
 ```cpp
-for (const FISInventoryEntry& Entry : Inventory->GetAllEntries())
+for (const FISDemoInventoryEntry& Entry : Inventory->GetAllEntries())
 {
     DrawSlot(Entry.SlotIndex, Entry.Instance);   // take the index from the entry
 }

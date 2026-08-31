@@ -17,7 +17,7 @@ Inventory->TryAddItem(Definition, 3, Remainder);
 Internally there's just one check:
 
 ```cpp
-bool UISInventoryComponent::TryAddItem(...)
+bool UISDemoInventoryComponent::TryAddItem(...)
 {
     if (!HasContainerAuthority())
     {
@@ -109,7 +109,7 @@ MyInventory->TryCollect(Pickup);
 ```
 
 This is an ordinary `Try*` — it forwards itself from a client.
-`AISItemPickup::TryCollect` also exists, but it's a low-level server call that
+`AISDemoItemPickup::TryCollect` also exists, but it's a low-level server call that
 the previous one ends up in.
 
 ### What stays server-side
@@ -119,9 +119,9 @@ through:
 
 | Call | What to do instead |
 |---|---|
-| `AISLootContainer::Open` / `Close` | call from the **server** side of your interaction |
-| `AISItemPickup::SpawnForItem` | dropping an item is a Server RPC on the dropping player |
-| `UISInventoryComponent::TryAddItemInstance` | a client can't pass the server an object pointer; use `TryTransferFrom` or `TryCollect` |
+| `AISDemoLootContainer::Open` / `Close` | call from the **server** side of your interaction |
+| `AISDemoItemPickup::SpawnForItem` | dropping an item is a Server RPC on the dropping player |
+| `UISDemoInventoryComponent::TryAddItemInstance` | a client can't pass the server an object pointer; use `TryTransferFrom` or `TryCollect` |
 
 All three refuse on a client and log — nothing breaks silently.
 
@@ -134,7 +134,7 @@ mine". Nothing in the shape of that sentence would stop it from naming another
 player's backpack — so the server takes care of that.
 
 Every `Server_*` RPC, before doing any work, passes through
-`UISItemContainerComponent::CanAcceptRequestFrom`. Who sent the request is taken
+`UISDemoItemContainerComponent::CanAcceptRequestFrom`. Who sent the request is taken
 from the connection the RPC arrived on, not from an argument — the argument is
 exactly what a modified client controls entirely.
 
@@ -157,7 +157,7 @@ and additionally — if the project settings define a `MaxInteractionDistance`,
 the requester is within that distance of the container's owner.
 
 ```ini
-[/Script/InventorySystem.ISInventorySettings]
+[/Script/InventorySystemDemo.ISDemoInventorySettings]
 ; A server-side sanity limit, not an interaction range: set it several times
 ; larger than your real range so ordinary latency never trips it.
 ; 0 (the default) disables the check.
@@ -176,11 +176,11 @@ chest, a shop with opening hours, a corpse only its killer may search.
 
 ### Inventory contents
 
-`FISInventoryList` is built on `FFastArraySerializer`: one slot changes — one
+`FISDemoInventoryList` is built on `FFastArraySerializer`: one slot changes — one
 slot is sent, not the whole inventory. The difference between 40 bytes and a
 few kilobytes when a player picks up a pebble.
 
-Items (`UISItemInstance`) are replicated UObject subobjects. The plugin supports
+Items (`UISDemoItemInstance`) are replicated UObject subobjects. The plugin supports
 **both** of UE's subobject replication mechanisms and follows the one your
 project chose:
 
@@ -245,7 +245,7 @@ No branch of your code has to ask which mode it's in.
 
 ## Automatic component attachment
 
-`UISInventoryWorldSubsystem` can create components for every player itself. Off
+`UISDemoInventoryWorldSubsystem` can create components for every player itself. Off
 by default — see
 [02 — Setup](02-Setup.md#automatic-component-creation).
 
@@ -269,9 +269,9 @@ Console commands work on a client too — they forward themselves to the server,
 and the report comes back:
 
 ```
-InvGive Potion 5
-InvList
-InvOverlay
+DemoInvGive Potion 5
+DemoInvList
+DemoInvOverlay
 ```
 
 The inspector shows the net mode with a coloured badge: green — the
@@ -281,7 +281,7 @@ state matches.
 If an item didn't appear:
 
 ```
-Log LogInventorySystem Verbose
+Log LogDemoInventorySystem Verbose
 ```
 
 Prints every add, remove and move with slot indices.

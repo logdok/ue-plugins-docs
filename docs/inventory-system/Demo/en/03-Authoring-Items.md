@@ -184,7 +184,7 @@ startup in dev builds. It reports:
 Turn it off at **Project Settings → Game → Inventory System → Validate Items On
 Startup**.
 
-To check everything by hand, run the `InvItems` command — it lists every item
+To check everything by hand, run the `DemoInvItems` command — it lists every item
 type in the project.
 
 ---

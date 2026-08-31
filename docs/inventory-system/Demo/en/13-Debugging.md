@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/13-Debugging.md)*
 
-Everything in this chapter is provided by the `InventorySystemDebug` module. It
+Everything in this chapter is provided by the `InventorySystemDemoDebug` module. It
 works as soon as the plugin is enabled and is **completely disabled in Shipping
 builds**.
 
@@ -14,13 +14,13 @@ An overlay panel with the live state of the local player's inventory and
 equipment.
 
 ```
-InvOverlay
+DemoInvOverlay
 ```
 
 Or from code — to bind it to a key:
 
 ```cpp
-UISInventoryDebugLibrary::ToggleInventoryDebugOverlay(PlayerController);
+UISDemoInventoryDebugLibrary::ToggleInventoryDebugOverlay(PlayerController);
 ```
 
 ### What it shows
@@ -84,32 +84,32 @@ show state run there and send the report back.
 
 | Command | Effect |
 |---|---|
-| `InvOverlay` | open / close the inspector |
-| `InvItems [name part]` | list the item types in the project |
-| `InvGive <name part> [count]` | give yourself an item |
-| `InvRemove <name part> [count]` | take an item away from yourself |
-| `InvClear` | clear the inventory |
-| `InvFill [count]` | fill with random items |
-| `InvList` | show the contents |
-| `InvUse <slot>` | use an item |
-| `InvSort` | sort by name |
-| `InvCompact` | merge partial stacks |
-| `InvWeight` | show weight against the limit |
+| `DemoInvOverlay` | open / close the inspector |
+| `DemoInvItems [name part]` | list the item types in the project |
+| `DemoInvGive <name part> [count]` | give yourself an item |
+| `DemoInvRemove <name part> [count]` | take an item away from yourself |
+| `DemoInvClear` | clear the inventory |
+| `DemoInvFill [count]` | fill with random items |
+| `DemoInvList` | show the contents |
+| `DemoInvUse <slot>` | use an item |
+| `DemoInvSort` | sort by name |
+| `DemoInvCompact` | merge partial stacks |
+| `DemoInvWeight` | show weight against the limit |
 
 ### Equipment
 
 | Command | Effect |
 |---|---|
-| `EquipList` | show what's worn, including empty slots |
-| `EquipSlot <inventory slot>` | equip the item from that slot |
-| `EquipRemove <slot tag>` | unequip a slot |
-| `EquipClearAll` | unequip everything |
+| `DemoEquipList` | show what's worn, including empty slots |
+| `DemoEquipSlot <inventory slot>` | equip the item from that slot |
+| `DemoEquipRemove <slot tag>` | unequip a slot |
+| `DemoEquipClearAll` | unequip everything |
 
-Item search is by **name part**, case-insensitive: `InvGive sword` finds
+Item search is by **name part**, case-insensitive: `DemoInvGive sword` finds
 `DA_IronSword`. An exact asset-name match takes priority, so an unambiguous
 query isn't hijacked by a longer name.
 
-**Start with `InvItems`** — it shows which items exist in the project at all,
+**Start with `DemoInvItems`** — it shows which items exist in the project at all,
 and how to name them in the other commands.
 
 ---
@@ -117,7 +117,7 @@ and how to name them in the other commands.
 ## Verbose log
 
 ```
-Log LogInventorySystem Verbose
+Log LogDemoInventorySystem Verbose
 ```
 
 Prints every add, remove and move with slot indices and stack sizes. Usually
@@ -153,17 +153,17 @@ asset.
 
 ## Automated tests
 
-**Tools → Session Frontend → Automation**, filter `InventorySystem.`
+**Tools → Session Frontend → Automation**, filter `InventorySystemDemo.`
 
 Or from the command line:
 
 ```bash
 UnrealEditor-Cmd Project.uproject \
-  -ExecCmds="Automation RunTests InventorySystem.; Quit" \
+  -ExecCmds="Automation RunTests InventorySystemDemo.; Quit" \
   -unattended -nullrhi
 ```
 
-Groups: `InventorySystem.Inventory`, `.Equipment`, `.Loot`, `.Persistence`,
+Groups: `InventorySystemDemo.Inventory`, `.Equipment`, `.Loot`, `.Persistence`,
 `.ItemDefinition`, `.ItemInstance`, `.DebugOverlay`.
 
 ---
@@ -173,10 +173,10 @@ Groups: `InventorySystem.Inventory`, `.Equipment`, `.Loot`, `.Persistence`,
 Work top to bottom — the questions are ordered by frequency.
 
 **An item won't add.**
-1. `InvList` — was the inventory found at all? If "you have no inventory", the
+1. `DemoInvList` — was the inventory found at all? If "you have no inventory", the
    component isn't on the actor.
 2. Subscribe to `OnAddRejected` — it carries a ready reason.
-3. `InvWeight` — is it hitting the weight limit?
+3. `DemoInvWeight` — is it hitting the weight limit?
 4. Check `AllowedItemTags` / `BlockedItemTags` on the component.
 
 **Items won't stack.**
@@ -186,7 +186,7 @@ Work top to bottom — the questions are ordered by frequency.
 
 **An item won't equip.**
 1. Inspector: is `Equippable` in the fragment list?
-2. `EquipList`: does the character have the slot in `AvailableSlots`?
+2. `DemoEquipList`: does the character have the slot in `AvailableSlots`?
 3. The slot in the fragment and the slot in the component must be the **same**
    tag.
 

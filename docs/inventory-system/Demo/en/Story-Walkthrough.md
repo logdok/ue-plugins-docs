@@ -6,7 +6,7 @@ This isn't a reference — it's one short story. The goal: in 10 minutes, see wi
 your own eyes how an item travels the whole way from a Data Asset to a sword in
 a character's hand, without writing a single line of inventory code yourself.
 Every example below already lives in the plugin itself
-(`Plugins/InventorySystem/Content/Demo/Items/`), so you can open the editor and
+(`Plugins/InventorySystemDemo/Content/Demo/Items/`), so you can open the editor and
 repeat each step literally — with no asset of your own.
 
 If after this page you want to understand "but why this way" — the chapters at
@@ -16,7 +16,7 @@ the end cover each step in detail.
 
 ## The cast
 
-Seven items are already created in `Plugins/InventorySystem/Content/Demo/Items/`
+Seven items are already created in `Plugins/InventorySystemDemo/Content/Demo/Items/`
 — together they show every combination of the shipped fragments (what a fragment
 is, and why an item is a set of fragments rather than a class —
 [01 — Core Concepts](01-Core-Concepts.md)):
@@ -61,7 +61,7 @@ auto-creation is off by default and when to turn it on deliberately.
 
 ## Step 1 — the sword appears in the world
 
-Place an `AISItemPickup` actor in the level and set its `Item Definition` field
+Place an `AISDemoItemPickup` actor in the level and set its `Item Definition` field
 to `DA_IronSword`. That's it — no separate Blueprint for "a sword lying on the
 ground" is needed: the same `Item Pickup` class serves any item in the game.
 
@@ -69,7 +69,7 @@ The mesh the player sees, the plugin takes from the `PickupMesh` field of
 `DA_IronSword` itself (category `Item|World` in Details) — automatically, at game
 start. If `PickupMesh` isn't set, the actor still works (it can be picked up),
 it just stays invisible on the ground. That's why the **`pickup mesh: yes / no`**
-line in the debug panel (`InvOverlay`) is worth checking for a newly created
+line in the debug panel (`DemoInvOverlay`) is worth checking for a newly created
 item before you place it in the world — it says directly whether the player will
 see anything on the ground.
 
@@ -97,7 +97,7 @@ on the ground (if the sword was picked up damaged rather than freshly placed,
 the damage is kept). The pickup is destroyed (the default behaviour), and the
 sword now sits in an inventory slot.
 
-**Check it without a single line of code:** open `InvOverlay` (the `I` key or the
+**Check it without a single line of code:** open `DemoInvOverlay` (the `I` key or the
 console command of the same name), type `iron` into the GIVE ITEM field, press
 **Give** — and that same `DA_IronSword` ends up in slot 0. This is exactly the
 same action `TryCollect` performs in the game: the panel just lets you click it,
@@ -131,7 +131,7 @@ If no socket is set, the actor attaches to the character's root rather than
 disappearing; on a bare `DefaultPawn` with no skeletal mesh that's what happens,
 and for testing the logic that's perfectly fine.
 
-**The same step without code:** in `InvOverlay`, on the sword's row in CONTENTS —
+**The same step without code:** in `DemoInvOverlay`, on the sword's row in CONTENTS —
 an **Equip** button. Click, and that same `TryEquipFromInventorySlot` fires from
 the mouse; the EQUIPMENT panel immediately shows an occupied `Weapon.Main` slot.
 
@@ -158,7 +158,7 @@ in the plugin: `Weapon.Main` and `Weapon.Offhand` are just two different entries
 in the equipment component's `AvailableSlots`, and each is handled the same way
 as the single slot in the sword example.
 
-**Without code:** the **Equip** button on the shield's row in `InvOverlay` — just
+**Without code:** the **Equip** button on the shield's row in `DemoInvOverlay` — just
 like for the sword.
 
 ---
@@ -177,7 +177,7 @@ character being hit. So the project's combat code deducts it directly from the
 instance itself, not through the fragment:
 
 ```cpp
-HelmetInstance->ModifyStatValue(ISTags::Stat_Durability, -DamageTaken);
+HelmetInstance->ModifyStatValue(ISDemoTags::Stat_Durability, -DamageTaken);
 ```
 
 (`Durability->Repair()` won't do here — it only **restores** durability, and a
@@ -189,7 +189,7 @@ sense for armour at all. `MaxDurability = 60` here is the same kind of number as
 on the sword or shield — it counts "how many hits it survives", not "how many
 times it was clicked".
 
-**Without code:** the **Equip** button on the helmet's row in `InvOverlay`, like
+**Without code:** the **Equip** button on the helmet's row in `DemoInvOverlay`, like
 the rest. There won't be a **Use** button — the helmet doesn't need a
 `Consumable` fragment, and without one `IsUsable()` for armour returns false,
 just like for copper ore.
@@ -210,7 +210,7 @@ The same call any item with a "Use" button uses: the fragments decide what it
 means for the torch specifically (spend a charge, reduce the fuel reserve). The
 inventory itself knows nothing special about the torch.
 
-**Without code:** the **Use** button on the torch's row in `InvOverlay`.
+**Without code:** the **Use** button on the torch's row in `DemoInvOverlay`.
 
 ---
 
@@ -278,6 +278,6 @@ example table.
 | Understand each fragment and its hooks | [04 — Fragments](04-Fragments.md) |
 | Build a pickup and equipment UI | [08 — Building the UI](08-Building-UI.md) |
 | Place items and chests in a level | [07 — Loot and world items](07-Loot-And-Pickups.md) |
-| Everything about `InvOverlay` and console commands | [13 — Debugging](13-Debugging.md) |
+| Everything about `DemoInvOverlay` and console commands | [13 — Debugging](13-Debugging.md) |
 
 ---

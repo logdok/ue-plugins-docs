@@ -21,10 +21,10 @@ class UMySaveGame : public USaveGame
 
 public:
     UPROPERTY(SaveGame)
-    FISInventorySaveData Backpack;
+    FISDemoInventorySaveData Backpack;
 
     UPROPERTY(SaveGame)
-    FISEquipmentSaveData Loadout;
+    FISDemoEquipmentSaveData Loadout;
 };
 ```
 
@@ -152,7 +152,7 @@ placed the component).
 
 | Not saved | Why, and what to do |
 |---|---|
-| Items on the ground (`AISItemPickup`) | These are level actors. Save them with your own world-save system, or don't save them at all. |
+| Items on the ground (`AISDemoItemPickup`) | These are level actors. Save them with your own world-save system, or don't save them at all. |
 | Chest state | The same — they're actors. Call `ExportState` on `ContainerInventory` if you need it. |
 | Consumable cooldowns | Deliberately ephemeral; after loading the item is available right away. |
 | Equipment visual actors | Recreated from the fragment when the slot is restored. |

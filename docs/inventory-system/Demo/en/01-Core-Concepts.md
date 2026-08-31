@@ -14,7 +14,7 @@ This is the central split in the plugin.
 
 | | Item type | Instance |
 |---|---|---|
-| Class | `UISItemDefinition` | `UISItemInstance` |
+| Class | `UISDemoItemDefinition` | `UISDemoItemInstance` |
 | What it is | an asset in the Content Browser | a concrete copy in someone's inventory |
 | How many | one for the whole game | as many as there are copies in the world |
 | What it holds | name, icon, tags, fragments | stack count, durability, charges |
@@ -108,13 +108,13 @@ What this means for your code:
 
 ```cpp
 // WRONG: entry #N is not slot #N
-const FISInventoryEntry& Entry = Inventory->GetAllEntries()[SlotIndex];
+const FISDemoInventoryEntry& Entry = Inventory->GetAllEntries()[SlotIndex];
 
 // RIGHT: ask about a specific slot
-UISItemInstance* Item = Inventory->GetItemAtSlot(SlotIndex);
+UISDemoItemInstance* Item = Inventory->GetItemAtSlot(SlotIndex);
 
 // RIGHT: iterate what's there, reading the index from the entry itself
-for (const FISInventoryEntry& Entry : Inventory->GetAllEntries())
+for (const FISDemoInventoryEntry& Entry : Inventory->GetAllEntries())
 {
     Draw(Entry.SlotIndex, Entry.Instance);
 }
@@ -129,8 +129,8 @@ zero is the switch.
 
 | Component | What it does |
 |---|---|
-| `UISInventoryComponent` | stores items in numbered slots |
-| `UISEquipmentComponent` | wears items in slots named by tags |
+| `UISDemoInventoryComponent` | stores items in numbered slots |
+| `UISDemoEquipmentComponent` | wears items in slots named by tags |
 
 They are independent. The inventory works on its own; equipment can also work on
 its own (for an NPC whose weapon can't be taken, say). They are linked only when
@@ -152,7 +152,7 @@ The plugin has no built-in notion of "drink", "eat" or "apply". It has
    "no" stops everything;
 2. then lets **every** fragment apply its effect (`OnUsed`).
 
-The result is an `EISItemUseResult`:
+The result is an `EISDemoItemUseResult`:
 
 | Value | When |
 |---|---|

@@ -7,6 +7,11 @@ upgrading. The newest release is at the top.
 
 ---
 
+> **This is the demo edition.** Every feature works exactly like the full plugin;
+> only the volume of use is limited — a budget of 5 distinct item types per play
+> session, an on-screen watermark, and no activation in Shipping builds. See
+> [Demo Limitations](00-Demo-Limitations.md) for the details.
+
 ## 1.0
 
 The first release. Unreal Engine **5.7 and 5.8**.
@@ -43,21 +48,20 @@ via `FFastArraySerializer` — one slot changes, one slot is sent.
 in your `USaveGame`. Item types are written as paths, so a save survives a
 restart and patches.
 
-**Debugging.** An interactive inspector (`InvOverlay`) — it not only shows the
+**Debugging.** An interactive inspector (`DemoInvOverlay`) — it not only shows the
 contents but lets you grant, use, equip and remove items right from the panel.
 Plus 15 console commands, a detailed log, and asset validation at startup. All
 disabled in Shipping.
 
 ### Architecture
 
-The plugin is split into four modules:
+The plugin is split into three modules:
 
 | Module | Purpose |
 |---|---|
-| `InventorySystem` | core; **no Slate/UMG dependency** |
-| `InventorySystemWorld` | chests, items on the ground, loot tables |
-| `InventorySystemDebug` | the inspector and commands; the only module with UI |
-| `InventorySystemTests` | 82 automated tests (editor only) |
+| `InventorySystemDemo` | core; **no Slate/UMG dependency** |
+| `InventorySystemDemoWorld` | chests, items on the ground, loot tables |
+| `InventorySystemDemoDebug` | the inspector and commands; the only module with UI |
 
 A project that only needs inventories on characters can skip `World`
 altogether. A dedicated server never links the UI.

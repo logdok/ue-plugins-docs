@@ -9,7 +9,7 @@ the inventory from code.
 
 ## Installation
 
-1. Copy the `Plugins/InventorySystem` folder into your project's `Plugins/`
+1. Copy the `Plugins/InventorySystemDemo` folder into your project's `Plugins/`
    folder.
 2. **Edit → Plugins → Inventory System** → enable → restart the editor.
 3. If your project has a C++ module and you plan to call the plugin from code,
@@ -18,8 +18,8 @@ the inventory from code.
 ```csharp
 PublicDependencyModuleNames.AddRange(new string[]
 {
-    "InventorySystem",       // core: items, components, queries
-    "InventorySystemWorld",  // only if you need chests and items on the ground
+    "InventorySystemDemo",       // core: items, components, queries
+    "InventorySystemDemoWorld",  // only if you need chests and items on the ground
 });
 ```
 
@@ -44,7 +44,7 @@ something to look at before authoring your own:
 | `DA_CopperOre` | `Stackable` + `Weight` — a crafting material with mass |
 | `DA_AncientRelic` | an item with no fragments at all: just a thing in a slot |
 
-They live under `InventorySystem Content → Demo → Items`. To see them in the
+They live under `InventorySystemDemo Content → Demo → Items`. To see them in the
 Content Browser, turn on **Settings → Show Plugin Content**. Pick them apart,
 copy them as templates, or just delete them — the plugin doesn't reference
 them.
@@ -127,19 +127,19 @@ The worst thing you can do is hard-wire the location:
 
 ```cpp
 // FRAGILE: breaks the moment the inventory moves to the PlayerState
-UISInventoryComponent* Inv = MyCharacter->FindComponentByClass<UISInventoryComponent>();
+UISDemoInventoryComponent* Inv = MyCharacter->FindComponentByClass<UISDemoInventoryComponent>();
 ```
 
 Instead, ask the library:
 
 ```cpp
-#include "Core/ISInventoryBlueprintLibrary.h"
+#include "Core/ISDemoInventoryBlueprintLibrary.h"
 
-UISInventoryComponent* Inv = UISInventoryBlueprintLibrary::GetInventoryFor(Actor);
+UISDemoInventoryComponent* Inv = UISDemoInventoryBlueprintLibrary::GetInventoryFor(Actor);
 ```
 
 `GetInventoryFor` looks in several places in turn: on the actor itself, through
-the `IISInventoryInterface` interface, on the pawn's `PlayerState`, on the
+the `IISDemoInventoryInterface` interface, on the pawn's `PlayerState`, on the
 controller's pawn. So you can pass it **anything** — `Character`,
 `PlayerController`, `PlayerState` — and get the same component.
 
@@ -166,7 +166,7 @@ The full list is in [12 — API Reference](12-API-Reference.md).
 ## Tags shipped with the plugin
 
 The plugin ships a starter set of GameplayTags in
-`Plugins/InventorySystem/Config/Tags/InventoryTags.ini`:
+`Plugins/InventorySystemDemo/Config/Tags/InventoryTags.ini`:
 
 - `Item.Type.*` — weapon, armour, consumable, materials, currency, ammo…
 - `Item.Property.*` — tradeable, droppable, quest, unique…
@@ -193,13 +193,13 @@ charges.
 Press Play and open the console (`~`):
 
 ```
-InvItems          list every item type in the project
-InvGive <name> 5  give yourself an item
-InvList           show your inventory contents
-InvOverlay        open the inspector
+DemoInvItems          list every item type in the project
+DemoInvGive <name> 5  give yourself an item
+DemoInvList           show your inventory contents
+DemoInvOverlay        open the inspector
 ```
 
-If `InvList` says "you have no inventory", the component wasn't found. Check
+If `DemoInvList` says "you have no inventory", the component wasn't found. Check
 that it's added to the character, or turn on auto-creation.
 
 ---

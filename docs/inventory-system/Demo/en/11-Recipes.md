@@ -17,14 +17,14 @@ of it**.
 ```cpp
 bool AMyCraftingStation::TryCraft(AActor* Player, const FMyRecipe& Recipe)
 {
-    UISInventoryComponent* Inv = UISInventoryBlueprintLibrary::GetInventoryFor(Player);
+    UISDemoInventoryComponent* Inv = UISDemoInventoryBlueprintLibrary::GetInventoryFor(Player);
     if (!Inv)
     {
         return false;
     }
 
     // 1. Check EVERYTHING before spending anything.
-    for (const TPair<UISItemDefinition*, int32>& Ingredient : Recipe.Ingredients)
+    for (const TPair<UISDemoItemDefinition*, int32>& Ingredient : Recipe.Ingredients)
     {
         if (!Inv->HasItem(Ingredient.Key, Ingredient.Value))
         {
@@ -39,7 +39,7 @@ bool AMyCraftingStation::TryCraft(AActor* Player, const FMyRecipe& Recipe)
     }
 
     // 3. Now spending is safe.
-    for (const TPair<UISItemDefinition*, int32>& Ingredient : Recipe.Ingredients)
+    for (const TPair<UISDemoItemDefinition*, int32>& Ingredient : Recipe.Ingredients)
     {
         int32 Remainder = 0;
         Inv->TryRemoveItem(Ingredient.Key, Ingredient.Value, Remainder);
@@ -65,13 +65,13 @@ player has already paid but not yet received.
 ```cpp
 bool AMyVendor::TryBuy(AActor* Buyer, int32 VendorSlot, int32 Count)
 {
-    UISInventoryComponent* BuyerInv = UISInventoryBlueprintLibrary::GetInventoryFor(Buyer);
+    UISDemoInventoryComponent* BuyerInv = UISDemoInventoryBlueprintLibrary::GetInventoryFor(Buyer);
     if (!BuyerInv || !Stock)
     {
         return false;
     }
 
-    UISItemInstance* Goods = Stock->GetItemAtSlot(VendorSlot);
+    UISDemoItemInstance* Goods = Stock->GetItemAtSlot(VendorSlot);
     if (!Goods)
     {
         return false;
@@ -187,14 +187,14 @@ void AMyCharacter::DropEverything()
 {
     if (!HasAuthority()) return;
 
-    for (const FISInventoryEntry& Entry : Inventory->GetAllEntries())
+    for (const FISDemoInventoryEntry& Entry : Inventory->GetAllEntries())
     {
-        UISItemInstance* Item = Entry.Instance;
+        UISDemoItemInstance* Item = Entry.Instance;
         const int32 Slot = Entry.SlotIndex;
 
         // Take out of the inventory, then hand to a pickup - the item keeps its state.
         Inventory->TryRemoveItemFromSlot(Slot, Item->StackCount);
-        AISItemPickup::SpawnForItem(this, Item, GetActorLocation() + FMath::VRand() * 100.0f);
+        AISDemoItemPickup::SpawnForItem(this, Item, GetActorLocation() + FMath::VRand() * 100.0f);
     }
 }
 ```
@@ -209,13 +209,13 @@ void AMyCharacter::DropEverything()
 ```cpp
 void AMyCharacter::DropItem(int32 SlotIndex)
 {
-    UISItemInstance* Item = Inventory->GetItemAtSlot(SlotIndex);
+    UISDemoItemInstance* Item = Inventory->GetItemAtSlot(SlotIndex);
     if (!Item) return;
 
     const FVector DropAt = GetActorLocation() + GetActorForwardVector() * 150.0f;
 
     Inventory->TryRemoveItemFromSlot(SlotIndex, Item->StackCount);
-    AISItemPickup::SpawnForItem(this, Item, DropAt);
+    AISDemoItemPickup::SpawnForItem(this, Item, DropAt);
 }
 ```
 
@@ -244,7 +244,7 @@ void AMyPickupTrigger::NotifyActorBeginOverlap(AActor* Other)
 
     if (!HasAuthority()) return;   // the server collects
 
-    if (UISInventoryBlueprintLibrary::HasInventory(Other))
+    if (UISDemoInventoryBlueprintLibrary::HasInventory(Other))
     {
         TryCollect(Other);
     }
@@ -261,7 +261,7 @@ the volume.
 The shortest path — no component lookup:
 
 ```cpp
-const int32 Given = UISInventoryBlueprintLibrary::GiveItemTo(Player, RewardDef, 3);
+const int32 Given = UISDemoInventoryBlueprintLibrary::GiveItemTo(Player, RewardDef, 3);
 
 if (Given < 3)
 {
@@ -286,7 +286,7 @@ void AMyCharacter::BeginPlay()
 
     if (HasAuthority())
     {
-        for (const TPair<UISItemDefinition*, int32>& Entry : ClassStartingKit)
+        for (const TPair<UISDemoItemDefinition*, int32>& Entry : ClassStartingKit)
         {
             int32 Remainder = 0;
             Inventory->TryAddItem(Entry.Key, Entry.Value, Remainder);
@@ -300,11 +300,11 @@ void AMyCharacter::BeginPlay()
 ## Repairing equipment
 
 ```cpp
-void AMyBlacksmith::Repair(UISItemInstance* Item)
+void AMyBlacksmith::Repair(UISDemoItemInstance* Item)
 {
     if (!Item || !Item->Definition) return;
 
-    if (const UISFragment_Durability* Dur = Item->Definition->FindFragment<UISFragment_Durability>())
+    if (const UISDemoFragment_Durability* Dur = Item->Definition->FindFragment<UISDemoFragment_Durability>())
     {
         Dur->Repair(Item);   // a negative value = full repair
     }
@@ -326,7 +326,7 @@ When you need custom behaviour on every inventory — subclass:
 
 ```cpp
 UCLASS()
-class UMyInventoryComponent : public UISInventoryComponent
+class UMyInventoryComponent : public UISDemoInventoryComponent
 {
     GENERATED_BODY()
 
@@ -343,7 +343,7 @@ Then either place your class in the character Blueprint, or name it in
 **Project Settings → Game → Inventory System → Inventory Component Class** so
 auto-creation uses it.
 
-The same works for `UISEquipmentComponent` and for any fragment.
+The same works for `UISDemoEquipmentComponent` and for any fragment.
 
 ---
 
@@ -352,18 +352,18 @@ The same works for `UISEquipmentComponent` and for any fragment.
 Just add several components — a backpack, a wallet, a quest bag:
 
 ```cpp
-Backpack   = CreateDefaultSubobject<UISInventoryComponent>(TEXT("Backpack"));
-QuestBag   = CreateDefaultSubobject<UISInventoryComponent>(TEXT("QuestBag"));
+Backpack   = CreateDefaultSubobject<UISDemoInventoryComponent>(TEXT("Backpack"));
+QuestBag   = CreateDefaultSubobject<UISDemoInventoryComponent>(TEXT("QuestBag"));
 
 QuestBag->AllowedItemTags.AddTag(QuestItemTag);
 ```
 
 Remember: `GetInventoryFor` returns the **first one found**. If there are
 several, either keep the references explicitly, or implement
-`IISInventoryInterface` and return the one you consider primary:
+`IISDemoInventoryInterface` and return the one you consider primary:
 
 ```cpp
-virtual UISInventoryComponent* GetInventoryComponent() const override { return Backpack; }
+virtual UISDemoInventoryComponent* GetInventoryComponent() const override { return Backpack; }
 ```
 
 The interface takes priority over the search — that's exactly the case it exists

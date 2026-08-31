@@ -1,4 +1,4 @@
-# InventorySystem User Guide
+# InventorySystemDemo User Guide
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/README.md)*
 
@@ -14,7 +14,7 @@ plugin does the rest — including network replication.
 
 ## Quick start
 
-**1. Enable the plugin.** Copy `Plugins/InventorySystem` into your project's
+**1. Enable the plugin.** Copy `Plugins/InventorySystemDemo` into your project's
 `Plugins/` folder and enable it: **Edit → Plugins → Inventory System**.
 
 **2. Create an item.** Content Browser → right-click →
@@ -25,7 +25,7 @@ plugin does the rest — including network replication.
 - **Consumable** → `ConsumeAmount = 1`
 
 > Don't want to author anything just to look around? The plugin ships seven
-> ready-made items under `InventorySystem Content → Demo → Items` (turn on
+> ready-made items under `InventorySystemDemo Content → Demo → Items` (turn on
 > **Show Plugin Content** in the Content Browser settings to see them). A sword,
 > shield, helmet, torch, potion, ore and relic — together they cover all five
 > fragments.
@@ -36,8 +36,8 @@ plugin does the rest — including network replication.
 **4. Try it.** Press Play and open the console:
 
 ```
-InvGive Potion 5      give yourself 5 potions
-InvOverlay            open the inspector
+DemoInvGive Potion 5      give yourself 5 potions
+DemoInvOverlay            open the inspector
 ```
 
 Done — items are granted, stacked and used.
@@ -122,10 +122,10 @@ checklist.
 
 ## Conventions
 
-- **"Item type"** is a `UISItemDefinition` asset. **"Instance"** is a concrete
-  copy in someone's inventory (`UISItemInstance`).
+- **"Item type"** is a `UISDemoItemDefinition` asset. **"Instance"** is a concrete
+  copy in someone's inventory (`UISDemoItemInstance`).
 - Code snippets are C++ unless noted otherwise. **Nearly every function shown is
   also callable from Blueprint**; the two exceptions are marked *(C++ only)* in
   [12 — API Reference](12-API-Reference.md) and add no capability.
-- "Inventory" means `UISInventoryComponent`, "equipment" means
-  `UISEquipmentComponent`.
+- "Inventory" means `UISDemoInventoryComponent`, "equipment" means
+  `UISDemoEquipmentComponent`.

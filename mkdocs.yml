@@ -108,6 +108,26 @@ nav:
           - 13 Відлагодження: inventory-system/Full/uk/13-Debugging.md
           - 14 Поширені запитання: inventory-system/Full/uk/14-FAQ.md
           - Архітектура: inventory-system/Full/uk/Architecture.md
+      - Demo Edition (English):
+          - Guide: inventory-system/Demo/en/README.md
+          - Story Walkthrough: inventory-system/Demo/en/Story-Walkthrough.md
+          - Release Notes: inventory-system/Demo/en/Release-Notes.md
+          - 00 Demo Limitations: inventory-system/Demo/en/00-Demo-Limitations.md
+          - 01 Core Concepts: inventory-system/Demo/en/01-Core-Concepts.md
+          - 02 Setup: inventory-system/Demo/en/02-Setup.md
+          - 03 Authoring Items: inventory-system/Demo/en/03-Authoring-Items.md
+          - 04 Fragments: inventory-system/Demo/en/04-Fragments.md
+          - 05 Inventory Operations: inventory-system/Demo/en/05-Inventory-Operations.md
+          - 06 Equipment: inventory-system/Demo/en/06-Equipment.md
+          - 07 Loot and Pickups: inventory-system/Demo/en/07-Loot-And-Pickups.md
+          - 08 Building the UI: inventory-system/Demo/en/08-Building-UI.md
+          - 09 Multiplayer: inventory-system/Demo/en/09-Multiplayer.md
+          - 10 Serialization: inventory-system/Demo/en/10-Serialization.md
+          - 11 Recipes: inventory-system/Demo/en/11-Recipes.md
+          - 12 API Reference: inventory-system/Demo/en/12-API-Reference.md
+          - 13 Debugging: inventory-system/Demo/en/13-Debugging.md
+          - 14 FAQ: inventory-system/Demo/en/14-FAQ.md
+          - Architecture: inventory-system/Demo/en/Architecture.md
       - Demo Edition (Українська):
           - Посібник: inventory-system/Demo/uk/README.md
           - Від ассета до руки гравця: inventory-system/Demo/uk/Story-Walkthrough.md

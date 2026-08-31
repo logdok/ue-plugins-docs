@@ -10,13 +10,12 @@ and why this way", along with decisions that look odd until you know the reason.
 
 ---
 
-## Four modules
+## Three modules
 
 ```
-InventorySystem       core: data, replication, components, queries
-InventorySystemWorld  chests, items on the ground, loot tables
-InventorySystemDebug  the inspector and console commands
-InventorySystemTests  automated tests (editor only)
+InventorySystemDemo       core: data, replication, components, queries
+InventorySystemDemoWorld  chests, items on the ground, loot tables
+InventorySystemDemoDebug  the inspector and console commands
 ```
 
 **The core doesn't depend on Slate, UMG or anything visual.** This isn't a
@@ -35,7 +34,7 @@ will never place.
 Every method that changes state is public, named `Try*`, and looks like this:
 
 ```cpp
-bool UISInventoryComponent::TryAddItem(...)
+bool UISDemoInventoryComponent::TryAddItem(...)
 {
     if (!HasContainerAuthority())
     {
@@ -95,10 +94,10 @@ Details and examples are in [09 — Multiplayer](09-Multiplayer.md).
 
 ## The shared container base
 
-Items are stored by two components: `UISInventoryComponent` (slots by number)
-and `UISEquipmentComponent` (slots by tag). The difference between them is slot
+Items are stored by two components: `UISDemoInventoryComponent` (slots by number)
+and `UISDemoEquipmentComponent` (slots by tag). The difference between them is slot
 addressing, and almost nothing else. The shared part is lifted into
-`UISItemContainerComponent`:
+`UISDemoItemContainerComponent`:
 
 | What | Why exactly there |
 |---|---|
@@ -108,7 +107,7 @@ addressing, and almost nothing else. The shared part is lifted into
 | `NotifyItemInstanceChanged()` | "my data changed" — flag the slot for replication |
 | subobject registration | identical for both, easy to forget in one |
 
-This isn't cosmetic. The key consequence: `UISItemInstance::OwningContainer`
+This isn't cosmetic. The key consequence: `UISDemoItemInstance::OwningContainer`
 points at the **base**, not at an inventory. If it only knew the inventory,
 then:
 
@@ -124,21 +123,21 @@ Both properties belong to "whoever holds the item", so they live in one place.
 
 ## Fragments as the extension mechanism
 
-`UISItemDefinition` has no behaviour of its own — only a list of
-`UISItemFragment`s. The shipped five (`Stackable`, `Equippable`, `Consumable`,
+`UISDemoItemDefinition` has no behaviour of its own — only a list of
+`UISDemoItemFragment`s. The shipped five (`Stackable`, `Equippable`, `Consumable`,
 `Durability`, `Weight`) are ordinary subclasses, no more privileged than yours.
 
 ### The rule that determines everything else
 
 The fragment object lives **inside the asset** and is shared by **every**
 instance of the item in the game. A hundred torches for a hundred players point
-at one `UISFragment_Durability` object.
+at one `UISDemoFragment_Durability` object.
 
 So:
 
 - every hook is declared `const`;
 - writing to a fragment field at runtime edits the asset for everyone at once;
-- mutable state belongs to `UISItemInstance::StatValues`.
+- mutable state belongs to `UISDemoItemInstance::StatValues`.
 
 Violating this rule corrupts data globally and invisibly — it's the single most
 important invariant in the codebase.
@@ -170,13 +169,13 @@ state — server-only.
 
 ### FastArraySerializer
 
-`FISInventoryList` and `FISEquipmentList` send **deltas**: one slot changed —
+`FISDemoInventoryList` and `FISDemoEquipmentList` send **deltas**: one slot changed —
 one slot goes out. The difference between 40 bytes and a few kilobytes when a
 player picks up a pebble.
 
 ### Two subobject paths — and why neither is forced
 
-Items (`UISItemInstance`) are replicated UObjects. UE has two mechanisms: the
+Items (`UISDemoItemInstance`) are replicated UObjects. UE has two mechanisms: the
 classic `ReplicateSubobjects` and the subobject registry.
 
 The plugin supports **both** and follows the one the project chose. The registry
@@ -186,16 +185,16 @@ and the engine default is off. A component with a forced registry on an
 
 ### The entry-pointer trap
 
-`TArray::RemoveAt` shifts elements. An `FISInventoryEntry*` taken before a
+`TArray::RemoveAt` shifts elements. An `FISDemoInventoryEntry*` taken before a
 mutation points, after it, at a different entry — or past the end of the array.
 
 So **all mutation works with slot indices**, not with pointers, and there's a
-test for it (`InventorySystem.Inventory.Swap.Regression.MergeDoesNotCorrupt`).
+test for it (`InventorySystemDemo.Inventory.Swap.Regression.MergeDoesNotCorrupt`).
 If you extend the plugin — this is the easiest rule to break by accident.
 
 ### When the owner is assigned
 
-`FISInventoryList::OwnerComponent` is assigned in the component's
+`FISDemoInventoryList::OwnerComponent` is assigned in the component's
 **constructor**, not in `BeginPlay`. A client can receive the first delta before
 `BeginPlay`, and with a null owner the FastArray callbacks would silently lose
 the very first update — the classic "the UI is empty until you pick up a second
@@ -223,14 +222,13 @@ other.
 
 | File | What to read |
 |---|---|
-| `Core/ISInventoryComponent.h` | the class comment describes authority routing — it repeats everywhere |
-| `Core/ISItemContainerComponent.h` | what the inventory and equipment share, and the request gate |
-| `Core/ISItemFragment.h` | the fragment-sharing rule and all 12 hooks |
-| `Core/ISItemInstance.h` | what makes a copy unique, the stacking rules |
-| `Core/ISInventoryList.h` | why mutation goes through methods, not pointers |
-| `Core/ISInventorySettings.h` | what the project configures at all |
-| `Fragments/ISFragment_Durability.cpp` | the fullest example of a self-contained fragment |
-| `InventorySystemTests/Private/Tests/ISRegressionTests.cpp` | the guarantees easiest to break by accident, with an explanation of why |
+| `Core/ISDemoInventoryComponent.h` | the class comment describes authority routing — it repeats everywhere |
+| `Core/ISDemoItemContainerComponent.h` | what the inventory and equipment share, and the request gate |
+| `Core/ISDemoItemFragment.h` | the fragment-sharing rule and all 12 hooks |
+| `Core/ISDemoItemInstance.h` | what makes a copy unique, the stacking rules |
+| `Core/ISDemoInventoryList.h` | why mutation goes through methods, not pointers |
+| `Core/ISDemoInventorySettings.h` | what the project configures at all |
+| `Fragments/ISDemoFragment_Durability.cpp` | the fullest example of a self-contained fragment |
 
 The header comments are deliberately expansive: the tooltips a designer sees in
 the editor and the explanations for a programmer are the same text.
@@ -264,7 +262,7 @@ inventory; **change** it — no, the request gate closes that off.
 it's no good for a competitive game. It's a deliberately simple tool; per-player
 cooldowns are built on top of the `OnConsumableUsed` event.
 
-**Slot lookup is linear.** `FISInventoryList` finds a slot by scanning the
+**Slot lookup is linear.** `FISDemoInventoryList` finds a slot by scanning the
 entries. For a 30–40-slot backpack this is faster than any index; for an
 unlimited container of tens of thousands of items — no. Sorting, compaction and
 weight accounting are linear in the inventory size; only the scan itself stays
@@ -283,7 +281,7 @@ If you added a header that relies on transitive includes, verify with
 packaging:
 
 ```bash
-RunUAT.sh BuildPlugin -Plugin="<path>/InventorySystem.uplugin" \
+RunUAT.sh BuildPlugin -Plugin="<path>/InventorySystemDemo.uplugin" \
   -Package=<temp dir> -TargetPlatforms=Mac -Rocket
 ```
 

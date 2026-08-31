@@ -21,7 +21,7 @@ So there are two ways, and they're for different tasks.
 ### Way 1 — iterate what's there
 
 ```cpp
-for (const FISInventoryEntry& Entry : Inventory->GetAllEntries())
+for (const FISDemoInventoryEntry& Entry : Inventory->GetAllEntries())
 {
     DrawItem(Entry.SlotIndex, Entry.Instance);   // take the index from the entry
 }
@@ -38,7 +38,7 @@ const int32 SlotCount = Inventory->MaxSlots > 0 ? Inventory->MaxSlots : Inventor
 
 for (int32 Slot = 0; Slot < SlotCount; ++Slot)
 {
-    UISItemInstance* Item = Inventory->GetItemAtSlot(Slot);   // may be null
+    UISDemoItemInstance* Item = Inventory->GetItemAtSlot(Slot);   // may be null
     DrawCell(Slot, Item);
 }
 ```
@@ -60,7 +60,7 @@ void UMyInventoryWidget::NativeConstruct()
 {
     Super::NativeConstruct();
 
-    if (UISInventoryComponent* Inv = UISInventoryBlueprintLibrary::GetInventoryFor(GetOwningPlayer()))
+    if (UISDemoInventoryComponent* Inv = UISDemoInventoryBlueprintLibrary::GetInventoryFor(GetOwningPlayer()))
     {
         Inv->OnInventoryChanged.AddDynamic(this, &UMyInventoryWidget::HandleChanged);
         Inv->OnAddRejected.AddDynamic(this, &UMyInventoryWidget::HandleRejected);
@@ -89,7 +89,7 @@ they don't understand why. The event carries **ready reason text**: "Inventory
 full", "Too heavy", or whatever your own fragment returned.
 
 ```cpp
-void UMyInventoryWidget::HandleRejected(UISItemDefinition* Def, const FText& Reason)
+void UMyInventoryWidget::HandleRejected(UISDemoItemDefinition* Def, const FText& Reason)
 {
     ShowToast(Reason);
 }
@@ -139,7 +139,7 @@ Show the number only when there's more than one copy — "Sword x1" reads worse
 than "Sword". A ready function already does this correctly:
 
 ```cpp
-const FText Label = UISInventoryBlueprintLibrary::GetItemDisplayText(Instance);
+const FText Label = UISDemoInventoryBlueprintLibrary::GetItemDisplayText(Instance);
 // "Sword"  or  "Arrow x12"
 ```
 
@@ -162,7 +162,7 @@ What's worth showing and where to get it:
 ### Durability bar
 
 ```cpp
-if (const UISFragment_Durability* Dur = Instance->Definition->FindFragment<UISFragment_Durability>())
+if (const UISDemoFragment_Durability* Dur = Instance->Definition->FindFragment<UISDemoFragment_Durability>())
 {
     const float Percent = Dur->GetDurabilityPercent(Instance);   // 0..1
     DurabilityBar->SetPercent(Percent);
@@ -185,7 +185,7 @@ fragment you need, and show the corresponding line only when it does.
 ### Charges
 
 ```cpp
-if (const UISFragment_Consumable* Cons = Instance->Definition->FindFragment<UISFragment_Consumable>())
+if (const UISDemoFragment_Consumable* Cons = Instance->Definition->FindFragment<UISDemoFragment_Consumable>())
 {
     if (Cons->MaxCharges > 0)
     {
@@ -274,11 +274,11 @@ check the player is offered an action that silently does nothing.
 The use result is worth showing:
 
 ```cpp
-const EISItemUseResult Result = Inventory->TryUseItem(SlotIndex, GetOwningPlayerPawn());
+const EISDemoItemUseResult Result = Inventory->TryUseItem(SlotIndex, GetOwningPlayerPawn());
 
-if (Result != EISItemUseResult::Success)
+if (Result != EISDemoItemUseResult::Success)
 {
-    ShowToast(UISInventoryBlueprintLibrary::GetUseResultText(Result));
+    ShowToast(UISDemoInventoryBlueprintLibrary::GetUseResultText(Result));
 }
 ```
 
@@ -292,7 +292,7 @@ drawing too:
 ```cpp
 for (const FGameplayTag& Slot : Equipment->AvailableSlots)
 {
-    UISItemInstance* Item = Equipment->GetEquippedItem(Slot);   // may be null
+    UISDemoItemInstance* Item = Equipment->GetEquippedItem(Slot);   // may be null
     DrawEquipmentSlot(Slot, Item);
 }
 ```
@@ -310,8 +310,8 @@ const float Armor = Equipment->GetTotalStatValue(MyTags::Stat_Armor);
 Two grids side by side: the player's inventory and the container's contents.
 
 ```cpp
-UISInventoryComponent* Mine  = UISInventoryBlueprintLibrary::GetInventoryFor(GetOwningPlayer());
-UISInventoryComponent* Chest = Container->GetContainerInventory();
+UISDemoInventoryComponent* Mine  = UISDemoInventoryBlueprintLibrary::GetInventoryFor(GetOwningPlayer());
+UISDemoInventoryComponent* Chest = Container->GetContainerInventory();
 ```
 
 Both are drawn the same way. The only difference is **how to move**:

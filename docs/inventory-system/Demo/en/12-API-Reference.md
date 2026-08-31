@@ -8,13 +8,13 @@ right in the editor: hover over any field or node.
 **Nearly everything listed here is callable from both Blueprint and C++.** The
 exceptions are marked *(C++ only)* and there are just two: `GetEntriesView` on
 both containers, which returns an array without a copy, and the
-`IISInventoryInterface` interface. They add no **capability** to the plugin —
+`IISDemoInventoryInterface` interface. They add no **capability** to the plugin —
 both have Blueprint equivalents (`GetAllEntries` and component lookup via
-`UISInventoryBlueprintLibrary`).
+`UISDemoInventoryBlueprintLibrary`).
 
 ---
 
-## `UISInventoryBlueprintLibrary` — shortcuts
+## `UISDemoInventoryBlueprintLibrary` — shortcuts
 
 The shortest path to common actions. These functions find the component
 themselves, so you don't need to look it up by hand.
@@ -36,7 +36,7 @@ themselves, so you don't need to look it up by hand.
 
 ---
 
-## `UISInventoryComponent`
+## `UISDemoInventoryComponent`
 
 ### Configuration
 
@@ -64,7 +64,7 @@ themselves, so you don't need to look it up by hand.
 | `TrySplitStack(Slot, SplitCount)` | split a stack |
 | `TrySwapSlots(A, B)` | swap places or merge |
 | `TryMoveToSlot(From, To)` | the same, in other words |
-| `TryUseItem(Slot, Instigator)` | use; returns `EISItemUseResult` |
+| `TryUseItem(Slot, Instigator)` | use; returns `EISDemoItemUseResult` |
 | `TryClearInventory()` | empty it |
 | `SortInventory(Mode)` | sort and compact from slot 0 |
 | `CompactStacks()` | merge partial stacks without rearranging the rest |
@@ -95,7 +95,7 @@ themselves, so you don't need to look it up by hand.
 
 ### Serialization
 
-`ExportState()` → `FISInventorySaveData` · `ImportState(State)` *(server)*
+`ExportState()` → `FISDemoInventorySaveData` · `ImportState(State)` *(server)*
 
 ### Events
 
@@ -109,7 +109,7 @@ themselves, so you don't need to look it up by hand.
 
 ---
 
-## `UISEquipmentComponent`
+## `UISDemoEquipmentComponent`
 
 ### Configuration
 
@@ -163,7 +163,7 @@ themselves, so you don't need to look it up by hand.
 
 ---
 
-## `UISItemDefinition` — the item type
+## `UISDemoItemDefinition` — the item type
 
 | Field / method | Description |
 |---|---|
@@ -178,7 +178,7 @@ themselves, so you don't need to look it up by hand.
 
 ---
 
-## `UISItemInstance` — a concrete copy
+## `UISDemoItemInstance` — a concrete copy
 
 | Field / method | Description |
 |---|---|
@@ -203,12 +203,12 @@ Besides fields, some fragments expose functions you can call directly:
 
 | Fragment | Function | Description |
 |---|---|---|
-| `UISFragment_Durability` | `GetCurrentDurability(Instance)` | the copy's current durability |
+| `UISDemoFragment_Durability` | `GetCurrentDurability(Instance)` | the copy's current durability |
 | | `GetDurabilityPercent(Instance)` | 0–1, ready for a progress bar |
 | | `IsBroken(Instance)` | whether durability dropped to zero |
 | | `Repair(Instance, Amount)` | repair; a negative value — fully *(server)* |
-| `UISFragment_Consumable` | `GetRemainingCharges(Instance)` | how many charges are left |
-| `UISFragment_Equippable` | `AcceptsSlot(Slot)` | whether the item agrees to live in this slot |
+| `UISDemoFragment_Consumable` | `GetRemainingCharges(Instance)` | how many charges are left |
+| `UISDemoFragment_Equippable` | `AcceptsSlot(Slot)` | whether the item agrees to live in this slot |
 
 All twelve hooks a custom fragment overrides are also public API:
 `OnInstanceCreated`, `OnAddedToInventory`, `OnRemovedFromInventory`,
@@ -217,7 +217,7 @@ All twelve hooks a custom fragment overrides are also public API:
 
 ---
 
-## `UISInventoryQueryLibrary` — searching by description
+## `UISDemoInventoryQueryLibrary` — searching by description
 
 For when the question is more complex than "how many of these do I have": "all
 the weapons that are worn down", "everything sellable", "the first arrow stack
@@ -232,7 +232,7 @@ with more than ten".
 | `MakeTagQuery(Tag)` | shortcut: everything with one tag |
 | `MakeDefinitionQuery(Def)` | shortcut: exactly one item type |
 
-`FISInventoryQuery` fields (an empty query matches everything; fields combine
+`FISDemoInventoryQuery` fields (an empty query matches everything; fields combine
 with AND):
 
 | Field | Description |
@@ -250,14 +250,14 @@ with AND):
 
 | Interface | For |
 |---|---|
-| `IISCollectibleInterface` | make your own actor something `UISInventoryComponent::TryCollect` can pick up. `AISItemPickup` already implements it; your own — only if your "collectible" object isn't a subclass of it. One method: `TryGiveContents(Collector)`, called already on the server |
-| `IISInventoryInterface` | say which of several inventories on an actor is primary — `GetInventoryComponent`, `GetEquipmentComponent`, `GetAllInventoryComponents`. Rarely needed: `GetInventoryFor` finds the single one itself. *(C++ only)* |
+| `IISDemoCollectibleInterface` | make your own actor something `UISDemoInventoryComponent::TryCollect` can pick up. `AISDemoItemPickup` already implements it; your own — only if your "collectible" object isn't a subclass of it. One method: `TryGiveContents(Collector)`, called already on the server |
+| `IISDemoInventoryInterface` | say which of several inventories on an actor is primary — `GetInventoryComponent`, `GetEquipmentComponent`, `GetAllInventoryComponents`. Rarely needed: `GetInventoryFor` finds the single one itself. *(C++ only)* |
 
 ---
 
-## World objects (`InventorySystemWorld`)
+## World objects (`InventorySystemDemoWorld`)
 
-### `AISLootContainer`
+### `AISDemoLootContainer`
 
 | Member | Description |
 |---|---|
@@ -270,14 +270,14 @@ with AND):
 | `ResetContainer(bClear)` | allow it to refill |
 | `BP_OnOpened` / `BP_OnClosed` / `BP_OnLooted` / `BP_OnLootGenerated` | visual hooks |
 
-### `AISItemPickup`
+### `AISDemoItemPickup`
 
 | Member | Description |
 |---|---|
 | `ItemDefinition`, `ItemCount` | contents for level-placed pickups |
 | `HeldItem` | the real object with state |
 | `bDestroyOnCollected`, `LifeSpanSeconds` | behaviour |
-| `TryCollect(Collector)` | pick up — **server-only**; from a client call `UISInventoryComponent::TryCollect` |
+| `TryCollect(Collector)` | pick up — **server-only**; from a client call `UISDemoInventoryComponent::TryCollect` |
 | `HasContents()` / `GetPickupText()` | state and label |
 | `SpawnForItem(World, Item, Location, Class)` | drop an existing item into the world *(server)* |
 
@@ -286,7 +286,7 @@ with AND):
 > itself — the player's inventory can. This is the same reason you take from a
 > container through `TryTransferFrom` rather than the container's own methods.
 
-### `UISLootTable`
+### `UISDemoLootTable`
 
 | Method | Description |
 |---|---|
@@ -296,11 +296,11 @@ with AND):
 
 ---
 
-## `UISInventoryWorldSubsystem` — world-level state
+## `UISDemoInventoryWorldSubsystem` — world-level state
 
 Everything shared for the game but **not** for the process: subscriptions and
 timers that must disappear with the world. Get it via
-`UISInventoryWorldSubsystem::Get(WorldContext)`.
+`UISDemoInventoryWorldSubsystem::Get(WorldContext)`.
 
 | Member | Description |
 |---|---|
@@ -321,7 +321,7 @@ This is a deliberately simple tool — build per-player cooldowns on top of
 
 ---
 
-## Debugging (`InventorySystemDebug`)
+## Debugging (`InventorySystemDemoDebug`)
 
 | Function | Description |
 |---|---|
@@ -337,27 +337,27 @@ Both do nothing in Shipping. Console commands —
 
 | Type | Values |
 |---|---|
-| `EISItemUseResult` | `Success`, `NoItem`, `NotUsable`, `Blocked` |
-| `EISInventoryChangeType` | `ItemAdded`, `ItemRemoved`, `ItemChanged`, `SlotSwapped` |
-| `EISSortMode` | `ByName`, `ByStackCount`, `ByType`, `ByWeight` |
-| `EISInventoryHost` | `PlayerState`, `Pawn` |
+| `EISDemoItemUseResult` | `Success`, `NoItem`, `NotUsable`, `Blocked` |
+| `EISDemoInventoryChangeType` | `ItemAdded`, `ItemRemoved`, `ItemChanged`, `SlotSwapped` |
+| `EISDemoSortMode` | `ByName`, `ByStackCount`, `ByType`, `ByWeight` |
+| `EISDemoInventoryHost` | `PlayerState`, `Pawn` |
 
 ## Structs
 
 | Type | Description |
 |---|---|
-| `FISItemStatEntry` | one per-instance value: tag + number |
-| `FISSlotRestriction` | a rule for a slot range |
-| `FISInventoryEntry` | an occupied slot: index + item |
-| `FISEquipmentEntry` | an occupied equipment slot: tag + item + actor |
-| `FISLootTableEntry` | a loot-table entry: item, count range, chance and weight |
-| `FISLootDrop` | a roll result: item + exact count |
-| `FISInventoryQuery` | a description of what to search an inventory for |
-| `FISItemSaveData` / `FISInventorySaveData` / `FISEquipmentSaveData` | serialization |
+| `FISDemoItemStatEntry` | one per-instance value: tag + number |
+| `FISDemoSlotRestriction` | a rule for a slot range |
+| `FISDemoInventoryEntry` | an occupied slot: index + item |
+| `FISDemoEquipmentEntry` | an occupied equipment slot: tag + item + actor |
+| `FISDemoLootTableEntry` | a loot-table entry: item, count range, chance and weight |
+| `FISDemoLootDrop` | a roll result: item + exact count |
+| `FISDemoInventoryQuery` | a description of what to search an inventory for |
+| `FISDemoItemSaveData` / `FISDemoInventorySaveData` / `FISDemoEquipmentSaveData` | serialization |
 
 ## Project settings
 
-`UISInventorySettings` — **Project Settings → Game → Inventory System**.
+`UISDemoInventorySettings` — **Project Settings → Game → Inventory System**.
 Everything is off or neutral by default; details in
 [02 — Setup](02-Setup.md).
 
