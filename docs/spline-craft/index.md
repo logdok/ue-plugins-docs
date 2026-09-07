@@ -4,10 +4,10 @@
 <p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-07 04:47 UTC</em></p>
 <!-- last-synced:end -->
 
-Rapid procedural structures along a spline for **Unreal Engine 5.8** — fences, railings,
-balustrades, colonnades, arcades, barricades, bridges, roads. Everything is configured on a
-single `ASplineCraftActor` in the **Details** panel, and the geometry rebuilds automatically
-on every change. From Blueprint or C++.
+**SplineCraft 7.0.0**, for **Unreal Engine 5.8**. Rapid procedural structures along a spline —
+fences, railings, balustrades, colonnades, arcades, barricades, bridges, roads. Everything is
+configured on a single `ASplineCraftActor` in the **Details** panel, and the geometry rebuilds
+automatically on every change. From Blueprint or C++.
 
 The full guide is available in English and Ukrainian:
 
