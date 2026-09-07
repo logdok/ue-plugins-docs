@@ -7,8 +7,14 @@
 - **`UpdateAfterChangeAnyProperty()`** (`BlueprintCallable`) — call after changing any of the
   structure's properties at runtime. Works **only if Mobility ≠ Static**. It aligns the
   points, rebuilds the geometry, respawns the additional actors and rebinds the hit events.
-- **Mobility** (`EComponentMobility`) — affects lighting and whether components take part in
-  baking. For a runtime rebuild set `Movable` or `Stationary`.
+- **Mobility** (`EComponentMobility`) — mobility of every **generated** component. Affects
+  lighting and whether components take part in baking. For a runtime rebuild set `Movable` or
+  `Stationary`. A generated component is never left *more static* than **Root Mobility** —
+  set that to `Movable` and the meshes follow.
+- **Root Mobility** (`EComponentMobility`, default `Static`) — mobility of the actor's own
+  spline root. Leave `Static` for baked lighting and the pre-7.x behaviour. Set `Movable` to
+  attach a movement component (e.g. *Rotating Movement*) or to move / rotate the whole actor
+  at runtime — set **Mobility** to `Movable` too so the generated meshes move with it.
 - **SplineComponent** — read-only from Blueprint.
 
 ## The Stats section (read-only)

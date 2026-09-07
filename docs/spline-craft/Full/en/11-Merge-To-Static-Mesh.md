@@ -39,8 +39,15 @@ class).
 - Posts, sections, tubes and knobs — from both modes, Line and Curve.
 - **Polygons** — the polygons' procedural mesh is baked into a temporary static mesh before
   the merge and is included in the result too.
+- **Build Scenario preview** — if a scenario is assigned and its **Preview Progress** is
+  scrubbed up so geometry is shown, that previewed geometry is baked in as well. This is how
+  you get a single mesh for a structure you designed as a growing scenario: scrub the preview
+  to `1`, then merge.
 - The opening markers in the viewport are a pure editor highlight and do not make it into the
   merge.
+
+If there is nothing to bake — no mesh configured and no scenario preview shown — the action
+reports it with a message instead of doing nothing silently.
 
 ## Limitations
 

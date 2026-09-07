@@ -44,8 +44,10 @@ A straight run of evenly spaced points. **Step** — spacing (m). Needs ≥ 2 po
 
 ### Rectangle
 A closed rectangle. **Clockwise**, **Rectangle Length (X)** / **Rectangle Width (Y)** (m),
-**Bevel** — corner bevel (m). ⚠️ When `Bevel > 0` the plugin changes the spline point count
-itself. Needs ≥ 4 points.
+**Bevel** — corner bevel (m). A point is always placed on every corner (4, or 8 with a bevel);
+the rest are spread along the edges in proportion to edge length, so the spacing is as even as
+possible all the way round even on a non-square rectangle. Needs ≥ 4 points (≥ 8 with a bevel —
+the count is raised to that if it is lower).
 
 ### Ellipse
 A closed ellipse, evenly divided into the requested number of points. **Clockwise**,
