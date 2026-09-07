@@ -8,7 +8,7 @@ barricades, bridges, roads and more. Everything is configured on a single `ASpli
 through the **Details** panel (category **SplineCraft Configuration**), and the geometry
 rebuilds automatically after every property change.
 
-> For **Unreal Engine 5.8**. What's new in this release — [Release Notes](Release-Notes.md).
+> **SplineCraft 7.0.0**, for Unreal Engine 5.8. What's new in this release — [Release Notes](Release-Notes.md).
 
 ## Quick Start
 

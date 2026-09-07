@@ -7,7 +7,7 @@ Newest release at the top.
 
 ---
 
-## The Unreal Engine 5.8 update
+## 7.0.0 — Unreal Engine 5.8
 
 ### Plugin rename
 
