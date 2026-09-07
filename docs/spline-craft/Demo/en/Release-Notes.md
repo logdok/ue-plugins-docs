@@ -9,32 +9,6 @@ Newest release at the top.
 
 ---
 
-## Unreleased
-
-### New
-
-- **Root Mobility.** A new property on the actor, next to **Mobility**. It sets the mobility
-  of the actor's own spline root, independently of the generated meshes. Default `Static` —
-  older scenes are unchanged. Set it to `Movable` to attach a movement component (e.g.
-  *Rotating Movement*) or to move / rotate the whole structure at runtime; set **Mobility**
-  to `Movable` as well so the meshes follow (a generated mesh is now automatically bumped so
-  it is never left *more static* than the root, which would abort the attach).
-
-### Fixed
-
-- **Rectangle alignment tool — even spacing.** Points are now spread along the edges in
-  proportion to edge length, so the spacing is as even as possible all the way round a
-  non-square rectangle (before, every edge got the same number of points regardless of
-  length). With **Bevel > 0** the tool no longer subtracts 4 from the point count on every
-  rebuild — a bevelled rectangle used to lose points and collapse as you tweaked it.
-- **Merge to Static Mesh** now also bakes the geometry of an active **Build Scenario
-  preview** (the child step actors), so a structure designed as a growing scenario can be
-  merged into one mesh by scrubbing Preview Progress up first. When there is genuinely
-  nothing to bake, the action now reports it with a message instead of doing nothing
-  silently.
-
----
-
 ## 7.0.0 — Unreal Engine 5.8
 
 ### Plugin rename
@@ -54,6 +28,13 @@ Newest release at the top.
 - The plugin was updated for **Unreal Engine 5.8**.
 
 ### New
+
+- **Root Mobility.** A new property on the actor, next to **Mobility**. It sets the mobility
+  of the actor's own spline root, independently of the generated meshes. Default `Static` —
+  older scenes are unchanged. Set it to `Movable` to attach a movement component (e.g.
+  *Rotating Movement*) or to move / rotate the whole structure at runtime; set **Mobility**
+  to `Movable` as well so the meshes follow (a generated mesh is now automatically bumped so
+  it is never left *more static* than the root, which would abort the attach).
 
 - **Build Scenario — building step by step.** A new **SplineCraft Demo Build Scenario** asset: an
   ordered list of steps, each step an existing preset + a delay + an offset + an appear mode
@@ -148,6 +129,17 @@ Newest release at the top.
 
 ### Fixed
 
+- **Rectangle alignment tool — even spacing.** Points are now spread along the edges in
+  proportion to edge length, so the spacing is as even as possible all the way round a
+  non-square rectangle (before, every edge got the same number of points regardless of
+  length). With **Bevel > 0** the tool no longer subtracts 4 from the point count on every
+  rebuild — a bevelled rectangle used to lose points and collapse as you tweaked it.
+- **Merge to Static Mesh** now also bakes the geometry of an active **Build Scenario
+  preview** (the child step actors), so a structure designed as a growing scenario can be
+  merged into one mesh by scrubbing Preview Progress up first. When there is genuinely
+  nothing to bake, the action now reports it with a message instead of doing nothing
+  silently.
+
 - **Merge to Static Mesh lost polygons.** The merge only collected static-mesh components
   (posts, sections, tubes, knobs), and polygons are a procedural mesh of a different type
   that the filter discarded. Now each polygon is baked into a temporary static mesh before
@@ -195,5 +187,3 @@ Newest release at the top.
 - **`FDemoSCPolygon::Material` had no initializer**, which caused a validation error on startup
   on UE 5.8. Added `= nullptr`.
 
-- **The `Config` folder was missing from the packaged plugin** because of invalid syntax in
-  `FilterPlugin.ini`. Fixed; a `.DS_Store` exclusion was added along the way.
