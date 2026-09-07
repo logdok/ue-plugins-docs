@@ -1,6 +1,7 @@
 # SplineCraft
 
 <!-- last-synced:start -->
+<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-07 04:47 UTC</em></p>
 <!-- last-synced:end -->
 
 Rapid procedural structures along a spline for **Unreal Engine 5.8** — fences, railings,
