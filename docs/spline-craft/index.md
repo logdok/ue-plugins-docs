@@ -1,7 +1,7 @@
 # SplineCraft
 
 <!-- last-synced:start -->
-<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-07 08:45 UTC</em></p>
+<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-07 09:08 UTC</em></p>
 <!-- last-synced:end -->
 
 **SplineCraft 7.0.0**, for **Unreal Engine 5.8**. Rapid procedural structures along a spline —
