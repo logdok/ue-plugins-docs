@@ -37,16 +37,6 @@ in `Content/Samples` (`DA_Preset_IronFence`); assign a preset to the **Preset** 
 - **Free Knobs** — knobs in the actor's local space, not bound to spline points.
 - **Polygons** — filled shapes generated with a procedural mesh.
 
-## Plugin rename
-
-The plugin was previously called **SplineCraft Demo PRO**. It is now simply **SplineCraft Demo**.
-The rename **does not affect backward compatibility**: the module name (`SplineCraftDemo`), the
-content mount point (`/SplineCraftDemo/...`), the class paths (`/Script/SplineCraftDemo.*`) and the
-layout of properties and structs (`FSC*`) are unchanged. Existing levels, Blueprint subclasses
-of `ADemoSplineCraftActor` and asset references keep working as-is. Only the plugin folder name and
-the `FriendlyName` changed. The `BP_SplineCraft_PRO` asset was deliberately **not** renamed, so
-references in projects do not break.
-
 ## Contents
 
 | # | Chapter | What's inside |

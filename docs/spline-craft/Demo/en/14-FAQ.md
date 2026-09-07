@@ -4,14 +4,6 @@
 
 > ⚠️ **This is the SplineCraft Demo (evaluation) edition.** Every feature works exactly like the full plugin; only *how much* you can build with it is capped, an on-screen watermark is shown, and it does nothing in Shipping builds. Full list: [Demo Limitations](00-Demo-Limitations.md).
 
-## The plugin used to be called "SplineCraft Demo PRO" — is it the same product?
-
-Yes. The plugin was renamed to **SplineCraft Demo**. Compatibility is preserved: the module name
-(`SplineCraftDemo`), the content mount point (`/SplineCraftDemo/...`), the class paths
-(`/Script/SplineCraftDemo.*`) and the property layout are unchanged. Existing levels, Blueprint
-subclasses of `ADemoSplineCraftActor` and asset references keep working. See
-[Release Notes](Release-Notes.md).
-
 ## Why doesn't the structure update in game?
 
 At runtime the geometry only rebuilds if **Mobility ≠ Static**. Set `Movable` or `Stationary`

@@ -11,18 +11,6 @@ Newest release at the top.
 
 ## 7.0.0 — Unreal Engine 5.8
 
-### Plugin rename
-
-- The plugin was renamed from **"SplineCraft Demo PRO"** to **"SplineCraft Demo"**.
-- **Backward compatibility is preserved.** Unchanged: the module name (`SplineCraftDemo`), the
-  API macro (`SPLINECRAFTDEMO_API`), the content mount point (`/SplineCraftDemo/...`), the class paths
-  (`/Script/SplineCraftDemo.*`), and the layout of properties and structs (`FSC*`). Existing
-  levels, Blueprint subclasses of `ADemoSplineCraftActor` and asset references keep working as-is.
-- Only the plugin folder name (`SplineCraftPRO` → `SplineCraftDemo`) and the `FriendlyName`
-  changed.
-- The `BP_SplineCraft_PRO` asset was deliberately **not** renamed, so references in projects
-  do not break.
-
 ### Engine support
 
 - The plugin was updated for **Unreal Engine 5.8**.

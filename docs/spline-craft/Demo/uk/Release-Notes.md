@@ -11,19 +11,6 @@
 
 ## 7.0.0 — Unreal Engine 5.8
 
-### Перейменування плагіна
-
-- Плагін перейменовано з **«SplineCraft Demo PRO»** на **«SplineCraft Demo»**.
-- **Зворотну сумісність збережено.** Не змінилися: назва модуля (`SplineCraftDemo`),
-  API-макрос (`SPLINECRAFTDEMO_API`), точка монтування контенту (`/SplineCraftDemo/...`),
-  шляхи до класів (`/Script/SplineCraftDemo.*`), розкладка властивостей і структур (`FSC*`).
-  Наявні рівні, Blueprint-нащадки `ADemoSplineCraftActor` та посилання на ассети продовжують
-  працювати без змін.
-- Змінилися лише назва теки плагіна (`SplineCraftPRO` → `SplineCraftDemo`) та відображувана
-  назва (`FriendlyName`).
-- Ассет `BP_SplineCraft_PRO` навмисно **не** перейменовано, щоб не зламати посилання
-  у проєктах.
-
 ### Підтримка рушія
 
 - Плагін оновлено під **Unreal Engine 5.8**.
