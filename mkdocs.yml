@@ -280,3 +280,39 @@ nav:
           - 12 Консоль розробника: s3-compatible-storage/Demo/uk/12-Debug-Console.md
           - 13 Профілі на практиці: s3-compatible-storage/Demo/uk/13-Profile-Scenarios.md
           - 14 Рецепти облікових даних: s3-compatible-storage/Demo/uk/14-Credentials-Cookbook.md
+  - SplineCraft:
+      - Overview: spline-craft/index.md
+      - Full Edition (English):
+          - Guide: spline-craft/Full/en/README.md
+          - Release Notes: spline-craft/Full/en/Release-Notes.md
+          - 01 Quick Start: spline-craft/Full/en/01-Quick-Start.md
+          - 02 Spline Points and Alignment: spline-craft/Full/en/02-Spline-Points-And-Alignment.md
+          - 03 Posts: spline-craft/Full/en/03-Posts.md
+          - 04 Sections & Tubes: spline-craft/Full/en/04-Sections-And-Tubes.md
+          - 05 Knobs and Free Knobs: spline-craft/Full/en/05-Knobs-And-Free-Knobs.md
+          - 06 Polygons: spline-craft/Full/en/06-Polygons.md
+          - 07 Visibility Rules and Openings: spline-craft/Full/en/07-Visibility-Rules.md
+          - 08 Randomization and Random Seed: spline-craft/Full/en/08-Randomization.md
+          - 09 Line vs Curve Mode: spline-craft/Full/en/09-Line-vs-Curve-Mode.md
+          - 10 Runtime, Collision, Presets, Scenarios: spline-craft/Full/en/10-Runtime-And-Blueprint-API.md
+          - 11 Merge to Static Mesh: spline-craft/Full/en/11-Merge-To-Static-Mesh.md
+          - 12 Additional Actors: spline-craft/Full/en/12-Additional-Actors.md
+          - 13 Performance and Baking: spline-craft/Full/en/13-Performance-And-Baking.md
+          - 14 FAQ: spline-craft/Full/en/14-FAQ.md
+      - Full Edition (Українська):
+          - Посібник: spline-craft/Full/uk/README.md
+          - Примітки до випуску: spline-craft/Full/uk/Release-Notes.md
+          - 01 Швидкий старт: spline-craft/Full/uk/01-Quick-Start.md
+          - 02 Точки сплайна та вирівнювання: spline-craft/Full/uk/02-Spline-Points-And-Alignment.md
+          - 03 Стовпи: spline-craft/Full/uk/03-Posts.md
+          - 04 Секції та труби: spline-craft/Full/uk/04-Sections-And-Tubes.md
+          - 05 Вузли та вільні вузли: spline-craft/Full/uk/05-Knobs-And-Free-Knobs.md
+          - 06 Полігони: spline-craft/Full/uk/06-Polygons.md
+          - 07 Правила видимості та проєми: spline-craft/Full/uk/07-Visibility-Rules.md
+          - 08 Рандомізація та Random Seed: spline-craft/Full/uk/08-Randomization.md
+          - 09 Режими Line та Curve: spline-craft/Full/uk/09-Line-vs-Curve-Mode.md
+          - 10 Runtime, колізія, пресети, сценарії: spline-craft/Full/uk/10-Runtime-And-Blueprint-API.md
+          - 11 Злиття у статичний меш: spline-craft/Full/uk/11-Merge-To-Static-Mesh.md
+          - 12 Додаткові актори: spline-craft/Full/uk/12-Additional-Actors.md
+          - 13 Продуктивність і запікання: spline-craft/Full/uk/13-Performance-And-Baking.md
+          - 14 Часті запитання: spline-craft/Full/uk/14-FAQ.md
