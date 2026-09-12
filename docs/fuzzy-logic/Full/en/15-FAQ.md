@@ -1,6 +1,6 @@
-# 16 — FAQ
+# 15 — FAQ
 
-*🇬🇧 English | [🇺🇦 Українська](../uk/16-FAQ.md)*
+*🇬🇧 English | [🇺🇦 Українська](../uk/15-FAQ.md)*
 
 ## Where should I start if I don't know fuzzy logic?
 
@@ -56,4 +56,4 @@ After compilation, an immutable `FFuzzyInferenceEngine` can be evaluated in para
 
 ## Where can I see a full working example?
 
-Open `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena` or `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`. The structure and how to disable the demo are described in [17 — Demo Content](17-Demo-Content.md).
+Open `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena` or `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`. The structure and how to disable the demo are described in [16 — Demo Content](16-Demo-Content.md).

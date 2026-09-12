@@ -1,6 +1,6 @@
-# 17 — Demo Content
+# 16 — Demo Content
 
-*🇬🇧 English | [🇺🇦 Українська](../uk/17-Demo-Content.md)*
+*🇬🇧 English | [🇺🇦 Українська](../uk/16-Demo-Content.md)*
 
 The plugin includes two ready-made maps in the Content Browser:
 

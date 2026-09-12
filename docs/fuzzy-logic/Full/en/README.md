@@ -39,8 +39,8 @@ Systems are stored as reusable `UFuzzySystemAsset`s, can run directly inside a `
 11. [JSON Presets](11-JSON-Presets.md) — two-way exchange, schema, and API.
 12. [Diagnostics And Validation](12-Diagnostics-And-Validation.md) — finding errors in the system and its rules.
 13. [UMG Visualization](13-UMG-Visualization.md) — plotting graphs in-game.
-14. [Fuzzy Drone Arena Demo](14-Drone-Arena-Demo.md) — a ready-made example with nine agents.
-15. [Architecture And Performance](15-Architecture-And-Performance.md) — caching, threading, and compute cost.
-16. [FAQ](16-FAQ.md) — short answers to common problems.
-17. [Demo Content](17-Demo-Content.md) — maps, a separate module, and excluding Demo from the build.
+14. [Architecture And Performance](14-Architecture-And-Performance.md) — caching, threading, and compute cost.
+15. [FAQ](15-FAQ.md) — short answers to common problems.
+16. [Demo Content](16-Demo-Content.md) — maps, a separate module, and excluding Demo from the build.
+17. [Fuzzy Drone Arena Demo](17-Drone-Arena-Demo.md) — a ready-made example with nine agents.
 18. [Fuzzy Turret Defense Fuzzy Glossary](18-Turret-Defense-Fuzzy-Glossary.md) — a glossary of variables, sets, and thresholds for the turret demo.

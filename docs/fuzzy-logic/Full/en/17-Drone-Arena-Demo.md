@@ -1,6 +1,6 @@
-# 14 — Fuzzy Drone Arena Demo
+# 17 — Fuzzy Drone Arena Demo
 
-*🇬🇧 English | [🇺🇦 Українська](../uk/14-Drone-Arena-Demo.md)*
+*🇬🇧 English | [🇺🇦 Українська](../uk/17-Drone-Arena-Demo.md)*
 
 The host project contains a vivid demo scene where nine drones evaluate a single shared fuzzy system every frame.
 

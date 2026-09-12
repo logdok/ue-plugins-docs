@@ -54,8 +54,8 @@ decide. See [13 — UMG Visualization](13-UMG-Visualization.md).
 **Two runnable demo scenes.** Fuzzy Drone Arena (nine agents sharing one system) and Fuzzy
 Turret Defense (three chained Mamdani systems driving a turret's threat assessment, tracking,
 and fire control) ship in the plugin and can be excluded from a packaged build. See
-[14 — Fuzzy Drone Arena Demo](14-Drone-Arena-Demo.md),
-[17 — Demo Content](17-Demo-Content.md), and
+[16 — Demo Content](16-Demo-Content.md),
+[17 — Fuzzy Drone Arena Demo](17-Drone-Arena-Demo.md), and
 [18 — Fuzzy Turret Defense Fuzzy Glossary](18-Turret-Defense-Fuzzy-Glossary.md).
 
 ### Upgrading

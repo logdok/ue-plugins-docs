@@ -1,6 +1,6 @@
-# 15 — Архітектура та продуктивність
+# 14 — Архітектура та продуктивність
 
-*[🇬🇧 English](../en/15-Architecture-And-Performance.md) | 🇺🇦 Українська*
+*[🇬🇧 English](../en/14-Architecture-And-Performance.md) | 🇺🇦 Українська*
 
 ## Модульні межі
 

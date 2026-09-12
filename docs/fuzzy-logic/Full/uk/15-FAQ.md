@@ -1,6 +1,6 @@
-# 16 — Поширені запитання
+# 15 — Поширені запитання
 
-*[🇬🇧 English](../en/16-FAQ.md) | 🇺🇦 Українська*
+*[🇬🇧 English](../en/15-FAQ.md) | 🇺🇦 Українська*
 
 ## З чого почати, якщо я не знаю нечіткої логіки?
 
@@ -56,4 +56,4 @@ Fuzzy Logic обчислює плавні ступені та числові р�
 
 ## Де подивитися повний робочий приклад?
 
-Відкрийте `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena` або `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`. Опис структури та вимкнення демо наведено в [17 — Демонстраційний контент](17-Demo-Content.md).
+Відкрийте `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena` або `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`. Опис структури та вимкнення демо наведено в [16 — Демонстраційний контент](16-Demo-Content.md).
