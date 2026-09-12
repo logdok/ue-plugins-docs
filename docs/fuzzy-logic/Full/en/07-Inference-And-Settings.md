@@ -56,7 +56,9 @@ Under `Maximum`, duplicate rules don't increase the peak. Under the summing meth
 
 ## When No Rule Fires
 
-When no rule activates a particular output, the system returns the midpoint of the range and adds a warning. This is a predictable fallback, but not a real decision. Check the coverage of the input sets and the presence of rules for the output.
+When no rule activates a particular output, the system returns the midpoint of the range and adds a `Warning` diagnostic (`No rule fired for output '…'`). This is a predictable fallback, but not a real decision. Check the coverage of the input sets and the presence of rules for the output.
+
+The warning is produced by every defuzzification method, `Weighted Average` included, so a fallback is never mistaken for a decision whichever strategy a system is set to.
 
 ## Sample Count
 

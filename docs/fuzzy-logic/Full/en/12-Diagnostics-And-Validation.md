@@ -28,11 +28,13 @@
 
 ### Duplicate or Invalid Name
 
-Variable and set names must be valid identifiers. Don't use spaces, hyphens, or the same name for an input and an output.
+Variable and set names must be valid identifiers. Don't use spaces, hyphens, or the same name for an input and an output. Names are matched without regard to case, so `Low` and `low` on one variable count as a duplicate.
+
+Reserved keywords (`IF`, `IS`, `NOT`, `AND`, `OR`, `THEN`, `WITH`) pass this check but cannot be referenced from a rule. If a rule fails with *"Expected a variable name but found 'Or'"*, the problem is the variable's name, not the rule.
 
 ### Unknown Variable or Set in a Rule
 
-Check the spelling and case of authored names. The premise must reference an input, the consequence an output.
+Check the spelling of authored names — case doesn't matter, but every other character does. The premise must reference an input, the consequence an output.
 
 ### Mixed AND and OR
 
@@ -44,7 +46,7 @@ Add at least one rule whose consequence writes to every output you need.
 
 ### No Rule Fired
 
-This is a runtime warning. The system returns the midpoint of the output range. Check the gaps between input sets and the scenario on the Inference tab.
+This is a runtime warning, raised by every defuzzification method. The system returns the midpoint of the output range. Check the gaps between input sets and the scenario on the Inference tab.
 
 ## Partial Preview
 

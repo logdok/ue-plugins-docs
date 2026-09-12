@@ -47,6 +47,12 @@ a plain value type usable on the stack or in a subsystem from C++. See
 [09 — Blueprint Integration](09-Blueprint-Integration.md) and
 [10 — C++ Integration](10-CPP-Integration.md).
 
+**Shared systems for crowds.** `UFuzzyLogicSubsystem` compiles each system asset once and shares
+the compiled form with every agent that uses it, instead of a copy and a compilation per actor —
+so a hundred agents on one behaviour pay for it once. Available from Blueprint and C++, and safe
+to evaluate from worker threads. See
+[14 — Architecture And Performance](14-Architecture-And-Performance.md#memory-per-agent).
+
 **UMG plotting helpers.** `FuzzyLogicUMG` draws membership functions, aggregated surfaces, and
 value markers straight into a widget's `On Paint`, using the exact curve the engine used to
 decide. See [13 — UMG Visualization](13-UMG-Visualization.md).

@@ -65,6 +65,33 @@ IF Integrity IS Low THEN Altitude IS High WITH 0.75
 
 `Aggression` balances opportunity against risk: being near a hot reactor pushes it up, but low integrity while near pulls it back down, and a mid-range drone only commits to `Watchful` while healthy. Distant drones are always `Watchful` — there's no rule for `Far AND *` that reaches `Aggressive` or `Cautious`, so a lone distant drone settles on the middle set almost regardless of its other inputs. `OrbitSpeed` depends on `Distance` alone: drones hugging the reactor slow down (to avoid overshooting it), while mid-range and far drones both move fast. `Altitude` tracks `ReactorHeat` directly, with damaged drones (`Integrity IS Low`) also climbing — at a reduced `WITH 0.75` weight, so heat still dominates altitude when the two disagree.
 
+## How Nine Drones Share One System
+
+All nine drones evaluate the same `DA_DroneBehavior` asset, so this demo takes the crowd route rather than the component one: `AFuzzyDroneAgent` has no `UFuzzyLogicComponent`. Each drone asks `UFuzzyLogicSubsystem` for the compiled engine once, in `BeginPlay`, and holds it for its lifetime:
+
+```cpp
+if (UGameInstance* GameInstance = GetGameInstance())
+{
+    Brain = GameInstance->GetSubsystem<UFuzzyLogicSubsystem>()->GetEngine(Behavior);
+}
+```
+
+The first drone to reach that line compiles the system; the other eight are handed the same engine. One copy of the system exists for the whole arena instead of nine, and it is parsed once instead of nine times.
+
+Because a shared engine keeps no per-agent state, every tick supplies all three inputs rather than only what changed — there is no component remembering them between calls. The map itself is reused, so a tick writes three floats instead of allocating:
+
+```cpp
+Inputs.Add(FuzzyDroneArena::DistanceInput, DistanceInput);
+Inputs.Add(FuzzyDroneArena::HeatInput, ReactorHeat);
+Inputs.Add(FuzzyDroneArena::IntegrityInput, Integrity);
+
+const FFuzzyInferenceResult Result = Brain->Evaluate(Inputs);
+```
+
+Be clear about the scale, though: **nine drones are far too few for this to matter to a profiler.** The demo is showing the shape of the pattern, not a measured win — the saving only becomes real in the hundreds. For a single detailed agent, the component is still the better default, which is what [18 — Fuzzy Turret Defense Demo](18-Turret-Defense-Demo.md) shows: three chained systems on one turret, each on its own component.
+
+The two routes are compared side by side in [14 — Architecture And Performance](14-Architecture-And-Performance.md#component-or-subsystem).
+
 ## From Crisp Outputs to Motion
 
 The three crisp numbers are read once per frame and drive the drone's actual transform and materials directly — there's no intermediate state machine:

@@ -34,7 +34,9 @@ To keep the examples in the editor but not prepare them for the game, add this t
 +DirectoriesToNeverCook=(Path="/FuzzyLogic/Demo")
 ```
 
-After this, Demo won't end up in the cooked build. The plugin and `FuzzyLogic` work as usual.
+After this, the Demo **content** won't end up in the cooked build. The plugin and `FuzzyLogic` work as usual.
+
+Note what this setting does *not* do: `FuzzyLogicDemo` is a `Runtime` module, so its code still compiles and links into the packaged game, and its actor class defaults hard-reference `/Engine/BasicShapes` meshes, which the cooker follows. If you need the demo gone entirely — code, classes, and references — use the next section.
 
 ## Fully Excluding the Demo Code from the Plugin Build
 

@@ -24,7 +24,13 @@ IF Speed IS Extreme THEN Brake IS Hard WITH 0.8
 
 ## Names and Keywords
 
-`IF`, `IS`, `NOT`, `AND`, `OR`, `THEN`, `WITH` are case-insensitive. Spaces, tabs, and line breaks are free-form. Variable and set names must match the system and are case-sensitive.
+`IF`, `IS`, `NOT`, `AND`, `OR`, `THEN`, `WITH` are case-insensitive. Spaces, tabs, and line breaks are free-form.
+
+Variable and set names must exist in the system. They are stored as `FName`, so they **keep the case you typed for display but are matched without regard to case**: `IF speed IS fast` resolves against a system that declares `Speed` and `Fast`. For the same reason, two sets named `Low` and `low` on one variable are reported as a duplicate.
+
+The seven keywords above are reserved and cannot be used as a variable or set name. A system that declares a variable called `Or` compiles without complaint, but every rule mentioning it fails to parse with a message about the *rule* — rename the variable.
+
+`letter` in the grammar above resolves through the platform's character classification, so non-ASCII names (Cyrillic, accented Latin, CJK) may be accepted on one machine and rejected on another. Keep identifiers to ASCII letters, digits, and `_`; use the set name only as a key and put the localized wording in your UI.
 
 Premises refer only to inputs. The consequence refers only to an output. An unknown name, using an output in the premise, or using an input in the consequence produces a diagnostic error.
 

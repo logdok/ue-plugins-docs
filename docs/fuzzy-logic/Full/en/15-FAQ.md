@@ -16,7 +16,9 @@ Likely no rule fired, or no rule writes to that output. Check the Compile Log, t
 
 ## Why does Set Input return false?
 
-There's no input with that name in the currently active system. Check the `System Asset`, the name's case, and `Get Input Names`.
+There's no input with that name in the currently active system. Check the `System Asset`, the spelling (case doesn't matter — names are matched case-insensitively), and `Get Input Names`.
+
+Remember that `System Asset` takes priority over `Inline System`: if an asset is assigned, the inline system's variables are not the ones being looked up.
 
 ## Do I need to set all inputs before every Evaluate?
 
@@ -49,6 +51,12 @@ Start with Centroid. Weighted Average suits fast systems with Singleton or symme
 ## Can I add a custom membership function?
 
 Yes. Derive a `USTRUCT` from `FFuzzyMembershipFunction` and implement `EvaluateRaw`. A detailed example is in [04 — Membership Functions](04-Membership-Functions.md).
+
+## I have a hundred agents on one behaviour. Is a component on each the right thing?
+
+Not past a certain size. Each component compiles and holds its own copy of the system, so a hundred of them means a hundred copies. Use `UFuzzyLogicSubsystem` instead — **Get Game Instance Subsystem**, class **Fuzzy Logic** — which compiles each asset once and shares it. See [14 — Architecture And Performance](14-Architecture-And-Performance.md#memory-per-agent).
+
+Below a few dozen agents this will not show up in a profile, and the component is easier to work with. Measure first.
 
 ## Can the engine be used from multiple threads?
 

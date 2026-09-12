@@ -6,8 +6,9 @@
 
 | Модуль | Призначення |
 |---|---|
-| `FuzzyLogic` | Типи, рушій висновку, компонент, Data Asset, JSON |
+| `FuzzyLogic` | Типи, рушій висновку, компонент, підсистема, Data Asset, JSON |
 | `FuzzyLogicUMG` | Малювання кривих у UMG |
+| `FuzzyLogicDemo` | `Runtime`. Актори та панель fire control для двох демо-карт. Ніщо інше від нього не залежить, але це runtime-модуль, і він таки лінкується в запаковану гру — див. [16 — Demo Content](16-Demo-Content.md) |
 | `FuzzyLogicEditor` | Редактор Data Asset; не додавайте до game-модуля |
 | `FuzzyLogicTests` | Automation-тести; не додавайте до game-модуля |
 
@@ -87,7 +88,89 @@ FuzzyLogic->SetInput(TEXT("Distance"), DistanceToTarget);
 const FFuzzyInferenceResult Result = FuzzyLogic->Evaluate();
 ```
 
-Якщо ви змінюєте `FFuzzySystem` у пам’яті напряму, викличте `MarkSystemDirty`. Заміна властивостей у редакторі та `PostLoad` скидають кеш автоматично.
+Компонент компілює ліниво й кешує результат. Він порівнює те, з чого було зібрано кеш, тож якщо вказати йому на інший `SystemAsset` — у рантаймі, з Blueprint чи C++, — наступний виклик перекомпілює систему сам.
+
+Єдина зміна, якої він не помічає, — редагування структури `FFuzzySystem` на місці. Після неї викличте `MarkSystemDirty`:
+
+```cpp
+FuzzyLogic->InlineSystem.Settings.SampleCount = 401;
+FuzzyLogic->MarkSystemDirty();
+```
+
+Зміни властивостей у редакторі та `PostLoad` скидають кеш автоматично.
+
+`FFuzzyInferenceEngine::Compile` копіює всю систему всередину рушія, і кожен компонент володіє власним рушієм — тож система, спільна через один `UFuzzySystemAsset`, усе одно дублюється й перекомпільовується для кожного компонента. Для сотень агентів краще поділитися одним скомпільованим рушієм — див. [14 — Architecture And Performance](14-Architecture-And-Performance.md).
+
+## Спільна скомпільована система
+
+`UFuzzyLogicSubsystem` тримає один скомпільований рушій на асет протягом життя game instance. Тоді агенти не мають власної системи — лише свої вхідні значення.
+
+```cpp
+#include "FuzzyLogicSubsystem.h"
+
+void AMyAgent::BeginPlay()
+{
+    Super::BeginPlay();
+
+    if (UGameInstance* GameInstance = GetGameInstance())
+    {
+        // Compiled on the first agent that asks; every agent after that gets the same engine.
+        Brain = GameInstance->GetSubsystem<UFuzzyLogicSubsystem>()->GetEngine(BehaviorAsset);
+    }
+}
+
+void AMyAgent::Tick(float DeltaSeconds)
+{
+    Super::Tick(DeltaSeconds);
+
+    if (!Brain.IsValid())
+    {
+        return;
+    }
+
+    Inputs.Add(TEXT("Distance"), DistanceToTarget);
+    Inputs.Add(TEXT("Health"), CurrentHealth);
+
+    Aggression = Brain->Evaluate(Inputs).GetOutput(TEXT("Aggression"), 0.5f);
+}
+```
+
+із такими членами:
+
+```cpp
+UPROPERTY(EditAnywhere, Category = "AI")
+TObjectPtr<UFuzzySystemAsset> BehaviorAsset;
+
+TSharedPtr<const FFuzzyInferenceEngine> Brain;
+TMap<FName, float> Inputs;
+```
+
+Тримайте рушій на весь час життя агента, а не викликайте `GetEngine` щокадру. Пошук дешевий, але тримати — безкоштовно, і це зберігає рушій живим крізь інвалідацію, тож робота, що вже виконується, ніколи не втратить ґрунт під ногами.
+
+| Метод | Призначення |
+|---|---|
+| `GetEngine` | Спільний скомпільований рушій, компіляція на перший запит. Null для null-асета |
+| `EvaluateAsset` / `EvaluateAssetOutput` | Обчислення одним викликом, доступне й у Blueprint |
+| `PrepareAsset` | Скомпілювати завчасно, наприклад на екрані завантаження |
+| `ValidateAsset` | Скомпілювати за потреби й зібрати діагностику |
+| `InvalidateAsset` / `InvalidateAll` | Скинути кеш після зміни системи в рантаймі |
+| `IsAssetPrepared`, `GetCachedSystemCount` | Інтроспекція |
+
+Система, що не скомпілювалася, теж кешується, а її діагностика пишеться в лог один раз і повторюється в кожному результаті: щокадрові спроби зібрати зламану систему лише передрукували б ті самі повідомлення.
+
+### Потоки
+
+`GetEngine` може компілювати, тому викликайте його з ігрового потоку. Те, що він повертає, незмінне, а `Evaluate` є `const` — тож будь-яка кількість потоків може обчислювати на одному рушії одночасно:
+
+```cpp
+ParallelFor(Agents.Num(), [this](int32 Index)
+{
+    // Safe: every agent reads the same engine and writes only its own result.
+    Agents[Index].Aggression = Brain->Evaluate(Agents[Index].Inputs).GetOutput(TEXT("Aggression"));
+});
+```
+
+Підготуйте рушій до початку паралельної роботи — `PrepareAsset` на екрані завантаження або `GetEngine` у `BeginPlay`, як вище.
 
 ## Поверхня й дефазифікатори
 
