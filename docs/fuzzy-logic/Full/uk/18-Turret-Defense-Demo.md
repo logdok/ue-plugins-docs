@@ -20,7 +20,6 @@
 | `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_FireControl` | `UFuzzySystemAsset` дозволу на вогонь |
 | `/FuzzyLogic/Demo/FuzzyTurretDefense/RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | Редаговані JSON-вихідники трьох систем |
 | `/FuzzyLogic/Demo/FuzzyTurretDefense/Blueprints/BP_FuzzyTurret` | Актор турелі: обертання, зчитування радара, стрільба, накопичення тепла |
-| `Tools/create_fuzzy_turret_defense.py` | Відтворюване створення асетів і карти |
 
 Назви множин у JSON залишені англійськими, щоб їх було зручно шукати в Blueprint, але нижче наведено їхнє точне значення.
 
@@ -96,7 +95,7 @@
 
 ## Роль JSON
 
-`create_fuzzy_turret_defense.py` читає `RadarAssessment.json`, `TrackingControl.json` і `FireControl.json` через `FuzzyLogicStatics.load_fuzzy_system_from_json` і записує кожну структуру у відповідний Data Asset (`DA_RadarAssessment`, `DA_TrackingControl`, `DA_FireControl`). Після створення карти `BP_FuzzyTurret` читає ці три Data Asset; жоден JSON не парситься під час виконання й не потрібен запакованій збірці.
+`DA_RadarAssessment`, `DA_TrackingControl` і `DA_FireControl` побудовано з відповідних JSON-файлів (`RadarAssessment.json`, `TrackingControl.json`, `FireControl.json`) через `FuzzyLogicStatics.load_fuzzy_system_from_json`. Під час виконання `BP_FuzzyTurret` читає ці три Data Asset напряму; жоден JSON не парситься під час виконання й не потрібен запакованій збірці.
 
 Можна також відкрити будь-який із трьох Data Asset, змінити систему в редакторі та натиснути **Save To JSON**, щоб синхронізувати зовнішній пресет вручну.
 

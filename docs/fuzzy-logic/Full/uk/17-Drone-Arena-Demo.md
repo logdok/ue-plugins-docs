@@ -18,7 +18,6 @@
 | `/FuzzyLogic/Demo/FuzzyDroneArena/DA_DroneBehavior` | Спільний `UFuzzySystemAsset` |
 | `/FuzzyLogic/Demo/FuzzyDroneArena/Materials/M_DemoGlow` | Параметричний emissive-матеріал |
 | `/FuzzyLogic/Demo/FuzzyDroneArena/DroneBehavior.json` | Редагований JSON-вихідник системи |
-| `Tools/create_fuzzy_drone_arena.py` | Відтворюване створення асетів і карти |
 
 ## Як читати систему
 
@@ -92,7 +91,7 @@ IF Integrity IS Low THEN Altitude IS High WITH 0.75
 
 ## Роль JSON
 
-Скрипт читає `DroneBehavior.json` через `FuzzyLogicStatics.load_fuzzy_system_from_json` і записує структуру до `DA_DroneBehavior`. Після створення карти дрони використовують Data Asset; JSON не парситься кожного кадру й не потрібен запакованій сцені.
+`DA_DroneBehavior` побудовано з `DroneBehavior.json` через `FuzzyLogicStatics.load_fuzzy_system_from_json`. Під час виконання дрони читають Data Asset напряму; JSON не парситься кожного кадру й не потрібен запакованій сцені.
 
 Можна також відкрити `DA_DroneBehavior`, змінити систему в редакторі та натиснути **Save To JSON**, щоб синхронізувати зовнішній пресет вручну.
 

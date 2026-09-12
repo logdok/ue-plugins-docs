@@ -1,7 +1,7 @@
 # Fuzzy Logic
 
 <!-- last-synced:start -->
-<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-12 14:50 UTC</em></p>
+<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-12 14:59 UTC</em></p>
 <!-- last-synced:end -->
 
 **Fuzzy Logic 1.0**, for **Unreal Engine 5.8**. A complete Mamdani fuzzy inference plugin —

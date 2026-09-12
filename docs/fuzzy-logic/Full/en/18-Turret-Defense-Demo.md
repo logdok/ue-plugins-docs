@@ -20,7 +20,6 @@ Press Play or Standalone Game. Enemy drones approach from the arena's edge; the 
 | `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_FireControl` | Firing-authorization `UFuzzySystemAsset` |
 | `/FuzzyLogic/Demo/FuzzyTurretDefense/RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | The editable JSON sources of the three systems |
 | `/FuzzyLogic/Demo/FuzzyTurretDefense/Blueprints/BP_FuzzyTurret` | The turret actor: rotation, radar sampling, firing, heat buildup |
-| `Tools/create_fuzzy_turret_defense.py` | Reproducible creation of the assets and map |
 
 The set names in the JSON are kept in English so they're easy to search for in Blueprint, but their exact meaning is given below.
 
@@ -96,7 +95,7 @@ Safety rules take priority: `Unsafe`, `Low`, or `Hot` lead to `Inhibit`. Only th
 
 ## The Role of JSON
 
-`create_fuzzy_turret_defense.py` reads `RadarAssessment.json`, `TrackingControl.json`, and `FireControl.json` via `FuzzyLogicStatics.load_fuzzy_system_from_json` and writes each structure into its matching Data Asset (`DA_RadarAssessment`, `DA_TrackingControl`, `DA_FireControl`). Once the map is created, `BP_FuzzyTurret` reads the three Data Assets; none of the JSON files is parsed at runtime or needed by a packaged build.
+`DA_RadarAssessment`, `DA_TrackingControl`, and `DA_FireControl` were each built from their matching JSON file (`RadarAssessment.json`, `TrackingControl.json`, `FireControl.json`) via `FuzzyLogicStatics.load_fuzzy_system_from_json`. At runtime, `BP_FuzzyTurret` reads the three Data Assets directly; none of the JSON files is parsed at runtime or needed by a packaged build.
 
 You can also open any of the three Data Assets, change the system in the editor, and click **Save To JSON** to manually sync the external preset.
 

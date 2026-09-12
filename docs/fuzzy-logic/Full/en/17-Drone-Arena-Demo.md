@@ -18,7 +18,6 @@ Press Play or Standalone Game. The camera orbits the arena, the central reactor 
 | `/FuzzyLogic/Demo/FuzzyDroneArena/DA_DroneBehavior` | The shared `UFuzzySystemAsset` |
 | `/FuzzyLogic/Demo/FuzzyDroneArena/Materials/M_DemoGlow` | A parametric emissive material |
 | `/FuzzyLogic/Demo/FuzzyDroneArena/DroneBehavior.json` | The editable JSON source of the system |
-| `Tools/create_fuzzy_drone_arena.py` | Reproducible creation of the assets and map |
 
 ## How to Read the System
 
@@ -92,7 +91,7 @@ The HUD's legend swatches (`0.0 CALM`, `0.5 ADAPT`, `1.0 APPROACH`) mark this ex
 
 ## The Role of JSON
 
-The script reads `DroneBehavior.json` via `FuzzyLogicStatics.load_fuzzy_system_from_json` and writes the structure into `DA_DroneBehavior`. Once the map is created, the drones use the Data Asset; the JSON isn't parsed every frame and isn't needed by the packaged scene.
+`DA_DroneBehavior` was built from `DroneBehavior.json` via `FuzzyLogicStatics.load_fuzzy_system_from_json`. At runtime, the drones read the Data Asset directly; the JSON isn't parsed every frame and isn't needed by the packaged scene.
 
 You can also open `DA_DroneBehavior`, change the system in the editor, and click **Save To JSON** to manually sync the external preset.
 
