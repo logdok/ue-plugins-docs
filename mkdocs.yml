@@ -86,10 +86,10 @@ nav:
           - 11 JSON Presets: fuzzy-logic/Full/en/11-JSON-Presets.md
           - 12 Diagnostics And Validation: fuzzy-logic/Full/en/12-Diagnostics-And-Validation.md
           - 13 UMG Visualization: fuzzy-logic/Full/en/13-UMG-Visualization.md
-          - 14 Fuzzy Drone Arena Demo: fuzzy-logic/Full/en/14-Drone-Arena-Demo.md
-          - 15 Architecture And Performance: fuzzy-logic/Full/en/15-Architecture-And-Performance.md
-          - 16 FAQ: fuzzy-logic/Full/en/16-FAQ.md
-          - 17 Demo Content: fuzzy-logic/Full/en/17-Demo-Content.md
+          - 14 Architecture And Performance: fuzzy-logic/Full/en/14-Architecture-And-Performance.md
+          - 15 FAQ: fuzzy-logic/Full/en/15-FAQ.md
+          - 16 Demo Content: fuzzy-logic/Full/en/16-Demo-Content.md
+          - 17 Fuzzy Drone Arena Demo: fuzzy-logic/Full/en/17-Drone-Arena-Demo.md
           - 18 Turret Defense Fuzzy Glossary: fuzzy-logic/Full/en/18-Turret-Defense-Fuzzy-Glossary.md
       - Full Edition (Українська):
           - Посібник: fuzzy-logic/Full/uk/README.md
@@ -107,10 +107,10 @@ nav:
           - 11 JSON-пресети: fuzzy-logic/Full/uk/11-JSON-Presets.md
           - 12 Діагностика та валідація: fuzzy-logic/Full/uk/12-Diagnostics-And-Validation.md
           - 13 Візуалізація в UMG: fuzzy-logic/Full/uk/13-UMG-Visualization.md
-          - 14 Демо Fuzzy Drone Arena: fuzzy-logic/Full/uk/14-Drone-Arena-Demo.md
-          - 15 Архітектура та продуктивність: fuzzy-logic/Full/uk/15-Architecture-And-Performance.md
-          - 16 Поширені запитання: fuzzy-logic/Full/uk/16-FAQ.md
-          - 17 Демонстраційний контент: fuzzy-logic/Full/uk/17-Demo-Content.md
+          - 14 Архітектура та продуктивність: fuzzy-logic/Full/uk/14-Architecture-And-Performance.md
+          - 15 Поширені запитання: fuzzy-logic/Full/uk/15-FAQ.md
+          - 16 Демонстраційний контент: fuzzy-logic/Full/uk/16-Demo-Content.md
+          - 17 Демо Fuzzy Drone Arena: fuzzy-logic/Full/uk/17-Drone-Arena-Demo.md
           - 18 Нечіткі системи Fuzzy Turret Defense: fuzzy-logic/Full/uk/18-Turret-Defense-Fuzzy-Glossary.md
   - Inventory System:
       - Overview: inventory-system/index.md
