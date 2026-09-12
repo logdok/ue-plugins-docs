@@ -68,6 +68,50 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Fuzzy Logic:
+      - Overview: fuzzy-logic/index.md
+      - Full Edition (English):
+          - Guide: fuzzy-logic/Full/en/README.md
+          - Release Notes: fuzzy-logic/Full/en/Release-Notes.md
+          - 01 Introduction: fuzzy-logic/Full/en/01-Introduction.md
+          - 02 Quick Start: fuzzy-logic/Full/en/02-Quick-Start.md
+          - 03 Core Concepts: fuzzy-logic/Full/en/03-Core-Concepts.md
+          - 04 Membership Functions: fuzzy-logic/Full/en/04-Membership-Functions.md
+          - 05 Authoring A System: fuzzy-logic/Full/en/05-Authoring-A-System.md
+          - 06 Rule Language: fuzzy-logic/Full/en/06-Rule-Language.md
+          - 07 Inference And Settings: fuzzy-logic/Full/en/07-Inference-And-Settings.md
+          - 08 Data Asset Editor: fuzzy-logic/Full/en/08-Asset-Editor.md
+          - 09 Blueprint Integration: fuzzy-logic/Full/en/09-Blueprint-Integration.md
+          - 10 C++ Integration: fuzzy-logic/Full/en/10-CPP-Integration.md
+          - 11 JSON Presets: fuzzy-logic/Full/en/11-JSON-Presets.md
+          - 12 Diagnostics And Validation: fuzzy-logic/Full/en/12-Diagnostics-And-Validation.md
+          - 13 UMG Visualization: fuzzy-logic/Full/en/13-UMG-Visualization.md
+          - 14 Fuzzy Drone Arena Demo: fuzzy-logic/Full/en/14-Drone-Arena-Demo.md
+          - 15 Architecture And Performance: fuzzy-logic/Full/en/15-Architecture-And-Performance.md
+          - 16 FAQ: fuzzy-logic/Full/en/16-FAQ.md
+          - 17 Demo Content: fuzzy-logic/Full/en/17-Demo-Content.md
+          - 18 Turret Defense Fuzzy Glossary: fuzzy-logic/Full/en/18-Turret-Defense-Fuzzy-Glossary.md
+      - Full Edition (Українська):
+          - Посібник: fuzzy-logic/Full/uk/README.md
+          - Примітки до випуску: fuzzy-logic/Full/uk/Release-Notes.md
+          - 01 Вступ: fuzzy-logic/Full/uk/01-Introduction.md
+          - 02 Перші кроки: fuzzy-logic/Full/uk/02-Quick-Start.md
+          - 03 Основні поняття: fuzzy-logic/Full/uk/03-Core-Concepts.md
+          - 04 Функції належності: fuzzy-logic/Full/uk/04-Membership-Functions.md
+          - 05 Авторинг системи: fuzzy-logic/Full/uk/05-Authoring-A-System.md
+          - 06 Мова правил: fuzzy-logic/Full/uk/06-Rule-Language.md
+          - 07 Логічний висновок і налаштування: fuzzy-logic/Full/uk/07-Inference-And-Settings.md
+          - 08 Редактор Data Asset: fuzzy-logic/Full/uk/08-Asset-Editor.md
+          - 09 Інтеграція у Blueprint: fuzzy-logic/Full/uk/09-Blueprint-Integration.md
+          - 10 Інтеграція на C++: fuzzy-logic/Full/uk/10-CPP-Integration.md
+          - 11 JSON-пресети: fuzzy-logic/Full/uk/11-JSON-Presets.md
+          - 12 Діагностика та валідація: fuzzy-logic/Full/uk/12-Diagnostics-And-Validation.md
+          - 13 Візуалізація в UMG: fuzzy-logic/Full/uk/13-UMG-Visualization.md
+          - 14 Демо Fuzzy Drone Arena: fuzzy-logic/Full/uk/14-Drone-Arena-Demo.md
+          - 15 Архітектура та продуктивність: fuzzy-logic/Full/uk/15-Architecture-And-Performance.md
+          - 16 Поширені запитання: fuzzy-logic/Full/uk/16-FAQ.md
+          - 17 Демонстраційний контент: fuzzy-logic/Full/uk/17-Demo-Content.md
+          - 18 Нечіткі системи Fuzzy Turret Defense: fuzzy-logic/Full/uk/18-Turret-Defense-Fuzzy-Glossary.md
   - Inventory System:
       - Overview: inventory-system/index.md
       - Full Edition (English):
