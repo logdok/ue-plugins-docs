@@ -12,14 +12,16 @@ Press Play or Standalone Game. Enemy drones approach from the arena's edge; the 
 
 ## Assets
 
+All of this demo's assets live in the Content Browser under **Plugins → Fuzzy Logic Content → Demo → FuzzyTurretDefense** (enable **Show Plugin Content** if `Plugins` isn't visible):
+
 | Asset | Purpose |
 |---|---|
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense` | The demo map |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_RadarAssessment` | Threat-priority `UFuzzySystemAsset` |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_TrackingControl` | Aiming-speed `UFuzzySystemAsset` |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_FireControl` | Firing-authorization `UFuzzySystemAsset` |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | The editable JSON sources of the three systems |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/Blueprints/BP_FuzzyTurret` | The turret actor: rotation, radar sampling, firing, heat buildup |
+| `Maps/FuzzyTurretDefense` | The demo map |
+| `DA_RadarAssessment` | Threat-priority `UFuzzySystemAsset` |
+| `DA_TrackingControl` | Aiming-speed `UFuzzySystemAsset` |
+| `DA_FireControl` | Firing-authorization `UFuzzySystemAsset` |
+| `RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | The editable JSON sources of the three systems |
+| `Blueprints/BP_FuzzyTurret` | The turret actor: rotation, radar sampling, firing, heat buildup |
 
 The set names in the JSON are kept in English so they're easy to search for in Blueprint, but their exact meaning is given below.
 

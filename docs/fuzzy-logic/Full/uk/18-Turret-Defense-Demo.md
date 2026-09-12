@@ -12,14 +12,16 @@
 
 ## Асети
 
+Усі асети цього демо лежать у Content Browser під **Plugins → Fuzzy Logic Content → Demo → FuzzyTurretDefense** (увімкніть **Show Plugin Content**, якщо `Plugins` не видно):
+
 | Ресурс | Призначення |
 |---|---|
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense` | Демонстраційна карта |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_RadarAssessment` | `UFuzzySystemAsset` пріоритету загрози |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_TrackingControl` | `UFuzzySystemAsset` швидкості наведення |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_FireControl` | `UFuzzySystemAsset` дозволу на вогонь |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | Редаговані JSON-вихідники трьох систем |
-| `/FuzzyLogic/Demo/FuzzyTurretDefense/Blueprints/BP_FuzzyTurret` | Актор турелі: обертання, зчитування радара, стрільба, накопичення тепла |
+| `Maps/FuzzyTurretDefense` | Демонстраційна карта |
+| `DA_RadarAssessment` | `UFuzzySystemAsset` пріоритету загрози |
+| `DA_TrackingControl` | `UFuzzySystemAsset` швидкості наведення |
+| `DA_FireControl` | `UFuzzySystemAsset` дозволу на вогонь |
+| `RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | Редаговані JSON-вихідники трьох систем |
+| `Blueprints/BP_FuzzyTurret` | Актор турелі: обертання, зчитування радара, стрільба, накопичення тепла |
 
 Назви множин у JSON залишені англійськими, щоб їх було зручно шукати в Blueprint, але нижче наведено їхнє точне значення.
 

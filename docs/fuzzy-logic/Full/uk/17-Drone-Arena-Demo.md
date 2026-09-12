@@ -12,12 +12,14 @@
 
 ## Асети
 
+Усі асети цього демо лежать у Content Browser під **Plugins → Fuzzy Logic Content → Demo → FuzzyDroneArena** (увімкніть **Show Plugin Content**, якщо `Plugins` не видно):
+
 | Ресурс | Призначення |
 |---|---|
-| `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena` | Демонстраційна карта |
-| `/FuzzyLogic/Demo/FuzzyDroneArena/DA_DroneBehavior` | Спільний `UFuzzySystemAsset` |
-| `/FuzzyLogic/Demo/FuzzyDroneArena/Materials/M_DemoGlow` | Параметричний emissive-матеріал |
-| `/FuzzyLogic/Demo/FuzzyDroneArena/DroneBehavior.json` | Редагований JSON-вихідник системи |
+| `Maps/FuzzyDroneArena` | Демонстраційна карта |
+| `DA_DroneBehavior` | Спільний `UFuzzySystemAsset` |
+| `Materials/M_DemoGlow` | Параметричний emissive-матеріал |
+| `DroneBehavior.json` | Редагований JSON-вихідник системи |
 
 ## Як читати систему
 

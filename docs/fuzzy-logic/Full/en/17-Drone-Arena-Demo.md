@@ -12,12 +12,14 @@ Press Play or Standalone Game. The camera orbits the arena, the central reactor 
 
 ## Assets
 
+All of this demo's assets live in the Content Browser under **Plugins → Fuzzy Logic Content → Demo → FuzzyDroneArena** (enable **Show Plugin Content** if `Plugins` isn't visible):
+
 | Asset | Purpose |
 |---|---|
-| `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena` | The demo map |
-| `/FuzzyLogic/Demo/FuzzyDroneArena/DA_DroneBehavior` | The shared `UFuzzySystemAsset` |
-| `/FuzzyLogic/Demo/FuzzyDroneArena/Materials/M_DemoGlow` | A parametric emissive material |
-| `/FuzzyLogic/Demo/FuzzyDroneArena/DroneBehavior.json` | The editable JSON source of the system |
+| `Maps/FuzzyDroneArena` | The demo map |
+| `DA_DroneBehavior` | The shared `UFuzzySystemAsset` |
+| `Materials/M_DemoGlow` | A parametric emissive material |
+| `DroneBehavior.json` | The editable JSON source of the system |
 
 ## How to Read the System
 
