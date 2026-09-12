@@ -90,7 +90,7 @@ nav:
           - 15 FAQ: fuzzy-logic/Full/en/15-FAQ.md
           - 16 Demo Content: fuzzy-logic/Full/en/16-Demo-Content.md
           - 17 Fuzzy Drone Arena Demo: fuzzy-logic/Full/en/17-Drone-Arena-Demo.md
-          - 18 Turret Defense Fuzzy Glossary: fuzzy-logic/Full/en/18-Turret-Defense-Fuzzy-Glossary.md
+          - 18 Fuzzy Turret Defense Demo: fuzzy-logic/Full/en/18-Turret-Defense-Demo.md
       - Full Edition (Українська):
           - Посібник: fuzzy-logic/Full/uk/README.md
           - Примітки до випуску: fuzzy-logic/Full/uk/Release-Notes.md
@@ -111,7 +111,7 @@ nav:
           - 15 Поширені запитання: fuzzy-logic/Full/uk/15-FAQ.md
           - 16 Демонстраційний контент: fuzzy-logic/Full/uk/16-Demo-Content.md
           - 17 Демо Fuzzy Drone Arena: fuzzy-logic/Full/uk/17-Drone-Arena-Demo.md
-          - 18 Нечіткі системи Fuzzy Turret Defense: fuzzy-logic/Full/uk/18-Turret-Defense-Fuzzy-Glossary.md
+          - 18 Демо Fuzzy Turret Defense: fuzzy-logic/Full/uk/18-Turret-Defense-Demo.md
   - Inventory System:
       - Overview: inventory-system/index.md
       - Full Edition (English):
