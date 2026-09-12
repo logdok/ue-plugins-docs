@@ -1,8 +1,32 @@
-# 18 — Нечіткі системи Fuzzy Turret Defense
+# 18 — Демо Fuzzy Turret Defense
 
-*[🇬🇧 English](../en/18-Turret-Defense-Fuzzy-Glossary.md) | 🇺🇦 Українська*
+*[🇬🇧 English](../en/18-Turret-Defense-Demo.md) | 🇺🇦 Українська*
 
-Карта **FuzzyTurretDefense** містить три незалежні системи Мамдані. Їхні JSON-пресети лежать у `Plugins/FuzzyLogic/Content/Demo/FuzzyTurretDefense/`. Назви множин у JSON залишені англійськими, щоб їх було зручно шукати в Blueprint, але нижче наведено їхнє точне значення.
+Host-проєкт містить другу демонстраційну сцену: турель обороняється від хвиль ворожих дронів за допомогою трьох послідовних систем Мамдані замість одного вручну підібраного порогу. Одна система оцінює загрозу, друга наводиться, а третя вирішує, коли справді безпечно стріляти — і жодна з них не є конструкцією switch.
+
+## Як запустити
+
+Відкрийте карту:
+
+```text
+/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense
+```
+
+Запустіть Play або Standalone Game. Ворожі дрони наближаються з краю арени; турель супроводжує найближчого, розганяється й стріляє, коли її нечіткий вихід `FireAuthorization` перевищує поріг. Гільзи вилітають із бічного вікна гармати, падають на підлогу з фізикою і зникають через 14 секунд. Панель візуалізації **Fire Control** у нижньому правому куті малює три вхідні функції належності та агреговану поверхню `FireAuthorization` у реальному часі — про кнопки `HIDE`/`SHOW` і `PAUSE`/`RESUME` див. [16 — Демонстраційний контент](16-Demo-Content.md).
+
+## Асети
+
+| Ресурс | Призначення |
+|---|---|
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense` | Демонстраційна карта |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_RadarAssessment` | `UFuzzySystemAsset` пріоритету загрози |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_TrackingControl` | `UFuzzySystemAsset` швидкості наведення |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_FireControl` | `UFuzzySystemAsset` дозволу на вогонь |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | Редаговані JSON-вихідники трьох систем |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/Blueprints/BP_FuzzyTurret` | Актор турелі: обертання, зчитування радара, стрільба, накопичення тепла |
+| `Tools/create_fuzzy_turret_defense.py` | Відтворюване створення асетів і карти |
+
+Назви множин у JSON залишені англійськими, щоб їх було зручно шукати в Blueprint, але нижче наведено їхнє точне значення.
 
 Число на виході не є перемикачем. Це дефазифікований результат у вказаному діапазоні: правила активують нечіткі множини, вони накладаються одна на одну, а метод **Centroid** повертає їхній центр ваги. Тому перехід між станами плавний.
 
@@ -73,6 +97,22 @@
 У демонстраційному Blueprint постріл фактично дозволяє перевірка `FireAuthorization > 0.64` разом із нульовим `FireCooldown`. Поріг нижчий за початок `Authorize` (`0.68`), щоб у зоні переходу не виникало різкого перемикання, але низькі й невизначені результати все одно не могли запустити снаряд.
 
 Правила безпеки мають пріоритет: `Unsafe`, `Low` або `Hot` ведуть до `Inhibit`. Лише поєднання `Locked`, `High` і `Safe` дає `Authorize`; `Marginal`, `High`, `Safe` дає проміжний `Standby`.
+
+## Роль JSON
+
+`create_fuzzy_turret_defense.py` читає `RadarAssessment.json`, `TrackingControl.json` і `FireControl.json` через `FuzzyLogicStatics.load_fuzzy_system_from_json` і записує кожну структуру у відповідний Data Asset (`DA_RadarAssessment`, `DA_TrackingControl`, `DA_FireControl`). Після створення карти `BP_FuzzyTurret` читає ці три Data Asset; жоден JSON не парситься під час виконання й не потрібен запакованій збірці.
+
+Можна також відкрити будь-який із трьох Data Asset, змінити систему в редакторі та натиснути **Save To JSON**, щоб синхронізувати зовнішній пресет вручну.
+
+## Що спробувати
+
+- знизьте поріг `FireAuthorization > 0.64` у Blueprint і подивіться, як турель починає стріляти раніше, з меншою впевненістю;
+- розширте `AimError.Locked` у FireControl і перевірте, наскільки неточнішу наводку турель терпітиме, перш ніж перестане стріляти;
+- змініть `WeaponHeat.Hot`, щоб турелі доводилося охолоджуватися раніше;
+- додайте четверту множину `ThreatPriority` (наприклад, `Critical`) і відповідне правило у FireControl;
+- перемкніть дефазифікацію `FireControl` з `Centroid` на `Mean of Maxima` і порівняйте, наскільки рішучіше система переходить до `Authorize`.
+
+Демо-класи належать host-проєкту й не збільшують runtime-код плагіна, який отримує покупець.
 
 ## Значення `DefaultValue`
 

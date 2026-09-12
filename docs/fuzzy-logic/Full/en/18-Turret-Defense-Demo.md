@@ -1,8 +1,32 @@
-# 18 — Fuzzy Turret Defense Fuzzy Systems
+# 18 — Fuzzy Turret Defense Demo
 
-*🇬🇧 English | [🇺🇦 Українська](../uk/18-Turret-Defense-Fuzzy-Glossary.md)*
+*🇬🇧 English | [🇺🇦 Українська](../uk/18-Turret-Defense-Demo.md)*
 
-The **FuzzyTurretDefense** map contains three independent Mamdani systems. Their JSON presets live under `Plugins/FuzzyLogic/Content/Demo/FuzzyTurretDefense/`. The set names in the JSON are kept in English so they're easy to search for in Blueprint, but their exact meaning is given below.
+The host project contains a second demo scene: a turret defends itself against waves of enemy drones using three chained Mamdani systems instead of a single hand-tuned threshold. One system scores threats, the second aims, and the third decides when it's actually safe to fire — and none of them is a switch statement.
+
+## How to Run It
+
+Open the map:
+
+```text
+/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense
+```
+
+Press Play or Standalone Game. Enemy drones approach from the arena's edge; the turret tracks the nearest one, spins up, and fires when its fuzzy `FireAuthorization` output clears the threshold. Shell casings eject from the gun's side port, land on the floor under physics, and fade out after 14 seconds. A **Fire Control** visualization panel in the bottom-right corner plots the three input membership functions and the aggregated `FireAuthorization` surface live — see [16 — Demo Content](16-Demo-Content.md) for its `HIDE`/`SHOW` and `PAUSE`/`RESUME` controls.
+
+## Assets
+
+| Asset | Purpose |
+|---|---|
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense` | The demo map |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_RadarAssessment` | Threat-priority `UFuzzySystemAsset` |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_TrackingControl` | Aiming-speed `UFuzzySystemAsset` |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/DA_FireControl` | Firing-authorization `UFuzzySystemAsset` |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/RadarAssessment.json`, `TrackingControl.json`, `FireControl.json` | The editable JSON sources of the three systems |
+| `/FuzzyLogic/Demo/FuzzyTurretDefense/Blueprints/BP_FuzzyTurret` | The turret actor: rotation, radar sampling, firing, heat buildup |
+| `Tools/create_fuzzy_turret_defense.py` | Reproducible creation of the assets and map |
+
+The set names in the JSON are kept in English so they're easy to search for in Blueprint, but their exact meaning is given below.
 
 The output number isn't a switch. It's a defuzzified result within the stated range: rules activate fuzzy sets, they overlap one another, and the **Centroid** method returns their center of gravity. That's why the transition between states is smooth.
 
@@ -73,6 +97,22 @@ This system combines accuracy, threat priority, and thermal state. Its output, `
 In the demo Blueprint, firing is actually permitted by the check `FireAuthorization > 0.64` together with a zero `FireCooldown`. The threshold is lower than the start of `Authorize` (`0.68`) so that no abrupt switching occurs in the transition zone, while still ensuring low, indeterminate results can't trigger a shot.
 
 Safety rules take priority: `Unsafe`, `Low`, or `Hot` lead to `Inhibit`. Only the combination of `Locked`, `High`, and `Safe` gives `Authorize`; `Marginal`, `High`, `Safe` gives an intermediate `Standby`.
+
+## The Role of JSON
+
+`create_fuzzy_turret_defense.py` reads `RadarAssessment.json`, `TrackingControl.json`, and `FireControl.json` via `FuzzyLogicStatics.load_fuzzy_system_from_json` and writes each structure into its matching Data Asset (`DA_RadarAssessment`, `DA_TrackingControl`, `DA_FireControl`). Once the map is created, `BP_FuzzyTurret` reads the three Data Assets; none of the JSON files is parsed at runtime or needed by a packaged build.
+
+You can also open any of the three Data Assets, change the system in the editor, and click **Save To JSON** to manually sync the external preset.
+
+## What to Try
+
+- lower the `FireAuthorization > 0.64` gate in the Blueprint and watch the turret fire earlier, less certainly;
+- widen `AimError.Locked` in FireControl and see how much sloppier aim the turret tolerates before it stops firing;
+- change `WeaponHeat.Hot` so the turret needs to cool down sooner;
+- add a fourth `ThreatPriority` set (e.g. `Critical`) and a matching rule in FireControl;
+- switch `FireControl`'s defuzzification from `Centroid` to `Mean of Maxima` and compare how decisively it commits to `Authorize`.
+
+The demo classes belong to the host project and don't add to the plugin's runtime code that a buyer receives.
 
 ## The Meaning of `DefaultValue`
 

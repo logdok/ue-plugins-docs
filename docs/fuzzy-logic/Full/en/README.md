@@ -43,4 +43,4 @@ Systems are stored as reusable `UFuzzySystemAsset`s, can run directly inside a `
 15. [FAQ](15-FAQ.md) — short answers to common problems.
 16. [Demo Content](16-Demo-Content.md) — maps, a separate module, and excluding Demo from the build.
 17. [Fuzzy Drone Arena Demo](17-Drone-Arena-Demo.md) — a ready-made example with nine agents.
-18. [Fuzzy Turret Defense Fuzzy Glossary](18-Turret-Defense-Fuzzy-Glossary.md) — a glossary of variables, sets, and thresholds for the turret demo.
+18. [Fuzzy Turret Defense Demo](18-Turret-Defense-Demo.md) — a turret defending against drone waves with three chained Mamdani systems.

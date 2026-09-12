@@ -56,7 +56,7 @@ Blueprint чи на C++. Див. [11 — JSON-пресети](11-JSON-Presets.md
 оцінюванням загрози, наведенням і дозволом на вогонь турелі) постачаються з плагіном і можуть
 бути виключені із запакованої збірки. Див. [16 — Демонстраційний контент](16-Demo-Content.md),
 [17 — Демо Fuzzy Drone Arena](17-Drone-Arena-Demo.md) і
-[18 — Нечіткі системи Fuzzy Turret Defense](18-Turret-Defense-Fuzzy-Glossary.md).
+[18 — Демо Fuzzy Turret Defense](18-Turret-Defense-Demo.md).
 
 ### Оновлення
 

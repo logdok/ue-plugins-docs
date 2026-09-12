@@ -56,7 +56,7 @@ Turret Defense (three chained Mamdani systems driving a turret's threat assessme
 and fire control) ship in the plugin and can be excluded from a packaged build. See
 [16 — Demo Content](16-Demo-Content.md),
 [17 — Fuzzy Drone Arena Demo](17-Drone-Arena-Demo.md), and
-[18 — Fuzzy Turret Defense Fuzzy Glossary](18-Turret-Defense-Fuzzy-Glossary.md).
+[18 — Fuzzy Turret Defense Demo](18-Turret-Defense-Demo.md).
 
 ### Upgrading
 
