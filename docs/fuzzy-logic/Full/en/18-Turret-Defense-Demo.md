@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/18-Turret-Defense-Demo.md)*
 
-The host project contains a second demo scene: a turret defends itself against waves of enemy drones using three chained Mamdani systems instead of a single hand-tuned threshold. One system scores threats, the second aims, and the third decides when it's actually safe to fire — and none of them is a switch statement.
+The plugin's optional `FuzzyLogicDemo` module ships a second demo scene: a turret defends itself against waves of enemy drones using three chained Mamdani systems instead of a single hand-tuned threshold. One system scores threats, the second aims, and the third decides when it's actually safe to fire — and none of them is a switch statement.
 
 ## How to Run It
 
@@ -112,7 +112,7 @@ You can also open any of the three Data Assets, change the system in the editor,
 - add a fourth `ThreatPriority` set (e.g. `Critical`) and a matching rule in FireControl;
 - switch `FireControl`'s defuzzification from `Centroid` to `Mean of Maxima` and compare how decisively it commits to `Authorize`.
 
-The demo classes belong to the host project and don't add to the plugin's runtime code that a buyer receives.
+The demo classes live in the plugin's own `FuzzyLogicDemo` module (`Plugins/FuzzyLogic/Source/FuzzyLogicDemo`) — they ship with the plugin by default, but can be excluded from the build entirely; see [16 — Demo Content](16-Demo-Content.md).
 
 ## The Meaning of `DefaultValue`
 

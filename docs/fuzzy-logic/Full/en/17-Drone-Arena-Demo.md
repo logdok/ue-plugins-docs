@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/17-Drone-Arena-Demo.md)*
 
-The host project contains a vivid demo scene where nine drones evaluate a single shared Mamdani fuzzy system every frame. There's no scripted choreography: each drone feeds its own orbit distance, the reactor's shared heat, and its own simulated integrity into the same `UFuzzySystemAsset`, and the resulting numbers drive its speed, altitude, and color in real time.
+The plugin's optional `FuzzyLogicDemo` module ships a vivid demo scene where nine drones evaluate a single shared Mamdani fuzzy system every frame. There's no scripted choreography: each drone feeds its own orbit distance, the reactor's shared heat, and its own simulated integrity into the same `UFuzzySystemAsset`, and the resulting numbers drive its speed, altitude, and color in real time.
 
 ## How to Run It
 
@@ -108,7 +108,7 @@ You can also open `DA_DroneBehavior`, change the system in the editor, and click
 - add an output for beam brightness;
 - use one Data Asset for dozens of additional agents.
 
-The demo classes belong to the host project and don't add to the plugin's runtime code that a buyer receives.
+The demo classes live in the plugin's own `FuzzyLogicDemo` module (`Plugins/FuzzyLogic/Source/FuzzyLogicDemo`) — they ship with the plugin by default, but can be excluded from the build entirely; see [16 — Demo Content](16-Demo-Content.md).
 
 ## The Meaning of `DefaultValue`
 
