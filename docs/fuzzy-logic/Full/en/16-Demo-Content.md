@@ -2,10 +2,10 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/16-Demo-Content.md)*
 
-The plugin includes two ready-made maps in the Content Browser:
+The plugin includes two ready-made maps. If the `Plugins` root isn't visible in the Content Browser, enable it first via the settings (gear) icon → **Show Plugin Content**, then navigate to **Plugins → Fuzzy Logic Content → Demo**:
 
-- `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena`;
-- `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`.
+- **FuzzyDroneArena** → `Demo/FuzzyDroneArena/Maps/FuzzyDroneArena`;
+- **FuzzyTurretDefense** → `Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`.
 
 The data, Blueprints, materials, and maps live under `Plugins/FuzzyLogic/Content/Demo`. Their packages belong to the plugin, so there's no need to copy files into your project's `Content`.
 

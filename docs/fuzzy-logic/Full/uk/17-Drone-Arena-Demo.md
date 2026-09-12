@@ -6,11 +6,7 @@
 
 ## Як запустити
 
-Відкрийте карту:
-
-```text
-/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena
-```
+У Content Browser увімкніть іконку налаштувань (шестерня) → **Show Plugin Content**, якщо `Plugins` не видно, а потім перейдіть у **Plugins → Fuzzy Logic Content → Demo → FuzzyDroneArena → Maps** і відкрийте **FuzzyDroneArena**.
 
 Запустіть Play або Standalone Game. Камера обертається навколо арени, центральний реактор пульсує, а дрони змінюють траєкторію та колір.
 

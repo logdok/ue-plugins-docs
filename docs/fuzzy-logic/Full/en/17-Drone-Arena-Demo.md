@@ -6,11 +6,7 @@ The plugin's optional `FuzzyLogicDemo` module ships a vivid demo scene where nin
 
 ## How to Run It
 
-Open the map:
-
-```text
-/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena
-```
+In the Content Browser, enable the settings (gear) icon → **Show Plugin Content** if `Plugins` isn't visible, then navigate to **Plugins → Fuzzy Logic Content → Demo → FuzzyDroneArena → Maps** and open **FuzzyDroneArena**.
 
 Press Play or Standalone Game. The camera orbits the arena, the central reactor pulses, and the drones change trajectory and color.
 

@@ -6,11 +6,7 @@
 
 ## Як запустити
 
-Відкрийте карту:
-
-```text
-/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense
-```
+У Content Browser увімкніть іконку налаштувань (шестерня) → **Show Plugin Content**, якщо `Plugins` не видно, а потім перейдіть у **Plugins → Fuzzy Logic Content → Demo → FuzzyTurretDefense → Maps** і відкрийте **FuzzyTurretDefense**.
 
 Запустіть Play або Standalone Game. Ворожі дрони наближаються з краю арени; турель супроводжує найближчого, розганяється й стріляє, коли її нечіткий вихід `FireAuthorization` перевищує поріг. Гільзи вилітають із бічного вікна гармати, падають на підлогу з фізикою і зникають через 14 секунд. Панель візуалізації **Fire Control** у нижньому правому куті малює три вхідні функції належності та агреговану поверхню `FireAuthorization` у реальному часі — про кнопки `HIDE`/`SHOW` і `PAUSE`/`RESUME` див. [16 — Демонстраційний контент](16-Demo-Content.md).
 

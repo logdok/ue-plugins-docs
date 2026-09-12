@@ -2,10 +2,10 @@
 
 *[🇬🇧 English](../en/16-Demo-Content.md) | 🇺🇦 Українська*
 
-Плагін містить дві готові карти у Content Browser:
+Плагін містить дві готові карти. Якщо корінь `Plugins` не видно в Content Browser, спершу увімкніть його через іконку налаштувань (шестерня) → **Show Plugin Content**, а потім перейдіть у **Plugins → Fuzzy Logic Content → Demo**:
 
-- `/FuzzyLogic/Demo/FuzzyDroneArena/Maps/FuzzyDroneArena`;
-- `/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`.
+- **FuzzyDroneArena** → `Demo/FuzzyDroneArena/Maps/FuzzyDroneArena`;
+- **FuzzyTurretDefense** → `Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense`.
 
 Дані, Blueprints, матеріали та карти лежать у `Plugins/FuzzyLogic/Content/Demo`. Їхні пакети належать плагіну, тому не потрібно копіювати файли до `Content` вашого проєкту.
 

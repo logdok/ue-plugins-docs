@@ -6,11 +6,7 @@ The plugin's optional `FuzzyLogicDemo` module ships a second demo scene: a turre
 
 ## How to Run It
 
-Open the map:
-
-```text
-/FuzzyLogic/Demo/FuzzyTurretDefense/Maps/FuzzyTurretDefense
-```
+In the Content Browser, enable the settings (gear) icon → **Show Plugin Content** if `Plugins` isn't visible, then navigate to **Plugins → Fuzzy Logic Content → Demo → FuzzyTurretDefense → Maps** and open **FuzzyTurretDefense**.
 
 Press Play or Standalone Game. Enemy drones approach from the arena's edge; the turret tracks the nearest one, spins up, and fires when its fuzzy `FireAuthorization` output clears the threshold. Shell casings eject from the gun's side port, land on the floor under physics, and fade out after 14 seconds. A **Fire Control** visualization panel in the bottom-right corner plots the three input membership functions and the aggregated `FireAuthorization` surface live — see [16 — Demo Content](16-Demo-Content.md) for its `HIDE`/`SHOW` and `PAUSE`/`RESUME` controls.
 
