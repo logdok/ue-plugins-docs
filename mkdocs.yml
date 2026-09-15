@@ -396,3 +396,37 @@ nav:
           - 12 Додаткові актори: spline-craft/Demo/uk/12-Additional-Actors.md
           - 13 Продуктивність і запікання: spline-craft/Demo/uk/13-Performance-And-Baking.md
           - 14 Часті запитання: spline-craft/Demo/uk/14-FAQ.md
+  - SplineCraft Flow:
+      - Overview: spline-craft-flow/index.md
+      - Full Edition (English):
+          - Guide: spline-craft-flow/Full/en/README.md
+          - Release Notes: spline-craft-flow/Full/en/Release-Notes.md
+          - 01 Quick Start: spline-craft-flow/Full/en/01-Quick-Start.md
+          - 02 Spline and Placement Strategies: spline-craft-flow/Full/en/02-Spline-And-Placement-Strategies.md
+          - 03 Static Meshes: spline-craft-flow/Full/en/03-Static-Meshes.md
+          - 04 Line vs Curve Mode: spline-craft-flow/Full/en/04-Line-vs-Curve-Mode.md
+          - 05 Distance Ranges: spline-craft-flow/Full/en/05-Distance-Ranges.md
+          - 06 Materials: spline-craft-flow/Full/en/06-Materials.md
+          - 07 Randomization: spline-craft-flow/Full/en/07-Randomization.md
+          - 08 Actors Along the Spline: spline-craft-flow/Full/en/08-Actors-Along-Spline.md
+          - 09 Transform, Mobility & Blueprint API: spline-craft-flow/Full/en/09-Transform-Mobility-And-Blueprint.md
+          - 10 Merge to Static Mesh: spline-craft-flow/Full/en/10-Merge-To-Static-Mesh.md
+          - 11 Performance: spline-craft-flow/Full/en/11-Performance.md
+          - 12 FAQ: spline-craft-flow/Full/en/12-FAQ.md
+          - 13 Presets: spline-craft-flow/Full/en/13-Presets.md
+      - Full Edition (Українська):
+          - Посібник: spline-craft-flow/Full/uk/README.md
+          - Примітки до випуску: spline-craft-flow/Full/uk/Release-Notes.md
+          - 01 Швидкий старт: spline-craft-flow/Full/uk/01-Quick-Start.md
+          - 02 Сплайн і стратегії розміщення точок: spline-craft-flow/Full/uk/02-Spline-And-Placement-Strategies.md
+          - 03 Статичні меші: spline-craft-flow/Full/uk/03-Static-Meshes.md
+          - 04 Режими Line та Curve: spline-craft-flow/Full/uk/04-Line-vs-Curve-Mode.md
+          - 05 Діапазони відстані: spline-craft-flow/Full/uk/05-Distance-Ranges.md
+          - 06 Матеріали: spline-craft-flow/Full/uk/06-Materials.md
+          - 07 Рандомізація та Random Seed: spline-craft-flow/Full/uk/07-Randomization.md
+          - 08 Актори вздовж сплайна: spline-craft-flow/Full/uk/08-Actors-Along-Spline.md
+          - 09 Трансформація, Mobility і Blueprint API: spline-craft-flow/Full/uk/09-Transform-Mobility-And-Blueprint.md
+          - 10 Злиття у статичний меш: spline-craft-flow/Full/uk/10-Merge-To-Static-Mesh.md
+          - 11 Продуктивність: spline-craft-flow/Full/uk/11-Performance.md
+          - 12 Часті запитання: spline-craft-flow/Full/uk/12-FAQ.md
+          - 13 Пресети стилю генерації: spline-craft-flow/Full/uk/13-Presets.md
