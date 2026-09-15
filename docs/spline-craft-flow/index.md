@@ -1,6 +1,7 @@
 # SplineCraft Flow
 
 <!-- last-synced:start -->
+<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-15 19:39 UTC</em></p>
 <!-- last-synced:end -->
 
 **SplineCraft Flow 7.0.0**, for **Unreal Engine 5.8**. Rapid construction of static meshes and
