@@ -1,7 +1,7 @@
 # NATS Client
 
 <!-- last-synced:start -->
-<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-17 15:52 UTC</em></p>
+<p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-09-17 15:55 UTC</em></p>
 <!-- last-synced:end -->
 
 Native [NATS](https://nats.io) message broker client for **Unreal Engine 5.8** — Core
