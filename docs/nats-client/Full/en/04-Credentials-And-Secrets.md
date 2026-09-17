@@ -43,7 +43,7 @@ covered in detail below.
 
 ## Editor Only credentials: for testing in the editor
 
-**Project Settings → Plugins → NATS Messaging Client (Editor Only)**
+**Editor Preferences → Plugins → NATS Messaging Client (Editor Only)**
 
 A separate settings page next to the main one — specifically so you can test in the editor
 with real credentials without ever typing them into a field that gets stored in

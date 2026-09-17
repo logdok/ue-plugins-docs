@@ -63,7 +63,7 @@ the data at runtime. Both options, with examples, are in
 
 ### How do I test in the editor with real credentials without entering them in Project Settings?
 
-**Project Settings → Plugins → NATS Messaging Client (Editor Only)** — a separate page
+**Editor Preferences → Plugins → NATS Messaging Client (Editor Only)** — a separate page
 whose values live only on your machine (`Saved/Config/`) and aren't part of the build. See
 [4. Credentials → Editor Only credentials](04-Credentials-And-Secrets.md#editor-only-credentials-for-testing-in-the-editor).
 

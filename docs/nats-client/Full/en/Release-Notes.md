@@ -33,7 +33,7 @@ corruption, and large messages arrive hundreds of times faster.
   address.
 - `Get Connection State` reports whether the client is disconnected, connecting, or already
   connected.
-- A separate **Project Settings → Plugins → NATS Messaging Client (Editor Only)** page —
+- A separate **Editor Preferences → Plugins → NATS Messaging Client (Editor Only)** page —
   credentials for testing in the editor that never make it into `DefaultGame.ini` or the
   packaged game.
 

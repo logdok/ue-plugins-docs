@@ -154,7 +154,7 @@ Nats->ConnectToServer(); // now uses the new credentials
 
 ### Editor Only credentials (for testing)
 
-**Project Settings → Plugins → NATS Messaging Client (Editor Only)** — a separate settings
+**Editor Preferences → Plugins → NATS Messaging Client (Editor Only)** — a separate settings
 page next to the main one, for testing in the editor with real credentials without the risk
 of accidentally committing them into `DefaultGame.ini`.
 

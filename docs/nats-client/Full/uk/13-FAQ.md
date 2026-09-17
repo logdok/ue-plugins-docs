@@ -61,7 +61,7 @@ Get Game Instance Subsystem (Nats Client Subsystem) → Connect To Server → (�
 
 ### Як тестувати в редакторі з реальними обліковими даними, не вписуючи їх у Project Settings?
 
-**Project Settings → Plugins → NATS Messaging Client (Editor Only)** — окрема сторінка,
+**Editor Preferences → Plugins → NATS Messaging Client (Editor Only)** — окрема сторінка,
 значення якої лежать лише на вашій машині (`Saved/Config/`) і не входять у білд. Див.
 [4. Облікові дані → Editor Only credentials](04-Credentials-And-Secrets.md#editor-only-credentials-для-тестування-в-редакторі).
 

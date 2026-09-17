@@ -26,7 +26,7 @@
 - Ноди `String To UTF-8 Bytes` і `UTF-8 Bytes To String` для перетворення тексту на байти й назад.
 - Адресу сервера можна вказувати іменем хоста (`nats.example.com`), а не лише IP-адресою.
 - `Get Connection State` повідомляє, чи клієнт відключений, під'єднується чи вже під'єднаний.
-- Окрема сторінка **Project Settings → Plugins → NATS Messaging Client (Editor Only)** —
+- Окрема сторінка **Editor Preferences → Plugins → NATS Messaging Client (Editor Only)** —
   облікові дані для тестування в редакторі, які не потрапляють у `DefaultGame.ini` й у
   зібрану гру.
 

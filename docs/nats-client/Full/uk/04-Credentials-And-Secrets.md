@@ -43,7 +43,7 @@
 
 ## Editor Only credentials: для тестування в редакторі
 
-**Project Settings → Plugins → NATS Messaging Client (Editor Only)**
+**Editor Preferences → Plugins → NATS Messaging Client (Editor Only)**
 
 Окрема сторінка налаштувань поруч з основною — саме для того, щоб тестувати в редакторі з
 реальними обліковими даними, жодного разу не вписавши їх у поле, яке зберігається в

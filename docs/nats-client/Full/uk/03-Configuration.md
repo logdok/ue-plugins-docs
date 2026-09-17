@@ -150,7 +150,7 @@ Nats->ConnectToServer(); // тепер уже з новими обліковим
 
 ### Editor Only облікові дані (для тестування)
 
-**Project Settings → Plugins → NATS Messaging Client (Editor Only)** — окрема сторінка
+**Editor Preferences → Plugins → NATS Messaging Client (Editor Only)** — окрема сторінка
 поруч з основною, для тестування в редакторі з реальними обліковими даними без ризику
 закомітити їх у `DefaultGame.ini`.
 
