@@ -192,6 +192,40 @@ nav:
           - 13 Відлагодження: inventory-system/Demo/uk/13-Debugging.md
           - 14 Поширені запитання: inventory-system/Demo/uk/14-FAQ.md
           - Архітектура: inventory-system/Demo/uk/Architecture.md
+  - NATS Client:
+      - Overview: nats-client/index.md
+      - Full Edition (English):
+          - Guide: nats-client/Full/en/README.md
+          - Release Notes: nats-client/Full/en/Release-Notes.md
+          - 01 Introduction to NATS: nats-client/Full/en/01-Introduction.md
+          - 02 Quick Start: nats-client/Full/en/02-Quick-Start.md
+          - 03 Configuration: nats-client/Full/en/03-Configuration.md
+          - 04 Credentials and Secrets: nats-client/Full/en/04-Credentials-And-Secrets.md
+          - 05 Core Messaging: nats-client/Full/en/05-Core-Messaging.md
+          - 06 Binary Data: nats-client/Full/en/06-Binary-Data.md
+          - 07 JetStream Streams: nats-client/Full/en/07-JetStream-Streams.md
+          - 08 JetStream Publisher: nats-client/Full/en/08-JetStream-Publisher.md
+          - 09 JetStream Consumers: nats-client/Full/en/09-JetStream-Consumers.md
+          - 10 JetStream Key-Value: nats-client/Full/en/10-JetStream-KeyValue.md
+          - 11 Errors and Diagnostics: nats-client/Full/en/11-Errors-And-Diagnostics.md
+          - 12 Testing and Local Server: nats-client/Full/en/12-Testing-And-Local-Server.md
+          - 13 FAQ: nats-client/Full/en/13-FAQ.md
+      - Full Edition (Українська):
+          - Посібник: nats-client/Full/uk/README.md
+          - Примітки до випуску: nats-client/Full/uk/Release-Notes.md
+          - 01 Вступ до NATS: nats-client/Full/uk/01-Introduction.md
+          - 02 Швидкий старт: nats-client/Full/uk/02-Quick-Start.md
+          - 03 Налаштування: nats-client/Full/uk/03-Configuration.md
+          - 04 Облікові дані та секрети: nats-client/Full/uk/04-Credentials-And-Secrets.md
+          - 05 Основний обмін повідомленнями: nats-client/Full/uk/05-Core-Messaging.md
+          - 06 Бінарні дані: nats-client/Full/uk/06-Binary-Data.md
+          - "07 JetStream: стріми": nats-client/Full/uk/07-JetStream-Streams.md
+          - "08 JetStream: публікація": nats-client/Full/uk/08-JetStream-Publisher.md
+          - "09 JetStream: споживачі": nats-client/Full/uk/09-JetStream-Consumers.md
+          - "10 JetStream: Key-Value": nats-client/Full/uk/10-JetStream-KeyValue.md
+          - 11 Помилки та діагностика: nats-client/Full/uk/11-Errors-And-Diagnostics.md
+          - 12 Тестування та локальний сервер: nats-client/Full/uk/12-Testing-And-Local-Server.md
+          - 13 Поширені запитання: nats-client/Full/uk/13-FAQ.md
   - Quest System:
       - Overview: quest-system/index.md
       - Full Edition (English):
