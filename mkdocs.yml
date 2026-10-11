@@ -112,6 +112,56 @@ nav:
           - 16 Демонстраційний контент: fuzzy-logic/Full/uk/16-Demo-Content.md
           - 17 Демо Fuzzy Drone Arena: fuzzy-logic/Full/uk/17-Drone-Arena-Demo.md
           - 18 Демо Fuzzy Turret Defense: fuzzy-logic/Full/uk/18-Turret-Defense-Demo.md
+  - Interaction System:
+      - Overview: interaction-system/index.md
+      - Full Edition (English):
+          - Guide: interaction-system/Full/en/README.md
+          - Release Notes: interaction-system/Full/en/Release-Notes.md
+          - 01 Introduction: interaction-system/Full/en/01-Introduction.md
+          - 02 Quick Start: interaction-system/Full/en/02-Quick-Start.md
+          - 03 Interaction and Focus: interaction-system/Full/en/03-Interaction-and-Focus.md
+          - 04 Multiplayer and VR: interaction-system/Full/en/04-Multiplayer-and-VR.md
+          - 05 Physics Items: interaction-system/Full/en/05-Physics.md
+          - 06 Demo Content: interaction-system/Full/en/06-Demo.md
+          - 07 Spear Throwing: interaction-system/Full/en/07-Spear-Range.md
+          - 08 VR Manipulation and Profiles: interaction-system/Full/en/08-VR-Manipulation.md
+          - 09 VRLabBP Blueprint Demo: interaction-system/Full/en/09-VRLabBP.md
+          - 10 Demo Controls: interaction-system/Full/en/10-Demo-Controls.md
+          - 11 Blueprint Integration: interaction-system/Full/en/11-Blueprint-Integration.md
+          - 12 C++ Integration: interaction-system/Full/en/12-Cpp-Integration.md
+          - 13 Network Model: interaction-system/Full/en/13-Network-Model.md
+          - 14 Step-by-step Tutorials: interaction-system/Full/en/14-Tutorials.md
+          - 15 Debug Tools: interaction-system/Full/en/15-Debug-Tools.md
+          - Glossary: interaction-system/Full/en/Glossary.md
+          - API Reference: interaction-system/Full/en/API-Reference.md
+          - Architecture: interaction-system/Full/en/Architecture.md
+          - Performance: interaction-system/Full/en/Performance.md
+          - Limitations: interaction-system/Full/en/Limitations.md
+          - FAQ: interaction-system/Full/en/FAQ.md
+      - Full Edition (Українська):
+          - Посібник: interaction-system/Full/uk/README.md
+          - Примітки до випуску: interaction-system/Full/uk/Release-Notes.md
+          - 01 Вступ: interaction-system/Full/uk/01-Introduction.md
+          - 02 Швидкий старт: interaction-system/Full/uk/02-Quick-Start.md
+          - 03 Взаємодія та фокус: interaction-system/Full/uk/03-Interaction-and-Focus.md
+          - 04 Мультиплеєр та VR: interaction-system/Full/uk/04-Multiplayer-and-VR.md
+          - 05 Фізичні предмети: interaction-system/Full/uk/05-Physics.md
+          - 06 Демонстраційний контент: interaction-system/Full/uk/06-Demo.md
+          - 07 Метання списа: interaction-system/Full/uk/07-Spear-Range.md
+          - 08 VR-маніпуляції та профілі: interaction-system/Full/uk/08-VR-Manipulation.md
+          - "09 VRLabBP: демо на Blueprint": interaction-system/Full/uk/09-VRLabBP.md
+          - 10 Керування в демо: interaction-system/Full/uk/10-Demo-Controls.md
+          - 11 Інтеграція в Blueprint: interaction-system/Full/uk/11-Blueprint-Integration.md
+          - 12 Інтеграція в C++: interaction-system/Full/uk/12-Cpp-Integration.md
+          - 13 Мережева модель: interaction-system/Full/uk/13-Network-Model.md
+          - 14 Покрокові уроки: interaction-system/Full/uk/14-Tutorials.md
+          - 15 Інструменти налагодження: interaction-system/Full/uk/15-Debug-Tools.md
+          - Словник термінів: interaction-system/Full/uk/Glossary.md
+          - Довідник API: interaction-system/Full/uk/API-Reference.md
+          - Архітектура: interaction-system/Full/uk/Architecture.md
+          - Продуктивність: interaction-system/Full/uk/Performance.md
+          - Обмеження: interaction-system/Full/uk/Limitations.md
+          - Поширені запитання: interaction-system/Full/uk/FAQ.md
   - Inventory System:
       - Overview: inventory-system/index.md
       - Full Edition (English):
