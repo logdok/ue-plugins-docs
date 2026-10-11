@@ -66,6 +66,7 @@ This page describes behavior of InteractionSystem 1.0 worth knowing before integ
 
 - Building for Windows (MSVC) on the development machine: the name hiding check prevents typical errors but does not replace a build.
 - A real Quest 2 and comfort in an HMD.
+- Running on an iOS or Android device. The code has no platform-specific parts and the `.uplugin` allows these platforms, but the plugin was built and tested only on Mac here; check touch input, performance and a mobile build on your own device.
 - Separate network machines, packet loss and late join. Packet latency is imitated by the automated tests in one PIE process.
 
 Before releasing your game verify these scenarios yourself.

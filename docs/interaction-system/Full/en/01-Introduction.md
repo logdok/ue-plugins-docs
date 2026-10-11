@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/01-Introduction.md)*
 
-InteractionSystem **1.0** is an interaction system for **Unreal Engine 5.8**: the player aims their gaze or hand at an item, sees a prompt, picks the item up, uses it and throws it. The same model works for desktop and VR, in single-player and multiplayer.
+InteractionSystem **1.0** is an interaction system for **Unreal Engine 5.8**: the player aims their gaze or hand at an item, sees a prompt, picks the item up, uses it and throws it. The same model works for desktop, mobile and VR, in single-player and multiplayer.
 
 ## What problem it solves
 
@@ -41,6 +41,7 @@ The client shows local focus immediately, so prompts appear without delay. The s
 - A grab target with its rules in Blueprint, without C++.
 - Network limits in **Project Settings → Plugins → Interaction System** with per-component overrides.
 - A debug panel and console commands.
+- Platform-neutral: the source knows nothing about keys, a touch screen or a headset. On desktop and mobile a camera source uses the pawn viewpoint, and your input — a key, a touch, a gamepad button — simply calls `Request Grab`, `Request Release` or `Request Interaction`; on VR each hand is its own source. The plugin allows Windows, Mac, Linux, iOS, Android and the other platforms of the `.uplugin`.
 - Four demo maps: InteractionLab, SpearRange, VRLab and the Blueprint version VRLabBP.
 
 ## Where to start

@@ -2,7 +2,7 @@
 
 *🇬🇧 English | [🇺🇦 Українська](../uk/README.md)*
 
-One shared interaction model for desktop and VR: ray-based selection, server-authoritative grabbing and local feedback.
+One shared interaction model for desktop, mobile and VR: ray-based selection, server-authoritative grabbing and local feedback.
 
 Version [1.0](Release-Notes.md), Unreal Engine 5.8.
 
