@@ -4,7 +4,7 @@
 <p style="text-align: right; font-size: .75rem; opacity: .7;"><em>Docs last synced: 2026-10-11 00:23 UTC</em></p>
 <!-- last-synced:end -->
 
-One shared interaction model for **Unreal Engine 5.8**, desktop and VR: ray-based selection with
+One shared interaction model for **Unreal Engine 5.8** on desktop, mobile and VR: ray-based selection with
 local focus feedback, **server-authoritative grabbing**, one- and two-hand manipulation with profiles,
 physics items, a bow and arrow, rotary and linear handles, and a built-in debug panel. Works from
 Blueprint and from C++, in single-player and multiplayer.
